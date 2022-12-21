@@ -17,6 +17,7 @@
         <module>zeus-spring-boot-starter-swagger</module>
         <module>zeus-spring-boot-starter-redis</module>
         <module>zeus-spring-boot-starter-security</module>
+        <module>zeus-spring-boot-starter-web</module>
     </modules>
 
     <properties>

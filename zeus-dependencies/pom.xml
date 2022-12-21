@@ -24,6 +24,14 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- springboot 公共版本定义 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!-- 内部 common 组件版本 -->
             <dependency>
                 <groupId>tech.alexchen</groupId>
@@ -48,6 +56,11 @@
             <dependency>
                 <groupId>tech.alexchen</groupId>
                 <artifactId>zeus-spring-boot-starter-swagger</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tech.alexchen</groupId>
+                <artifactId>zeus-spring-boot-starter-web</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--hutool bom -->

@@ -49,14 +49,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- springboot 公共版本定义 -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 

@@ -9,7 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>zeus-spring-boot-starter-mybatis</artifactId>
+    <artifactId>zeus-spring-boot-starter-web</artifactId>
+    <description>Web 服务所需依赖</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -18,21 +19,24 @@
 
     <dependencies>
         <dependency>
+            <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-spring-boot-starter</artifactId>
+        </dependency>
+        <!--web 模块-->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
+        <!--undertow容器-->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
     </dependencies>
 </project>
