@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.upms.service;
+package tech.alexchen.zeus.upms.service.admin.user;
 
 /**
  * @author alexchen

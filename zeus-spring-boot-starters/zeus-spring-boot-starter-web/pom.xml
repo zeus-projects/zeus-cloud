@@ -22,21 +22,25 @@
             <groupId>tech.alexchen</groupId>
             <artifactId>zeus-spring-boot-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-spring-boot-starter-swagger</artifactId>
+        </dependency>
         <!--web 模块-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                    <groupId>org.springframework.boot</groupId>
-                </exclusion>
-            </exclusions>
+            <!-- <exclusions> -->
+            <!--     <exclusion> -->
+            <!--         <artifactId>spring-boot-starter-tomcat</artifactId> -->
+            <!--         <groupId>org.springframework.boot</groupId> -->
+            <!--     </exclusion> -->
+            <!-- </exclusions> -->
         </dependency>
         <!--undertow容器-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
-        </dependency>
+        <!-- <dependency> -->
+        <!--     <groupId>org.springframework.boot</groupId> -->
+        <!--     <artifactId>spring-boot-starter-undertow</artifactId> -->
+        <!-- </dependency> -->
     </dependencies>
 </project>

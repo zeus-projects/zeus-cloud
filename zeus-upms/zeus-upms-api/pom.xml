@@ -17,4 +17,15 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-spring-boot-starter-swagger</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

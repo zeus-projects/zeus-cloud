@@ -26,5 +26,10 @@
             <groupId>tech.alexchen</groupId>
             <artifactId>zeus-spring-boot-starter-mybatis</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+        </dependency>
     </dependencies>
+
 </project>

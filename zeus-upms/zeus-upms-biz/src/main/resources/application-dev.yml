@@ -1,7 +1,17 @@
 server:
+  servlet:
+    context-path: upms
   port: 8080
 
 spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+--- #################### 数据库相关配置 ####################
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/zeus?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver

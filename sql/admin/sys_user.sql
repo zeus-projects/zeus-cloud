@@ -1,4 +1,4 @@
-USE zeus_boot;
+USE zeus;
 -- ----------------------------
 -- Table structure for sys_user
 -- ----------------------------

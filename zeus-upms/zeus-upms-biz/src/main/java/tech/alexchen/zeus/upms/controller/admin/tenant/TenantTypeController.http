@@ -1,0 +1,14 @@
+### add
+POST http://localhost:8080/v1/tenant-type
+Content-Type: application/json
+
+{
+  "name": "test_8718cc89574a",
+  "status": 1,
+  "menuIds": [
+    61
+  ]
+}
+
+###
+GET {{baseUrl}}/v1/tenant-type/1
