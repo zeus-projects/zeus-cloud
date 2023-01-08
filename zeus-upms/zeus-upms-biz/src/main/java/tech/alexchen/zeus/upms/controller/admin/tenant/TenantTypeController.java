@@ -10,7 +10,7 @@ import tech.alexchen.zeus.upms.controller.admin.tenant.vo.TenantTypeResponseVO;
 import tech.alexchen.zeus.upms.controller.admin.tenant.vo.TenantTypeSaveVO;
 import tech.alexchen.zeus.upms.controller.admin.tenant.vo.TenantTypeUpdateVO;
 import tech.alexchen.zeus.upms.convert.tenant.TenantTypeConvert;
-import tech.alexchen.zeus.upms.dal.entity.tenant.TenantTypeDO;
+import tech.alexchen.zeus.upms.dal.dataobject.tenant.TenantTypeDO;
 import tech.alexchen.zeus.upms.service.admin.tenant.TenantTypeService;
 
 /**

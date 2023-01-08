@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import tech.alexchen.zeus.upms.controller.admin.tenant.vo.TenantTypePageVO;
 import tech.alexchen.zeus.upms.controller.admin.tenant.vo.TenantTypeResponseVO;
-import tech.alexchen.zeus.upms.dal.entity.tenant.TenantTypeDO;
+import tech.alexchen.zeus.upms.dal.dataobject.tenant.TenantTypeDO;
 
 /**
 * @author alexchen
