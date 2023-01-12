@@ -16,11 +16,4 @@ public interface TenantConvert extends Convert<TenantDO, TenantSaveVO, TenantUpd
 
     TenantConvert INSTANCE = Mappers.getMapper(TenantConvert.class);
 
-//    TenantDO convert(TenantSaveVO vo);
-//
-//    TenantDO convert(TenantUpdateVO vo);
-//
-//    TenantResponseVO convert(TenantDO tenant);
-
-
 }
