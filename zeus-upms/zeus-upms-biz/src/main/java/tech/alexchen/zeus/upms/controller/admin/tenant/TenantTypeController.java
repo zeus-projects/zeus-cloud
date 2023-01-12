@@ -1,11 +1,14 @@
 package tech.alexchen.zeus.upms.controller.admin.tenant;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tech.alexchen.zeus.starter.apiversion.ApiVersion;
+import tech.alexchen.zeus.starter.enums.CommonStatusEnum;
 import tech.alexchen.zeus.starter.response.R;
-import tech.alexchen.zeus.upms.controller.admin.tenant.vo.TenantTypePageVO;
+import tech.alexchen.zeus.upms.controller.admin.tenant.vo.TenantTypeRequestVO;
 import tech.alexchen.zeus.upms.controller.admin.tenant.vo.TenantTypeResponseVO;
 import tech.alexchen.zeus.upms.controller.admin.tenant.vo.TenantTypeSaveVO;
 import tech.alexchen.zeus.upms.controller.admin.tenant.vo.TenantTypeUpdateVO;
@@ -13,27 +16,45 @@ import tech.alexchen.zeus.upms.convert.tenant.TenantTypeConvert;
 import tech.alexchen.zeus.upms.dal.entity.tenant.TenantTypeDO;
 import tech.alexchen.zeus.upms.service.admin.tenant.TenantTypeService;
 
+import javax.validation.Valid;
+import java.util.List;
+
 /**
  * 租户类型管理接口
  *
  * @author alexchen
  */
-@ApiVersion("1.0")
+@Api(tags = "系统管理 - 租户类型")
 @RestController
-@RequestMapping("/{v}/tenant-type")
+@RequestMapping("/tenant-type")
 @AllArgsConstructor
 public class TenantTypeController {
 
     private final TenantTypeService tenantTypeService;
 
     @PostMapping
-    public R<Long> saveTenantType(@RequestBody TenantTypeSaveVO addVO) {
+    @ApiOperation("创建租户类型")
+    public R<Long> save(@Valid @RequestBody TenantTypeSaveVO addVO) {
         TenantTypeDO tenantType = TenantTypeConvert.INSTANCE.convert(addVO);
         tenantTypeService.save(tenantType);
-        return R.ok(1L);
+        return R.ok(tenantType.getId());
+    }
+
+    @PutMapping
+    @ApiOperation("更新租户类型")
+    public R<Boolean> update(@Valid @RequestBody TenantTypeUpdateVO updateVO) {
+        TenantTypeDO tenantType = TenantTypeConvert.INSTANCE.convert(updateVO);
+        return R.ok(tenantTypeService.updateById(tenantType));
+    }
+
+    @DeleteMapping("/{id}")
+    @ApiOperation("删除租户类型")
+    public R<Boolean> removeById(@PathVariable Long id) {
+        return R.ok(tenantTypeService.removeById(id));
     }
 
     @GetMapping("/{id}")
+    @ApiOperation("查询单个租户类型")
     public R<TenantTypeResponseVO> getById(@PathVariable Long id) {
         TenantTypeDO tenantTypeDO = tenantTypeService.getById(id);
         TenantTypeResponseVO vo = TenantTypeConvert.INSTANCE.convert(tenantTypeDO);
@@ -41,20 +62,18 @@ public class TenantTypeController {
     }
 
     @GetMapping("/page")
-    public R<Page<TenantTypeResponseVO>> page(Page page, TenantTypePageVO param) {
-        return R.ok(tenantTypeService.page(page, param));
+    @ApiOperation("分页查询租户类型")
+    public R<Page<TenantTypeResponseVO>> page(Page page, TenantTypeRequestVO param) {
+        Page<TenantTypeDO> pageRes = tenantTypeService.page(page, param);
+        return R.ok(TenantTypeConvert.INSTANCE.convertPage(pageRes));
     }
 
-    @PutMapping
-    public R<Boolean> updateTenantType(@RequestBody TenantTypeUpdateVO updateVO) {
-        TenantTypeDO tenantType = TenantTypeConvert.INSTANCE.convert(updateVO);
-        return R.ok(tenantTypeService.updateById(tenantType));
+    @GetMapping("/list")
+    @ApiOperation("列表查询租户类型")
+    public R<List<TenantTypeResponseVO>> list() {
+        // 只查询状态
+        List<TenantTypeDO> listRes = tenantTypeService.list(Wrappers.<TenantTypeDO>lambdaQuery().eq(TenantTypeDO::getStatus, CommonStatusEnum.ENABLE.getStatus()));
+        return R.ok(TenantTypeConvert.INSTANCE.convertList(listRes));
     }
-
-    @DeleteMapping("/{id}")
-    public R<Boolean> removeTenantTypeById(@PathVariable Long id) {
-        return R.ok(tenantTypeService.removeById(id));
-    }
-
 
 }

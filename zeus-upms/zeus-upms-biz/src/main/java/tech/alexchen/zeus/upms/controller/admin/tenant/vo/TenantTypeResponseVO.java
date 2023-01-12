@@ -12,5 +12,6 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class TenantTypeResponseVO extends TenantTypeBaseVO {
 
+    private Long id;
 
 }

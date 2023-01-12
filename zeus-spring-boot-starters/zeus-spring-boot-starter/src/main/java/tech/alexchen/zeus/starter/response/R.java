@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 @Data
 @Builder
-public class R<T extends Serializable> {
+public class R<T> implements Serializable{
 
     /**
      * 13 时间戳
@@ -34,7 +34,7 @@ public class R<T extends Serializable> {
      */
     private T data;
 
-    public static <T extends Serializable> R<T> build(Integer code, String message, T data) {
+    public static <T> R<T> build(Integer code, String message, T data) {
         return R.<T>builder()
                 .timestamp(System.currentTimeMillis())
                 .code(code)
@@ -43,7 +43,7 @@ public class R<T extends Serializable> {
                 .build();
     }
 
-    public static <T extends Serializable> R<T> build(ResponseEnum responseEnum, T data) {
+    public static <T> R<T> build(ResponseEnum responseEnum, T data) {
         return R.<T>builder()
                 .timestamp(System.currentTimeMillis())
                 .code(responseEnum.getCode())
@@ -52,19 +52,19 @@ public class R<T extends Serializable> {
                 .build();
     }
 
-    public static <T extends Serializable> R<T> ok() {
+    public static <T> R<T> ok() {
         return ok(null);
     }
 
-    public static <T extends Serializable> R<T> ok(T data) {
+    public static <T> R<T> ok(T data) {
         return R.build(GlobalResponseEnum.SUCCESS.getCode(), GlobalResponseEnum.SUCCESS.getMessage(), data);
     }
 
-    public static <T extends Serializable> R<T> fail(String message) {
+    public static <T> R<T> fail(String message) {
         return fail(message, null);
     }
 
-    public static <T extends Serializable> R<T> fail(String message, T data) {
+    public static <T> R<T> fail(String message, T data) {
         return R.build(GlobalResponseEnum.FAIL.getCode(), message, data);
     }
 

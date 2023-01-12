@@ -1,14 +1,32 @@
 ### add
-POST http://localhost:8080/v1/tenant-type
+POST {{baseUrl}}/upms/tenant-type
 Content-Type: application/json
 
 {
-  "name": "test_8718cc89574a",
-  "status": 1,
-  "menuIds": [
-    61
-  ]
+  "name": "普通租户",
+  "status": 0,
+  "menuIds": [1, 2, 3]
 }
 
-###
-GET {{baseUrl}}/v1/tenant-type/1
+### update
+PUT {{baseUrl}}/upms/tenant-type
+Content-Type: application/json
+
+{
+  "id": 4,
+  "name": "普通租户",
+  "status": 1,
+  "menuIds": [1, 2, 3]
+}
+
+### delete
+DELETE {{baseUrl}}/upms/tenant-type/2
+
+### get
+GET {{baseUrl}}/upms/tenant-type/4
+
+### page
+GET {{baseUrl}}/upms/tenant-type/page
+
+### page
+GET {{baseUrl}}/upms/tenant-type/list

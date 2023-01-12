@@ -10,7 +10,7 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class TenantTypeRequestVO extends TenantTypeBaseVO{
+public class TenantTypeRequestVO extends TenantTypeBaseVO {
 
 
 }

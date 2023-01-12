@@ -1,13 +1,16 @@
 package tech.alexchen.zeus.upms.service.admin.tenant;
 
+import cn.hutool.core.exceptions.ExceptionUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
-import tech.alexchen.zeus.upms.controller.admin.tenant.vo.TenantTypePageVO;
-import tech.alexchen.zeus.upms.controller.admin.tenant.vo.TenantTypeResponseVO;
+import tech.alexchen.zeus.upms.controller.admin.tenant.vo.TenantTypeRequestVO;
 import tech.alexchen.zeus.upms.dal.entity.tenant.TenantTypeDO;
 import tech.alexchen.zeus.upms.dal.mapper.tenant.TenantTypeMapper;
+
+import javax.annotation.Resource;
 
 /**
 * @author alexchen
@@ -15,9 +18,12 @@ import tech.alexchen.zeus.upms.dal.mapper.tenant.TenantTypeMapper;
 @Service
 public class TenantTypeServiceImpl extends ServiceImpl<TenantTypeMapper, TenantTypeDO> implements TenantTypeService{
 
+    @Resource
+    private TenantTypeMapper tenantTypeMapper;
+
     @Override
-    public Page<TenantTypeResponseVO> page(Page page, TenantTypePageVO pageVO) {
-        return null;
+    public Page<TenantTypeDO> page(Page page, TenantTypeRequestVO request) {
+        return tenantTypeMapper.page(page, request);
     }
 }
 
