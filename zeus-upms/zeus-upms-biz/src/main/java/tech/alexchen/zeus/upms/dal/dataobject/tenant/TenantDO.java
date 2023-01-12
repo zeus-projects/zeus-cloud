@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.upms.dal.entity.tenant;
+package tech.alexchen.zeus.upms.dal.dataobject.tenant;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
