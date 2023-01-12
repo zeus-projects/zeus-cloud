@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import tech.alexchen.zeus.upms.controller.admin.tenant.vo.TenantTypeRequestVO;
-import tech.alexchen.zeus.upms.dal.entity.tenant.TenantTypeDO;
+import tech.alexchen.zeus.upms.dal.dataobject.tenant.TenantTypeDO;
 
 /**
 * @author alexchen

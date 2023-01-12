@@ -1,13 +1,10 @@
 package tech.alexchen.zeus.upms.service.admin.tenant;
 
-import cn.hutool.core.exceptions.ExceptionUtil;
-import cn.hutool.core.util.StrUtil;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import tech.alexchen.zeus.upms.controller.admin.tenant.vo.TenantTypeRequestVO;
-import tech.alexchen.zeus.upms.dal.entity.tenant.TenantTypeDO;
+import tech.alexchen.zeus.upms.dal.dataobject.tenant.TenantTypeDO;
 import tech.alexchen.zeus.upms.dal.mapper.tenant.TenantTypeMapper;
 
 import javax.annotation.Resource;

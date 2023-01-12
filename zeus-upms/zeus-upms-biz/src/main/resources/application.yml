@@ -1,3 +1,11 @@
 spring:
   profiles:
     active: dev
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher # 解决 SpringFox 与 SpringBoot 版本不兼容的问题
+
+server:
+  servlet:
+    context-path: /upms
+  port: 8080
