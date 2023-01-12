@@ -1,6 +1,8 @@
 package tech.alexchen.zeus.upms.service.admin.tenant;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import tech.alexchen.zeus.upms.controller.admin.tenant.vo.TenantRequestVO;
 import tech.alexchen.zeus.upms.dal.dataobject.tenant.TenantDO;
 
 /**
@@ -8,4 +10,6 @@ import tech.alexchen.zeus.upms.dal.dataobject.tenant.TenantDO;
  */
 public interface TenantService extends IService<TenantDO> {
 
+
+    Page<TenantDO> page(Page page, TenantRequestVO param);
 }

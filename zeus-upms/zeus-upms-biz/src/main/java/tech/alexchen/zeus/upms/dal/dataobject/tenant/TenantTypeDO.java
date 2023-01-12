@@ -24,6 +24,10 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @TableName(value ="sys_tenant_type", autoResultMap = true)
 public class TenantTypeDO extends BaseDO implements Serializable {
+
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
+
     /**
      * 租户类型id
      */
@@ -48,6 +52,4 @@ public class TenantTypeDO extends BaseDO implements Serializable {
     @TableField(typeHandler = JsonLongSetTypeHandler.class)
     private Set<Long> menuIds;
 
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

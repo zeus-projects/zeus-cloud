@@ -6,15 +6,20 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 
-import lombok.Data;
+import lombok.*;
 import tech.alexchen.zeus.starter.mybatis.entity.BaseDO;
 
 /**
  * 租户
  * @TableName sys_tenant
  */
-@TableName(value ="sys_tenant")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@TableName(value ="sys_tenant")
 public class TenantDO extends BaseDO implements Serializable {
 
     @TableField(exist = false)

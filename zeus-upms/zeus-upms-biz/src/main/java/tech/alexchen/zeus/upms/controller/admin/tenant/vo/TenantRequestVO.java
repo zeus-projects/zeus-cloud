@@ -9,11 +9,11 @@ import lombok.ToString;
  * @author alexchen
  */
 
-@ApiModel("系统管理 - 租户 - SaveVO")
+@ApiModel("系统管理 - 租户 - RequestVO")
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class TenantSaveVO extends TenantBaseVO {
+public class TenantRequestVO extends TenantBaseVO {
 
 
 }

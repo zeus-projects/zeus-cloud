@@ -15,12 +15,9 @@ import javax.annotation.Resource;
 @Service
 public class TenantTypeServiceImpl extends ServiceImpl<TenantTypeMapper, TenantTypeDO> implements TenantTypeService{
 
-    @Resource
-    private TenantTypeMapper tenantTypeMapper;
-
     @Override
     public Page<TenantTypeDO> page(Page page, TenantTypeRequestVO request) {
-        return tenantTypeMapper.page(page, request);
+        return this.getBaseMapper().page(page, request);
     }
 }
 
