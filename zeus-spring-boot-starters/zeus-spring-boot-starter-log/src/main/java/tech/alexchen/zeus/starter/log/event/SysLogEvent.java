@@ -1,7 +1,8 @@
-package tech.alexchen.zeus.starter.logging;
+package tech.alexchen.zeus.starter.log.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import tech.alexchen.zeus.starter.log.bean.SysLogInfo;
 
 /**
  * @author alexchen

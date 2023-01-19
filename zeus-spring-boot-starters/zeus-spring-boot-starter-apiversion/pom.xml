@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>zeus-spring-boot-starter</artifactId>
-    <description>zeus 的核心开发工具包</description>
+    <artifactId>zeus-spring-boot-starter-apiversion</artifactId>
+    <description> API 版本控制</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -18,10 +18,15 @@
     </properties>
 
     <dependencies>
-        <!-- hutool json -->
         <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-json</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

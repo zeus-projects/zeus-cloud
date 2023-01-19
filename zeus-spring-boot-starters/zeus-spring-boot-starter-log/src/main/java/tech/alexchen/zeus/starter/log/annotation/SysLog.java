@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.starter.logging;
+package tech.alexchen.zeus.starter.log.annotation;
 
 import java.lang.annotation.*;
 

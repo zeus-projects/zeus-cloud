@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.starter.apiversion;
+package tech.alexchen.zeus.starter.apiversion.config;
 
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcRegistrations;
 import org.springframework.context.annotation.Configuration;

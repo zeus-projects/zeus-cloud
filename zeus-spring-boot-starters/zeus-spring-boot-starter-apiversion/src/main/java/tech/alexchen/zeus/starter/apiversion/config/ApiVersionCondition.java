@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.starter.apiversion;
+package tech.alexchen.zeus.starter.apiversion.config;
 
 
 import lombok.Getter;
@@ -37,13 +37,13 @@ public final class ApiVersionCondition implements RequestCondition<ApiVersionCon
 
     @Override
     public ApiVersionCondition getMatchingCondition(HttpServletRequest request) {
-        log.info("RequestURI: {}", request.getRequestURI());
+        log.trace("RequestURI: {}", request.getRequestURI());
         Matcher m = VERSION_PREFIX_PATTERN.matcher(request.getRequestURI());
         if (m.find()) {
             // 得到版本号的字符串
             String version = m.group(0).replace("/v", "").replace("/", "");
             if (compareVersion(version, this.apiVersion) == 0) {
-                log.info("RequestVersion: {}, CurrentApiVersion: {}", version, this.apiVersion);
+                log.trace("RequestVersion: {}, CurrentApiVersion: {}", version, this.apiVersion);
                 return this;
             }
         }

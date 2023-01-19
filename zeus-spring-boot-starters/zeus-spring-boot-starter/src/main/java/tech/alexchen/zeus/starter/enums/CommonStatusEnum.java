@@ -10,15 +10,22 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum CommonStatusEnum {
 
-    ENABLE(0, "开启"),
-    DISABLE(1, "关闭");
+    /**
+     * 可用状态
+     */
+    ENABLE(0, "可用"),
+    /**
+     * 不可用状态
+     */
+    DISABLE(1, "不可用");
 
     /**
-     * 状态值
+     * 状态编码
      */
     private final Integer status;
+
     /**
-     * 状态名
+     * 状态描述
      */
     private final String name;
 

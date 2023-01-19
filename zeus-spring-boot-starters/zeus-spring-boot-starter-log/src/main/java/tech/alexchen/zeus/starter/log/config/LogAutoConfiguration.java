@@ -1,10 +1,12 @@
-package tech.alexchen.zeus.starter.logging;
+package tech.alexchen.zeus.starter.log.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
+import tech.alexchen.zeus.starter.log.aop.SysLogAspect;
+import tech.alexchen.zeus.starter.log.event.SysLogListener;
 
 /**
  * @author alexchen

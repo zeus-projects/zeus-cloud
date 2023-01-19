@@ -18,6 +18,8 @@
         <module>zeus-spring-boot-starter-redis</module>
         <module>zeus-spring-boot-starter-security</module>
         <module>zeus-spring-boot-starter-web</module>
+        <module>zeus-spring-boot-starter-log</module>
+        <module>zeus-spring-boot-starter-apiversion</module>
     </modules>
 
     <properties>

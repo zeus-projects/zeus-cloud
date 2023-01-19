@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.starter.logging;
+package tech.alexchen.zeus.starter.log.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
