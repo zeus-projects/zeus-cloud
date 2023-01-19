@@ -20,6 +20,10 @@
     <dependencies>
         <dependency>
             <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-upms-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>tech.alexchen</groupId>
             <artifactId>zeus-spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>

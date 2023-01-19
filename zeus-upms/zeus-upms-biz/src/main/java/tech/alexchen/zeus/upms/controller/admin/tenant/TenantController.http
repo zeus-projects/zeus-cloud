@@ -22,7 +22,7 @@ Content-Type: application/json
 }
 
 ### delete
-DELETE {{baseUrl}}/upms/tenant/2
+DELETE {{baseUrl}}/upms/tenant/1
 
 ### get
 GET {{baseUrl}}/upms/tenant/1

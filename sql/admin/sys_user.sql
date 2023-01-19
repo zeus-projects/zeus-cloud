@@ -15,14 +15,14 @@ CREATE TABLE `sys_user`
     `name`        varchar(64) CHARACTER SET utf8mb4          DEFAULT NULL COMMENT '拓展字段:姓名',
     `email`       varchar(128) CHARACTER SET utf8mb4         DEFAULT NULL COMMENT '拓展字段:邮箱',
     `dept_id`     bigint                                     DEFAULT NULL COMMENT '部门ID',
-    `create_by`   varchar(64) CHARACTER SET utf8    NOT NULL DEFAULT ' ' COMMENT '创建人',
-    `update_by`   varchar(64) CHARACTER SET utf8    NOT NULL DEFAULT ' ' COMMENT '修改人',
-    `create_time` datetime                                   DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `update_time` datetime                                   DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-    `lock_flag`   char(1) CHARACTER SET utf8mb4              DEFAULT '0' COMMENT'锁定标记：0(未锁定)、1(已锁定)',
-    `del_flag`    char(1) CHARACTER SET utf8mb4              DEFAULT '0' COMMENT '删除标记：0(未删除)、1(已删除)',
     `wx_openid`   varchar(32) CHARACTER SET utf8mb4          DEFAULT NULL COMMENT '微信登录openId',
+    `lock_flag`   char(1) CHARACTER SET utf8mb4              DEFAULT '0' COMMENT'锁定标记：0(未锁定)、1(已锁定)',
     `tenant_id`   bigint                            NOT NULL DEFAULT '0' COMMENT '所属租户',
+    `create_by`   varchar(64) not null comment '创建人',
+    `create_time` datetime    not null DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '创建时间',
+    `update_by` varchar(64) CHARACTER SET utf8  NOT NULL DEFAULT ' ' COMMENT '修改人',
+    `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '逻辑删除（0：正常 1：删除）',
     PRIMARY KEY (`user_id`) USING BTREE,
     KEY `user_wx_openid` (`wx_openid`) USING BTREE,
     KEY `user_idx1_username` (`username`) USING BTREE
@@ -33,8 +33,8 @@ CREATE TABLE `sys_user`
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-BEGIN;
-INSERT INTO `sys_user`
-VALUES (1, 'admin', '$2a$10$cE02oZ1N4mkdA6JHJUP7/uAJ3TQdVgO3kLRvLoe5KvvMU99W5r5hG', '', '18888888888', '', '管理员',
-        '管理员', 'admin@mail.com', 1, ' ', ' ', '2018-04-20 07:15:18', '2022-02-18 14:02:09', '0', '0', '2303656', 1);
-COMMIT;
+# BEGIN;
+# INSERT INTO `sys_user`
+# VALUES (1, 'admin', '$2a$10$cE02oZ1N4mkdA6JHJUP7/uAJ3TQdVgO3kLRvLoe5KvvMU99W5r5hG', '', '18888888888', '', '管理员',
+#         '管理员', 'admin@mail.com', 1, ' ', ' ', '2018-04-20 07:15:18', '2022-02-18 14:02:09', '0', '0', '2303656', 1);
+# COMMIT;

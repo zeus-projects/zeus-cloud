@@ -45,6 +45,6 @@ public class BaseDO implements Serializable {
      * 逻辑删除
      */
     @TableLogic
-    private String delFlag;
+    private Boolean deleted;
 
 }

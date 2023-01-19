@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.upms.controller.admin.tenant.vo;
+package tech.alexchen.zeus.upms.controller.admin.tenant.vo.tenant;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.starter.excption;
+package tech.alexchen.zeus.starter.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * 全局异常捕获
+ * @author alexchen
  */
 @Slf4j
 @RestControllerAdvice

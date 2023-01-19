@@ -27,7 +27,8 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- springboot 公共版本定义 -->
+            <!-- ################# bom ################# -->
+            <!-- springboot-bom -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -35,7 +36,16 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- 内部 common 组件版本 -->
+            <!-- hutool-bom -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-bom</artifactId>
+                <version>${hutool.version}</version>
+                <type>pom</type>
+                <!-- 注意这里是import -->
+                <scope>import</scope>
+            </dependency>
+            <!-- ################# zeus-spring-boot-starter ################# -->
             <dependency>
                 <groupId>tech.alexchen</groupId>
                 <artifactId>zeus-spring-boot-starter</artifactId>
@@ -66,14 +76,12 @@
                 <artifactId>zeus-spring-boot-starter-web</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!--hutool bom -->
             <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-bom</artifactId>
-                <version>${hutool.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>tech.alexchen</groupId>
+                <artifactId>zeus-upms-api</artifactId>
+                <version>${project.version}</version>
             </dependency>
+            <!-- ################# other ################# -->
             <!-- slf4j + logback -->
             <dependency>
                 <groupId>ch.qos.logback</groupId>

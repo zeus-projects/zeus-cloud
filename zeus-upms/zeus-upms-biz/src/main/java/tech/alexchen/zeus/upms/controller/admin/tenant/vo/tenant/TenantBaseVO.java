@@ -1,10 +1,9 @@
-package tech.alexchen.zeus.upms.controller.admin.tenant.vo;
+package tech.alexchen.zeus.upms.controller.admin.tenant.vo.tenant;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -28,6 +27,6 @@ public class TenantBaseVO implements Serializable {
 
     @ApiModelProperty(value = "租户状态", required = true, example = "0")
     @NotNull(message = "状态不能为空")
-    private String status;
+    private Integer status;
 
 }

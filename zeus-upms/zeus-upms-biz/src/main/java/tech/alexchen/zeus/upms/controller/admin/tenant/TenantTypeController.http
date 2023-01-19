@@ -8,25 +8,30 @@ Content-Type: application/json
   "menuIds": [1, 2, 3]
 }
 
+
 ### update
 PUT {{baseUrl}}/upms/tenant-type
 Content-Type: application/json
 
 {
-  "id": 4,
+  "id": 1,
   "name": "普通租户",
   "status": 1,
   "menuIds": [1, 2, 3]
 }
 
+
 ### delete
-DELETE {{baseUrl}}/upms/tenant-type/2
+DELETE {{baseUrl}}/upms/tenant-type/1
+
 
 ### get
-GET {{baseUrl}}/upms/tenant-type/1
+GET {{baseUrl}}/upms/tenant-type/2
+
 
 ### page
 GET {{baseUrl}}/upms/tenant-type/page?size=5&current=1
 
-### page
+
+### list
 GET {{baseUrl}}/upms/tenant-type/list

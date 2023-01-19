@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/{v}/user")
-public class SysUserController {
+public class UserController {
 
 
 }

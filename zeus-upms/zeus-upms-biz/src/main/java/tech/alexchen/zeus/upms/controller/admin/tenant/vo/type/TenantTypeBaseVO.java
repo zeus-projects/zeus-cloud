@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.upms.controller.admin.tenant.vo;
+package tech.alexchen.zeus.upms.controller.admin.tenant.vo.type;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

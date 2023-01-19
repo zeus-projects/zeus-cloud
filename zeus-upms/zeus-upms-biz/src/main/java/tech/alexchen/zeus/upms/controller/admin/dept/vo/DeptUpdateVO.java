@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.upms.controller.admin.tenant.vo;
+package tech.alexchen.zeus.upms.controller.admin.dept.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -11,14 +11,15 @@ import javax.validation.constraints.NotNull;
 /**
  * @author alexchen
  */
-
-@ApiModel("系统管理 - 租户 - UpdateVO")
+@ApiModel("系统管理 - 部门 - UpdateVO")
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class TenantUpdateVO extends TenantBaseVO {
+public class DeptUpdateVO extends DeptBaseVO {
 
-    @ApiModelProperty(value = "租户 ID", required = true, example = "1024")
+    @ApiModelProperty(value = "部门 ID", required = true, example = "1024")
     @NotNull(message = "id 不能为空")
     private Long id;
+
 }
+

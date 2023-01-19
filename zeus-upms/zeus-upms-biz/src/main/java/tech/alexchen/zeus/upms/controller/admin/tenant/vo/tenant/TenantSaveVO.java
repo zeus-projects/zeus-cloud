@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.upms.controller.admin.tenant.vo;
+package tech.alexchen.zeus.upms.controller.admin.tenant.vo.tenant;
 
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
@@ -9,11 +9,11 @@ import lombok.ToString;
  * @author alexchen
  */
 
-@ApiModel("系统管理 - 租户 - RequestVO")
+@ApiModel("系统管理 - 租户 - SaveVO")
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class TenantRequestVO extends TenantBaseVO {
+public class TenantSaveVO extends TenantBaseVO {
 
 
 }
