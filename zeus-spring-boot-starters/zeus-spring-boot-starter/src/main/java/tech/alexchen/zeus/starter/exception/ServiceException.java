@@ -1,7 +1,7 @@
 package tech.alexchen.zeus.starter.exception;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
+
 
 /**
  * 业务异常
@@ -10,48 +10,15 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public final class ServiceException extends RuntimeException {
-
-    /**
-     * 业务错误码
-     *
-     * @see
-     */
-    private Integer code;
-    /**
-     * 错误信息
-     */
-    private String message;
+public final class ServiceException extends AbstractServiceException {
 
     public ServiceException() {}
 
     public ServiceException(ErrorCode errorCode) {
-        this.code = errorCode.getCode();
-        this.message = errorCode.getMessage();
+        super(errorCode);
     }
 
-    public ServiceException(Integer code, String message) {
-        this.code = code;
-        this.message = message;
+    public ServiceException(String code, String message) {
+        super(code, message);
     }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public ServiceException setCode(Integer code) {
-        this.code = code;
-        return this;
-    }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
-
-    public ServiceException setMessage(String message) {
-        this.message = message;
-        return this;
-    }
-
 }

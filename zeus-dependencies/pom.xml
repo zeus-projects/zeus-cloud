@@ -53,12 +53,12 @@
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-spring-boot-starter-mybatis</artifactId>
+                <artifactId>zeus-spring-boot-starter-data-mybatis</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-spring-boot-starter-redis</artifactId>
+                <artifactId>zeus-spring-boot-starter-data-redis</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

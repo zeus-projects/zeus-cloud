@@ -8,7 +8,7 @@ import tech.alexchen.zeus.starter.swagger.annotation.EnableZeusSwagger;
 /**
  * @author alexchen
  */
-@MapperScan("tech.alexchen.zeus.upms.dal.mapper")
+@MapperScan("tech.alexchen.zeus.upms.mapper")
 @EnableZeusSwagger
 @SpringBootApplication
 public class ZeusUpmsApplication {

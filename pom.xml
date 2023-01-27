@@ -21,8 +21,6 @@
         <module>zeus-dependencies</module>
         <module>zeus-spring-boot-starters</module>
         <module>zeus-upms</module>
-        <module>zeus-upms/zeus-upms-api</module>
-        <module>zeus-upms/zeus-upms-biz</module>
     </modules>
 
     <!-- 所有子模块都继承的依赖 -->

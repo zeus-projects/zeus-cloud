@@ -13,9 +13,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>zeus-spring-boot-starter</module>
-        <module>zeus-spring-boot-starter-mybatis</module>
+        <module>zeus-spring-boot-starter-data-mybatis</module>
+        <module>zeus-spring-boot-starter-data-redis</module>
         <module>zeus-spring-boot-starter-swagger</module>
-        <module>zeus-spring-boot-starter-redis</module>
         <module>zeus-spring-boot-starter-security</module>
         <module>zeus-spring-boot-starter-web</module>
         <module>zeus-spring-boot-starter-log</module>
