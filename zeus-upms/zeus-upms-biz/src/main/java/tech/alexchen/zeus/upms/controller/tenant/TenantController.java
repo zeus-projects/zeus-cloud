@@ -33,7 +33,7 @@ public class TenantController {
     @PostMapping
     @ApiOperation("创建租户")
     public R<Long> save(@Valid @RequestBody TenantSaveVO vo) {
-        TenantDO tenantDO = TenantConvert.INSTANCE.convertSave(vo);
+        TenantDO tenantDO = TenantConvert.INSTANCE.convertFromSave(vo);
         tenantService.save(tenantDO);
         return R.ok(tenantDO.getId());
     }
@@ -41,7 +41,7 @@ public class TenantController {
     @PutMapping
     @ApiOperation("更新租户类型")
     public R<Boolean> update(@Valid @RequestBody TenantUpdateVO updateVO) {
-        TenantDO Tenant = TenantConvert.INSTANCE.convertUpdate(updateVO);
+        TenantDO Tenant = TenantConvert.INSTANCE.convertFromUpdate(updateVO);
         return R.ok(tenantService.updateById(Tenant));
     }
 

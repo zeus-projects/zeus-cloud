@@ -16,7 +16,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuDO> implements 
 
     @Override
     public Long saveMenu(MenuSaveVO vo) {
-        MenuDO menu = MenuConvert.INSTANCE.convertSave(vo);
+        MenuDO menu = MenuConvert.INSTANCE.convertFromSave(vo);
         // 检查父菜单
         checkParentMenu(vo.getParentId());
         // 检查名称是否重复
@@ -28,7 +28,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuDO> implements 
 
     @Override
     public void updateMenu(MenuUpdateVO vo) {
-        MenuDO menu = MenuConvert.INSTANCE.convertUpdate(vo);
+        MenuDO menu = MenuConvert.INSTANCE.convertFromUpdate(vo);
         // 检查父菜单
         checkParentMenu(vo.getParentId(), vo.getId());
         // 检查名称是否重复

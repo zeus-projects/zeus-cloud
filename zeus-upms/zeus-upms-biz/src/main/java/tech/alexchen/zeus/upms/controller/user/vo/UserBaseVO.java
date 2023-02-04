@@ -14,7 +14,7 @@ public class UserBaseVO implements Serializable {
     /**
      * 用户名称
      */
-    private String name;
+    private String username;
 
     /**
      * 密码

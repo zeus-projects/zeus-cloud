@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user`
 (
     `id`          bigint                         NOT NULL COMMENT '用户ID',
-    `name`        varchar(64)                    NOT NULL COMMENT '用户名称',
+    `username`        varchar(64)                    NOT NULL COMMENT '用户名称',
     `password`    varchar(255)                            DEFAULT NULL COMMENT '密码',
     `nickname`    varchar(64)                             DEFAULT NULL COMMENT '拓展字段:昵称',
     `salt`        varchar(255)                            DEFAULT NULL COMMENT '盐值',
@@ -26,7 +26,7 @@ CREATE TABLE `sys_user`
     `update_time` datetime                       NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `deleted`     bit(1)                         NOT NULL DEFAULT b'0' COMMENT '逻辑删除（0：正常 1：删除）',
     PRIMARY KEY (`id`) USING BTREE,
-    KEY `user_idx1_username` (`name`) USING BTREE
+    KEY `user_idx1_username` (`username`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci COMMENT ='用户表';

@@ -15,4 +15,5 @@ import tech.alexchen.zeus.upms.domain.user.UserDO;
 public interface UserConvert extends BaseConvert<UserDO, UserSaveVO, UserUpdateVO, UserResponseVO> {
 
     UserConvert INSTANCE = Mappers.getMapper(UserConvert.class);
+
 }

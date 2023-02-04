@@ -37,7 +37,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
         checkParentDeptEnable(vo.getParentId());
         // 检查名称是否重复
         checkDeptNameUnique(vo.getName(), vo.getParentId());
-        DeptDO dept = DeptConvert.INSTANCE.convertSave(vo);
+        DeptDO dept = DeptConvert.INSTANCE.convertFromSave(vo);
         this.save(dept);
         return dept.getId();
     }
@@ -48,7 +48,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
         checkParentDeptEnable(vo.getId(), vo.getParentId(), vo.getLevel());
         // 检查名称是否重复
         checkDeptNameUnique(vo.getId(), vo.getName(), vo.getParentId());
-        DeptDO dept = DeptConvert.INSTANCE.convertUpdate(vo);
+        DeptDO dept = DeptConvert.INSTANCE.convertFromUpdate(vo);
         return this.updateById(dept);
     }
 

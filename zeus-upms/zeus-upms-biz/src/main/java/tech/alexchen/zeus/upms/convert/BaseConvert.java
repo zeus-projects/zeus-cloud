@@ -13,26 +13,36 @@ public interface BaseConvert<T, S, U, R> {
 
     /**
      * SaveVO 转 DO
+     * @param saveVO
+     * @return DO
      */
-    T convertSave(S saveVO);
+    T convertFromSave(S saveVO);
 
     /**
      * UpdateVO 转 DO
+     * @param updateVO
+     * @return DO
      */
-    T convertUpdate(U updateVO);
+    T convertFromUpdate(U updateVO);
 
     /**
      * DO 转 ResponseVO
+     * @param entity
+     * @return ResponseVO
      */
     R convertResponse(T entity);
 
     /**
      * 分页 DO 转 分页 ResponseVO
+     * @param page
+     * @return Page&lt;DO&gt;
      */
     Page<R> convertPage(Page<T> page);
 
     /**
      * 列表 DO 转 分页 列表
+     * @param list
+     * @return List&lt;DO&gt;
      */
     List<R> convertList(List<T> list);
 }
