@@ -13,8 +13,8 @@
         <maven.compiler.target>8</maven.compiler.target>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-boot.version>2.7.3</spring-boot.version>
-        <spring.cloud.version>2021.0.5</spring.cloud.version>
+        <spring-boot.version>2.6.11</spring-boot.version>
+        <spring.cloud.version>2021.0.4</spring.cloud.version>
         <spring.cloud.alibaba.version>2021.0.4.0</spring.cloud.alibaba.version>
         <hutool.version>5.8.6</hutool.version>
         <logback.version>1.2.11</logback.version>
@@ -59,7 +59,6 @@
                 <artifactId>hutool-bom</artifactId>
                 <version>${hutool.version}</version>
                 <type>pom</type>
-                <!-- 注意这里是import -->
                 <scope>import</scope>
             </dependency>
             <!-- ################# zeus-spring-boot-starter ################# -->
