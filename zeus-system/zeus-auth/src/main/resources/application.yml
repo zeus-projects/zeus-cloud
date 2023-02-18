@@ -1,0 +1,10 @@
+server:
+  port: 3000
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        enabled: false
+      config:
+        enabled: false

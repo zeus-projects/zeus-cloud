@@ -20,10 +20,9 @@
     </properties>
 
     <modules>
-        <module>zeus-dependencies</module>
+        <module>zeus-bom</module>
         <module>zeus-spring-boot-starters</module>
-        <module>zeus-upms</module>
-        <module>zeus-nacos</module>
+        <module>zeus-system</module>
     </modules>
 
     <!-- 所有子模块都继承的依赖 -->
@@ -48,7 +47,7 @@
             <!-- zeus 公共版本定义 -->
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-dependencies</artifactId>
+                <artifactId>zeus-bom</artifactId>
                 <version>${project.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
