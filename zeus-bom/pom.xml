@@ -70,12 +70,22 @@
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
+                <artifactId>zeus-spring-boot-starter-apiversion</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tech.alexchen</groupId>
                 <artifactId>zeus-spring-boot-starter-data-mybatis</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
                 <artifactId>zeus-spring-boot-starter-data-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tech.alexchen</groupId>
+                <artifactId>zeus-spring-boot-starter-log</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
