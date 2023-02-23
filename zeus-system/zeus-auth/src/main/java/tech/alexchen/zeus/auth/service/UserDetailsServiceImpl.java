@@ -1,17 +1,14 @@
 package tech.alexchen.zeus.auth.service;
 
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import tech.alexchen.zeus.auth.constants.SecurityConstants;
 import tech.alexchen.zeus.auth.entity.AuthUser;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @author alexchen
@@ -31,9 +28,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("username not found");
         }
         //定义权限列表，用户可以访问的资源名称（或者说用户所拥有的权限） 注意：必须"ROLE_"开头、
-        List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(authUser.getRoles().toArray(new String[0]));
+//        List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(authUser.getAuthorities().toArray(new String[0]));
+
         AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_ADMIN");
-        User userDetails = new User(authUser.getUsername(), authUser.getPassword(), authorities);
+        User userDetails = new User(authUser.getUsername(), authUser.getPassword(), authUser.getAuthorities());
         return userDetails;
     }
 
