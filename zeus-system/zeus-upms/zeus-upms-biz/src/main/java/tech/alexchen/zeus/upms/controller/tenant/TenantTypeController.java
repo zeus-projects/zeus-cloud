@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.web.bind.annotation.*;
 import tech.alexchen.zeus.starter.enums.CommonStatusEnum;
 import tech.alexchen.zeus.starter.response.R;
@@ -35,9 +36,7 @@ public class TenantTypeController {
     @PostMapping
     @ApiOperation("创建租户类型")
     public R<Long> save(@Valid @RequestBody TenantTypeSaveVO addVO) {
-        TenantTypeDO tenantType = TenantTypeConvert.INSTANCE.convertFromSave(addVO);
-        tenantTypeService.save(tenantType);
-        return R.ok(tenantType.getId());
+        return R.ok(tenantTypeService.saveTenantType(addVO));
     }
 
     @PutMapping
