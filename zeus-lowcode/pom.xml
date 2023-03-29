@@ -9,20 +9,17 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>zeus-system</artifactId>
+    <artifactId>zeus-lowcode</artifactId>
     <packaging>pom</packaging>
+
+    <modules>
+        <module>zeus-lowcode-api</module>
+        <module>zeus-lowcode-engine</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <modules>
-        <module>zeus-auth</module>
-        <module>zeus-nacos</module>
-        <module>zeus-upms</module>
-        <module>zeus-gateway</module>
-    </modules>
-
 </project>

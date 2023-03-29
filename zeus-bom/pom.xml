@@ -61,7 +61,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <!-- ################# zeus-spring-boot-starter ################# -->
             <dependency>
                 <groupId>tech.alexchen</groupId>
@@ -81,6 +80,11 @@
             <dependency>
                 <groupId>tech.alexchen</groupId>
                 <artifactId>zeus-spring-boot-starter-data-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tech.alexchen</groupId>
+                <artifactId>zeus-spring-boot-starter-feign</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -108,7 +112,11 @@
                 <artifactId>zeus-upms-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>tech.alexchen</groupId>
+                <artifactId>zeus-lowcode-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!-- ################# other ################# -->
             <!-- slf4j + logback -->
             <dependency>

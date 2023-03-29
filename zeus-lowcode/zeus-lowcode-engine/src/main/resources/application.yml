@@ -1,13 +1,5 @@
 server:
-  port: 9000
-
-#spring:
-#  cloud:
-#    nacos:
-#      discovery:
-#        enabled: false
-#      config:
-#        enabled: false
+  port: 8000
 
 spring:
   application:

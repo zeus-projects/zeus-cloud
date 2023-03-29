@@ -27,15 +27,15 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  *
  * @author nacos
  */
-@SpringBootApplication(scanBasePackages = "com.alibaba.nacos")
-@ServletComponentScan
 @EnableScheduling
-public class Nacos {
+@ServletComponentScan
+@SpringBootApplication
+public class ZeusNacosApplication {
 
     public static void main(String[] args) {
         // 单机模式启动
         System.setProperty(Constants.STANDALONE_MODE_PROPERTY_NAME, "true");
-        SpringApplication.run(Nacos.class, args);
+        SpringApplication.run(ZeusNacosApplication.class, args);
     }
 }
 

@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.auth;
+package tech.alexchen.zeus.lowcode.engine;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,11 +7,11 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 /**
  * @author alexchen
  */
-@SpringBootApplication
 @EnableDiscoveryClient
-public class ZeusAuthApplication {
+@SpringBootApplication
+public class ZeusLowcodeEngineApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ZeusAuthApplication.class, args);
+        SpringApplication.run(ZeusLowcodeEngineApplication.class, args);
     }
 }

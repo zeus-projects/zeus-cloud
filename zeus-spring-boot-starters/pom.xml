@@ -20,6 +20,9 @@
         <module>zeus-spring-boot-starter-web</module>
         <module>zeus-spring-boot-starter-log</module>
         <module>zeus-spring-boot-starter-apiversion</module>
+        <module>zeus-spring-boot-starter-gateway</module>
+        <module>zeus-spring-boot-starter-kafka</module>
+        <module>zeus-spring-boot-starter-feign</module>
     </modules>
 
     <properties>

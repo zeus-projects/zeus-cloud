@@ -23,6 +23,7 @@
         <module>zeus-bom</module>
         <module>zeus-spring-boot-starters</module>
         <module>zeus-system</module>
+        <module>zeus-lowcode</module>
     </modules>
 
     <!-- 所有子模块都继承的依赖 -->
