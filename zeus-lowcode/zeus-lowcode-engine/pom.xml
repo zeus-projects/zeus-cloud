@@ -19,18 +19,25 @@
     </properties>
 
     <dependencies>
-        <!--注册中心客户端-->
+         <dependency>
+             <groupId>com.alibaba.cloud</groupId>
+             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
+         <dependency>
+             <groupId>tech.alexchen</groupId>
+             <artifactId>zeus-lowcode-api</artifactId>
+         </dependency>
+         <dependency>
+             <groupId>tech.alexchen</groupId>
+             <artifactId>zeus-spring-boot-starter-web</artifactId>
+         </dependency>
         <dependency>
             <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-lowcode-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-spring-boot-starter-web</artifactId>
+            <artifactId>zeus-spring-boot-starter-data-mybatis</artifactId>
         </dependency>
     </dependencies>
 </project>
