@@ -9,40 +9,40 @@ import java.util.List;
  *
  * @author alexchen
  */
-public interface BaseConvert<T, S, U, R> {
+public interface BaseConverter<Entity, Save, Update, Response> {
 
     /**
      * SaveVO 转 DO
      * @param saveVO
      * @return DO
      */
-    T convertFromSave(S saveVO);
+    Entity convertFromSave(Save saveVO);
 
     /**
      * UpdateVO 转 DO
      * @param updateVO
      * @return DO
      */
-    T convertFromUpdate(U updateVO);
+    Entity convertFromUpdate(Update updateVO);
 
     /**
      * DO 转 ResponseVO
      * @param entity
      * @return ResponseVO
      */
-    R convertResponse(T entity);
+    Response convertToResponse(Entity entity);
 
     /**
      * 分页 DO 转 分页 ResponseVO
      * @param page
      * @return Page&lt;DO&gt;
      */
-    Page<R> convertPage(Page<T> page);
+    Page<Response> convertToPage(Page<Entity> page);
 
     /**
      * 列表 DO 转 分页 列表
      * @param list
      * @return List&lt;DO&gt;
      */
-    List<R> convertList(List<T> list);
+    List<Response> convertToList(List<Entity> list);
 }

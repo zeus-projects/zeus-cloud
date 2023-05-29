@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 /**
- * 租户类型
+ * 租户套餐
  * @author alexchen
  * @TableName sys_tenant_type
  */
@@ -24,24 +24,24 @@ import java.util.Set;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @TableName(value ="sys_tenant_type", autoResultMap = true)
-public class TenantTypeDO extends BaseDO implements Serializable {
+public class TenantPlanDO extends BaseDO implements Serializable {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
     /**
-     * 租户类型id
+     * 租户套餐id
      */
     @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
-     * 租户类型名称
+     * 租户套餐名称
      */
     private String name;
 
     /**
-     * 租户类型状态
+     * 租户套餐状态
      *
      * 枚举 {@link CommonStatusEnum}
      */

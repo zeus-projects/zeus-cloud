@@ -11,7 +11,7 @@ import tech.alexchen.zeus.starter.exception.ExceptionUtil;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptRequestVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptSaveVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptUpdateVO;
-import tech.alexchen.zeus.upms.convert.dept.DeptConvert;
+import tech.alexchen.zeus.upms.convert.dept.DeptConverter;
 import tech.alexchen.zeus.upms.domain.dept.DeptDO;
 import tech.alexchen.zeus.upms.mapper.dept.DeptMapper;
 import tech.alexchen.zeus.upms.enums.DeptIdEnum;
@@ -37,7 +37,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
         checkParentDeptEnable(vo.getParentId());
         // 检查名称是否重复
         checkDeptNameUnique(vo.getName(), vo.getParentId());
-        DeptDO dept = DeptConvert.INSTANCE.convertFromSave(vo);
+        DeptDO dept = DeptConverter.INSTANCE.convertFromSave(vo);
         this.save(dept);
         return dept.getId();
     }
@@ -48,7 +48,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
         checkParentDeptEnable(vo.getId(), vo.getParentId(), vo.getLevel());
         // 检查名称是否重复
         checkDeptNameUnique(vo.getId(), vo.getName(), vo.getParentId());
-        DeptDO dept = DeptConvert.INSTANCE.convertFromUpdate(vo);
+        DeptDO dept = DeptConverter.INSTANCE.convertFromUpdate(vo);
         return this.updateById(dept);
     }
 

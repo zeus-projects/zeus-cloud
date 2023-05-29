@@ -4,13 +4,13 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for sys_tenant_type
+-- Table structure for sys_tenant_plan
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_tenant_type`;
-CREATE TABLE `sys_tenant_type`
+DROP TABLE IF EXISTS `sys_tenant_plan`;
+CREATE TABLE `sys_tenant_plan`
 (
-    `id`          bigint        not null auto_increment comment '租户类型id',
-    `name`        varchar(64)   not null comment '租户类型名称',
+    `id`          bigint        not null auto_increment comment '租户套餐id',
+    `name`        varchar(64)   not null comment '租户套餐名称',
     `status`      tinyint       NOT NULL COMMENT '状态',
     `menu_ids`    varchar(2048) NOT NULL COMMENT '关联的菜单编号',
     `create_by`   varchar(64)   not null comment '创建人',
@@ -21,7 +21,7 @@ CREATE TABLE `sys_tenant_type`
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_general_ci COMMENT = '租户类型';
+  COLLATE = utf8mb4_0900_ai_ci COMMENT = '租户套餐';
 
 -- ----------------------------
 -- Table structure for sys_tenant
@@ -31,8 +31,8 @@ CREATE TABLE `sys_tenant`
 (
     `id`               bigint      not null auto_increment comment '租户id',
     `name`             varchar(64) not null comment '租户名称',
-    `tenant_type_id`   int         not null comment '租户类型id',
-    `tenant_type_name` varchar(64) not null comment '租户类型名称',
+    `tenant_plan_id`   int         not null comment '租户套餐id',
+    `tenant_plan_name` varchar(64) not null comment '租户套餐名称',
     `status`           tinyint     NOT NULL COMMENT '状态（0：正常 1：停用）',
     `create_by`        varchar(64) not null comment '创建人',
     `create_time`      datetime    not null DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '创建时间',
@@ -42,7 +42,7 @@ CREATE TABLE `sys_tenant`
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_general_ci COMMENT = '租户';
+  COLLATE = utf8mb4_0900_ai_ci COMMENT = '租户';
 
 -- ----------------------------
 -- Table structure for sys_dept
@@ -65,7 +65,7 @@ CREATE TABLE `sys_dept`
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_general_ci COMMENT ='部门管理';
+  COLLATE = utf8mb4_0900_ai_ci COMMENT ='部门管理';
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -92,7 +92,7 @@ CREATE TABLE `sys_menu`
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_general_ci COMMENT = '菜单';
+  COLLATE = utf8mb4_0900_ai_ci COMMENT = '菜单';
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -117,7 +117,7 @@ CREATE TABLE `sys_role`
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_general_ci COMMENT = '角色';
+  COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色';
 
 -- ----------------------------
 -- Table structure for sys_role_menu
@@ -136,7 +136,7 @@ CREATE TABLE `sys_role_menu`
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_general_ci COMMENT = '角色菜单关联表';
+  COLLATE = utf8mb4_0900_ai_ci COMMENT = '角色菜单关联表';
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -168,4 +168,4 @@ CREATE TABLE `sys_user`
     KEY `user_idx1_username` (`username`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_general_ci COMMENT ='用户表';
+  COLLATE = utf8mb4_0900_ai_ci COMMENT ='用户表';

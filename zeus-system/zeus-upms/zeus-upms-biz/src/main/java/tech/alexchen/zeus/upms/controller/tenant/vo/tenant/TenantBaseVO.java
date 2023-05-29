@@ -17,12 +17,12 @@ public class TenantBaseVO implements Serializable {
     @NotBlank(message = "租户名称不能为空")
     private String name;
 
-    @ApiModelProperty(value = "租户类型 ID", required = true, example = "1")
-    @NotNull(message = "租户类型 id 不能为空")
+    @ApiModelProperty(value = "租户套餐 ID", required = true, example = "1")
+    @NotNull(message = "租户套餐 id 不能为空")
     private Integer tenantTypeId;
 
-    @ApiModelProperty(value = "租户类型名称", required = true, example = "系统租户")
-    @NotBlank(message = "租户类型名称不能为空")
+    @ApiModelProperty(value = "租户套餐名称", required = true, example = "系统租户")
+    @NotBlank(message = "租户套餐名称不能为空")
     private String tenantTypeName;
 
     @ApiModelProperty(value = "租户状态", required = true, example = "0")

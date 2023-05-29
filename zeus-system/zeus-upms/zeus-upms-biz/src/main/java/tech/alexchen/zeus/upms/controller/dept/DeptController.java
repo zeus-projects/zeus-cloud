@@ -10,7 +10,7 @@ import tech.alexchen.zeus.upms.controller.dept.vo.DeptRequestVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptResponseVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptSaveVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptUpdateVO;
-import tech.alexchen.zeus.upms.convert.dept.DeptConvert;
+import tech.alexchen.zeus.upms.convert.dept.DeptConverter;
 import tech.alexchen.zeus.upms.domain.dept.DeptDO;
 import tech.alexchen.zeus.upms.service.dept.DeptService;
 
@@ -53,20 +53,20 @@ public class DeptController {
     @ApiOperation("查询单个部门")
     public R<DeptResponseVO> getById(@PathVariable Long id) {
         DeptDO dept = deptService.getById(id);
-        return R.ok(DeptConvert.INSTANCE.convertResponse(dept));
+        return R.ok(DeptConverter.INSTANCE.convertToResponse(dept));
     }
 
     @GetMapping("/page")
     @ApiOperation("分页查询部门")
     public R<Page<DeptResponseVO>> page(Page page, DeptRequestVO vo) {
         Page<DeptDO> pageRes = deptService.pageDept(page, vo);
-        return R.ok(DeptConvert.INSTANCE.convertPage(pageRes));
+        return R.ok(DeptConverter.INSTANCE.convertToPage(pageRes));
     }
 
     @GetMapping("/list")
     @ApiOperation("列表查询部门")
     public R<List<DeptResponseVO>> list() {
-        return R.ok(DeptConvert.INSTANCE.convertList(deptService.list()));
+        return R.ok(DeptConverter.INSTANCE.convertToList(deptService.list()));
     }
 
 }

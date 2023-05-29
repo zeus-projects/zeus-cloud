@@ -8,7 +8,7 @@ import tech.alexchen.zeus.starter.response.R;
 import tech.alexchen.zeus.upms.controller.role.vo.menu.MenuResponseVO;
 import tech.alexchen.zeus.upms.controller.role.vo.menu.MenuSaveVO;
 import tech.alexchen.zeus.upms.controller.role.vo.menu.MenuUpdateVO;
-import tech.alexchen.zeus.upms.convert.permission.MenuConvert;
+import tech.alexchen.zeus.upms.convert.permission.MenuConverter;
 import tech.alexchen.zeus.upms.service.permission.MenuService;
 
 import javax.validation.Valid;
@@ -48,7 +48,7 @@ public class MenuController {
     @ApiOperation("查询菜单")
     @GetMapping("/list")
     public R<List<MenuResponseVO>> list() {
-        List<MenuResponseVO> res = MenuConvert.INSTANCE.convertList(menuService.list());
+        List<MenuResponseVO> res = MenuConverter.INSTANCE.convertToList(menuService.list());
         return R.ok(res);
     }
 

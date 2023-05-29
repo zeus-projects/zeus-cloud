@@ -3,8 +3,10 @@ package tech.alexchen.zeus.auth.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -33,20 +35,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-//    @Override
-//    protected void configure(    auth) throws Exception {
-//        String adminAuthorities = "ROLE_DEPT, ROLE_USER, QUERY, SAVE, UPDATE, DELETE";
-//        auth.inMemoryAuthentication()
-//                .withUser("admin")
-//                .password(passwordEncoder().encode("123456"))
-//                .roles("USER", "ADMIN")
-//                .authorities(AuthorityUtils.commaSeparatedStringToAuthorityList(adminAuthorities))
-//                .and()
-//                .withUser("alex")
-//                .password(passwordEncoder().encode("123456"))
-//                .roles("USER")
-//                .authorities(AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_DEPT, QUERY, SAVE"));
-//    }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        String adminAuthorities = "ROLE_DEPT, ROLE_USER, QUERY, SAVE, UPDATE, DELETE";
+        auth.inMemoryAuthentication()
+                .withUser("admin")
+                .password(passwordEncoder().encode("123456"))
+                .roles("USER", "ADMIN")
+                .authorities(AuthorityUtils.commaSeparatedStringToAuthorityList(adminAuthorities))
+                .and()
+                .withUser("alex")
+                .password(passwordEncoder().encode("123456"))
+                .roles("USER")
+                .authorities(AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_DEPT, QUERY, SAVE"));
+    }
 
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {

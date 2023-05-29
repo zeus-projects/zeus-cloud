@@ -5,14 +5,14 @@ import org.mapstruct.factory.Mappers;
 import tech.alexchen.zeus.upms.controller.role.vo.role.RoleResponseVO;
 import tech.alexchen.zeus.upms.controller.role.vo.role.RoleSaveVO;
 import tech.alexchen.zeus.upms.controller.role.vo.role.RoleUpdateVO;
-import tech.alexchen.zeus.upms.convert.BaseConvert;
+import tech.alexchen.zeus.upms.convert.BaseConverter;
 import tech.alexchen.zeus.upms.domain.permission.RoleDO;
 
 /**
  * @author alexchen
  */
 @Mapper
-public interface RoleConvert extends BaseConvert<RoleDO, RoleSaveVO, RoleUpdateVO, RoleResponseVO> {
+public interface RoleConverter extends BaseConverter<RoleDO, RoleSaveVO, RoleUpdateVO, RoleResponseVO> {
 
-    RoleConvert INSTANCE = Mappers.getMapper(RoleConvert.class);
+    RoleConverter INSTANCE = Mappers.getMapper(RoleConverter.class);
 }

@@ -11,13 +11,13 @@ import java.util.Set;
  * @author alexchen
  */
 @Data
-public class TenantTypeBaseVO implements Serializable {
+public class TenantPlanBaseVO implements Serializable {
 
-    @ApiModelProperty(value = "租户类型名称", required = true, example = "系统租户")
+    @ApiModelProperty(value = "租户套餐名称", required = true, example = "系统租户")
     @NotNull(message = "类型名称不能为空")
     private String name;
 
-    @ApiModelProperty(value = "租户类型状态", required = true, example = "0")
+    @ApiModelProperty(value = "租户套餐状态", required = true, example = "0")
     @NotNull(message = "状态不能为空")
     private Integer status;
 

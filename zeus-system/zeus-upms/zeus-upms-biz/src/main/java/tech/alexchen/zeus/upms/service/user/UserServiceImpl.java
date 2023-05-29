@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import tech.alexchen.zeus.starter.exception.ExceptionUtil;
 import tech.alexchen.zeus.upms.controller.user.vo.UserSaveVO;
 import tech.alexchen.zeus.upms.controller.user.vo.UserUpdateVO;
-import tech.alexchen.zeus.upms.convert.user.UserConvert;
+import tech.alexchen.zeus.upms.convert.user.UserConverter;
 import tech.alexchen.zeus.upms.domain.user.UserDO;
 import tech.alexchen.zeus.upms.mapper.user.UserMapper;
 
@@ -28,7 +28,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
         // 检查手机号码是否重复
         checkPhoneUnique(null, vo.getPhone());
         // TODO
-        UserDO user = UserConvert.INSTANCE.convertFromSave(vo);
+        UserDO user = UserConverter.INSTANCE.convertFromSave(vo);
         this.save(user);
         return user.getId();
     }
@@ -39,7 +39,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
         checkPhoneUnique(vo.getId(), vo.getPhone());
         // 检查手机号码是否重复
         checkPhoneUnique(vo.getId(), vo.getPhone());
-        UserDO user = UserConvert.INSTANCE.convertFromUpdate(vo);
+        UserDO user = UserConverter.INSTANCE.convertFromUpdate(vo);
         this.updateById(user);
     }
 

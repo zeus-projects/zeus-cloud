@@ -9,13 +9,13 @@ import lombok.ToString;
 /**
  * @author alexchen
  */
-@ApiModel("系统管理 - 租户类型 - ResponseVO")
+@ApiModel("系统管理 - 租户套餐 - ResponseVO")
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class TenantTypeResponseVO extends TenantTypeBaseVO {
+public class TenantPlanResponseVO extends TenantPlanBaseVO {
 
-    @ApiModelProperty(value = "租户类型 ID", required = true, example = "1024")
+    @ApiModelProperty(value = "租户套餐 ID", required = true, example = "1024")
     private Long id;
 
 }

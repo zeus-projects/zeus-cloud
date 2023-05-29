@@ -8,7 +8,7 @@ import tech.alexchen.zeus.starter.response.R;
 import tech.alexchen.zeus.upms.controller.user.vo.UserResponseVO;
 import tech.alexchen.zeus.upms.controller.user.vo.UserSaveVO;
 import tech.alexchen.zeus.upms.controller.user.vo.UserUpdateVO;
-import tech.alexchen.zeus.upms.convert.user.UserConvert;
+import tech.alexchen.zeus.upms.convert.user.UserConverter;
 import tech.alexchen.zeus.upms.domain.user.UserDO;
 import tech.alexchen.zeus.upms.service.user.UserService;
 
@@ -51,7 +51,7 @@ public class UserController {
     @GetMapping("/{id}")
     public R<UserResponseVO> getUserById(@PathVariable Long id) {
         UserDO userDO = userService.getById(id);
-        UserResponseVO user = UserConvert.INSTANCE.convertResponse(userDO);
+        UserResponseVO user = UserConverter.INSTANCE.convertToResponse(userDO);
         return R.ok(user);
     }
 

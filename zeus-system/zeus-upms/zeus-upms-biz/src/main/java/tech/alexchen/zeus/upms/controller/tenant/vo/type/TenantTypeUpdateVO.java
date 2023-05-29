@@ -11,13 +11,13 @@ import javax.validation.constraints.NotNull;
 /**
  * @author alexchen
  */
-@ApiModel("系统管理 - 租户类型 - UpdateVO")
+@ApiModel("系统管理 - 租户套餐 - UpdateVO")
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class TenantTypeUpdateVO extends  TenantTypeBaseVO {
+public class TenantPlanUpdateVO extends  TenantPlanBaseVO {
 
-    @ApiModelProperty(value = "租户类型 ID", required = true, example = "1024")
+    @ApiModelProperty(value = "租户套餐 ID", required = true, example = "1024")
     @NotNull(message = "id 不能为空")
     private Long id;
 

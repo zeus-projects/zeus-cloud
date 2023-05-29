@@ -8,10 +8,10 @@ import lombok.ToString;
 /**
  * @author alexchen
  */
-@ApiModel("系统管理 - 租户类型 - SaveVO")
+@ApiModel("系统管理 - 租户套餐 - SaveVO")
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class TenantTypeSaveVO extends TenantTypeBaseVO {
+public class TenantPlanSaveVO extends TenantPlanBaseVO {
 
 }

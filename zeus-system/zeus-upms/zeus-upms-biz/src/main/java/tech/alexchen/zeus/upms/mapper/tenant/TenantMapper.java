@@ -22,7 +22,7 @@ public interface TenantMapper extends BaseMapper<TenantDO> {
         return this.selectPage(page, Wrappers.<TenantDO>lambdaQuery()
                 .like(StrUtil.isNotBlank(param.getName()), TenantDO::getName, param.getName())
                 .eq(param.getStatus() != null, TenantDO::getStatus, param.getStatus())
-                .eq(param.getTenantTypeId() != null, TenantDO::getTenantTypeId, param.getTenantTypeId())
+                .eq(param.getTenantPlanId() != null, TenantDO::getTenantPlanId, param.getTenantPlanId())
         );
     }
 }
