@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>zeus</artifactId>
+        <groupId>tech.alexchen</groupId>
+        <version>1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>zeus-common</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>zeus-common-core</module>
+        <module>zeus-common-data-mybatis</module>
+        <module>zeus-common-data-redis</module>
+        <module>zeus-common-data-es</module>
+        <module>zeus-common-data-mongodb</module>
+        <module>zeus-common-swagger</module>
+        <module>zeus-common-security</module>
+        <module>zeus-common-web</module>
+        <module>zeus-common-log</module>
+        <module>zeus-common-apiversion</module>
+        <module>zeus-common-gateway</module>
+        <module>zeus-common-kafka</module>
+        <module>zeus-common-feign</module>
+        <module>zeus-common-data-influxdb</module>
+        <module>zeus-common-sequence</module>
+        <module>zeus-common-test</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+</project>

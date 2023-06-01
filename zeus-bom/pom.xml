@@ -71,55 +71,55 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- ################# zeus-spring-boot-starter ################# -->
+            <!-- ################# zeus-common ################# -->
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-spring-boot-starter</artifactId>
+                <artifactId>zeus-common-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-spring-boot-starter-apiversion</artifactId>
+                <artifactId>zeus-common-apiversion</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-spring-boot-starter-data-mybatis</artifactId>
+                <artifactId>zeus-common-data-mybatis</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-spring-boot-starter-data-redis</artifactId>
+                <artifactId>zeus-common-data-redis</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-spring-boot-starter-feign</artifactId>
+                <artifactId>zeus-common-feign</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-spring-boot-starter-log</artifactId>
+                <artifactId>zeus-common-log</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-spring-boot-starter-security</artifactId>
+                <artifactId>zeus-common-security</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-spring-boot-starter-swagger</artifactId>
+                <artifactId>zeus-common-swagger</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-spring-boot-starter-web</artifactId>
+                <artifactId>zeus-common-web</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-spring-boot-starter-test</artifactId>
+                <artifactId>zeus-common-test</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

@@ -21,7 +21,7 @@
 
     <modules>
         <module>zeus-bom</module>
-        <module>zeus-spring-boot-starters</module>
+        <module>zeus-common</module>
         <module>zeus-system</module>
         <module>zeus-lowcode</module>
     </modules>

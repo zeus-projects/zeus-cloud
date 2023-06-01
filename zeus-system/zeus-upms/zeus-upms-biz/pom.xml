@@ -35,11 +35,11 @@
         </dependency>
         <dependency>
             <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-spring-boot-starter-web</artifactId>
+            <artifactId>zeus-common-web</artifactId>
         </dependency>
         <dependency>
             <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-spring-boot-starter-data-mybatis</artifactId>
+            <artifactId>zeus-common-data-mybatis</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -47,12 +47,12 @@
         </dependency>
         <dependency>
             <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-spring-boot-starter-test</artifactId>
+            <artifactId>zeus-common-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-spring-boot-starter-log</artifactId>
+            <artifactId>zeus-common-log</artifactId>
         </dependency>
     </dependencies>
 

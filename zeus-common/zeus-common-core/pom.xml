@@ -3,14 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
+        <artifactId>zeus-common</artifactId>
         <groupId>tech.alexchen</groupId>
-        <artifactId>zeus-upms</artifactId>
         <version>1.0</version>
     </parent>
+    <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>zeus-upms-api</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>zeus-common-core</artifactId>
+    <description>zeus 的核心开发工具包</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -19,13 +20,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-common-core</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <scope>provided</scope>
         </dependency>
+        <!-- hutool json -->
         <dependency>
-            <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-common-swagger</artifactId>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-json</artifactId>
         </dependency>
     </dependencies>
-
 </project>
