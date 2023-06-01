@@ -1,7 +1,6 @@
 package tech.alexchen.zeus.upms.service.user;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import tech.alexchen.zeus.starter.response.R;
 import tech.alexchen.zeus.upms.controller.user.vo.UserSaveVO;
 import tech.alexchen.zeus.upms.controller.user.vo.UserUpdateVO;
 import tech.alexchen.zeus.upms.domain.user.UserDO;

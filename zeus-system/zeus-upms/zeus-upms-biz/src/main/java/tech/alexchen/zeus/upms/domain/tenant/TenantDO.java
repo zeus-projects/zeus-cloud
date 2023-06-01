@@ -7,8 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 
 import lombok.*;
-import tech.alexchen.zeus.starter.enums.CommonStatusEnum;
-import tech.alexchen.zeus.starter.data.mybatis.entity.BaseDO;
+import tech.alexchen.zeus.common.enums.CommonStatusEnum;
+import tech.alexchen.zeus.common.data.mybatis.entity.BaseDO;
 
 /**
  * 租户

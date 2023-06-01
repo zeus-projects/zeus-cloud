@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  tech.alexchen.zeus.starter.apiversion.config.ApiVersionConfiguration
+  tech.alexchen.zeus.common.apiversion.config.ApiVersionConfiguration

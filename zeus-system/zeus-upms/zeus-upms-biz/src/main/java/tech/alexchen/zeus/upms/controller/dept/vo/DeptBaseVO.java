@@ -2,7 +2,6 @@ package tech.alexchen.zeus.upms.controller.dept.vo;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import tech.alexchen.zeus.starter.enums.CommonStatusEnum;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

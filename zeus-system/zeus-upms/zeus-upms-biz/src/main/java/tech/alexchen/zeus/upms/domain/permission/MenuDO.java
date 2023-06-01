@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
-import tech.alexchen.zeus.starter.data.mybatis.entity.BaseDO;
+import tech.alexchen.zeus.common.data.mybatis.entity.BaseDO;
 
 /**
  * 菜单

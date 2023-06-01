@@ -3,7 +3,7 @@ package tech.alexchen.zeus.lowcode.engine.crud.domain;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
-import tech.alexchen.zeus.starter.data.mybatis.entity.TenantBaseDO;
+import tech.alexchen.zeus.common.data.mybatis.entity.TenantBaseDO;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

@@ -1,7 +1,7 @@
 package tech.alexchen.zeus.upms.domain.user;
 
 import lombok.Data;
-import tech.alexchen.zeus.starter.data.mybatis.entity.TenantBaseDO;
+import tech.alexchen.zeus.common.data.mybatis.entity.TenantBaseDO;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

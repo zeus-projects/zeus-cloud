@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  tech.alexchen.zeus.starter.data.redis.config.RedisManagerAutoConfiguration
+  tech.alexchen.zeus.common.data.redis.config.RedisManagerAutoConfiguration

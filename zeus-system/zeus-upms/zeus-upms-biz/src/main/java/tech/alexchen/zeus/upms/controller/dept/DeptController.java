@@ -5,7 +5,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tech.alexchen.zeus.starter.response.R;
+import tech.alexchen.zeus.common.response.R;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptRequestVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptResponseVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptSaveVO;

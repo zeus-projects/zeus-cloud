@@ -1,6 +1,6 @@
 package tech.alexchen.zeus.upms.enums;
 
-import tech.alexchen.zeus.starter.exception.ErrorCode;
+import tech.alexchen.zeus.common.exception.ErrorCode;
 
 /**
  * @author alexchen

@@ -4,7 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tech.alexchen.zeus.starter.response.R;
+import tech.alexchen.zeus.common.response.R;
 import tech.alexchen.zeus.upms.controller.role.vo.role.RoleSaveVO;
 import tech.alexchen.zeus.upms.controller.role.vo.role.RoleUpdateVO;
 import tech.alexchen.zeus.upms.service.permission.RoleService;

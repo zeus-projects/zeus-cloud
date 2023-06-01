@@ -5,7 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
-import tech.alexchen.zeus.starter.exception.ExceptionUtil;
+import tech.alexchen.zeus.common.exception.ExceptionUtil;
 import tech.alexchen.zeus.upms.controller.user.vo.UserSaveVO;
 import tech.alexchen.zeus.upms.controller.user.vo.UserUpdateVO;
 import tech.alexchen.zeus.upms.convert.user.UserConverter;
