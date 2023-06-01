@@ -15,7 +15,7 @@ import java.util.Set;
 /**
  * 租户套餐
  * @author alexchen
- * @TableName sys_tenant_type
+ * @TableName sys_tenant_plan
  */
 @Data
 @Builder
@@ -23,7 +23,7 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-@TableName(value ="sys_tenant_type", autoResultMap = true)
+@TableName(value ="sys_tenant_plan", autoResultMap = true)
 public class TenantPlanDO extends BaseDO implements Serializable {
 
     @TableField(exist = false)

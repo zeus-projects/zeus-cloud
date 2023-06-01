@@ -19,11 +19,11 @@ public class TenantBaseVO implements Serializable {
 
     @ApiModelProperty(value = "租户套餐 ID", required = true, example = "1")
     @NotNull(message = "租户套餐 id 不能为空")
-    private Integer tenantTypeId;
+    private Integer tenantPlanId;
 
     @ApiModelProperty(value = "租户套餐名称", required = true, example = "系统租户")
     @NotBlank(message = "租户套餐名称不能为空")
-    private String tenantTypeName;
+    private String tenantPlanName;
 
     @ApiModelProperty(value = "租户状态", required = true, example = "0")
     @NotNull(message = "状态不能为空")

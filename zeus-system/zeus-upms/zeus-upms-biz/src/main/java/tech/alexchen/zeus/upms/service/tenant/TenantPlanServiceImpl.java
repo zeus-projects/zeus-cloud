@@ -21,11 +21,11 @@ public class TenantPlanServiceImpl extends ServiceImpl<TenantPlanMapper, TenantP
     @Resource
     TenantPlanConverter converter;
     @Override
-    @CacheEvict(value = "upms:tenant-type", allEntries = true)
+    @CacheEvict(value = "upms:tenant-plan", allEntries = true)
     public Long saveTenantPlan(TenantPlanSaveVO vo) {
-        TenantPlanDO tenantType = converter.convertFromSave(vo);
-        this.save(tenantType);
-        return tenantType.getId();
+        TenantPlanDO tenantPlan = converter.convertFromSave(vo);
+        this.save(tenantPlan);
+        return tenantPlan.getId();
     }
 
     @Override

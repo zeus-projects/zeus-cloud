@@ -27,6 +27,7 @@
         <module>zeus-spring-boot-starter-feign</module>
         <module>zeus-spring-boot-starter-data-influxdb</module>
         <module>zeus-spring-boot-starter-sequence</module>
+        <module>zeus-spring-boot-starter-test</module>
     </modules>
 
     <properties>

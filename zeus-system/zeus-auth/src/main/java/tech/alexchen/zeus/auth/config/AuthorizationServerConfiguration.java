@@ -42,13 +42,21 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         //基于内存便于测试
         clients.inMemory() // 使用in-memory存储
                 .withClient("test")// client_id
-                //.secret("secret") // 未加密
-                .secret(passwordEncoder.encode("secret")) // 加密
-                //.resourceIds("res1")//资源列表
-                // 该client允许的授权类型 authorization_code,password,refresh_token,implicit,client_credentials
-                .authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token")
-                .scopes("ROLE_ADMIN", "ROLE_USER") // 允许的授权范围
-                //.autoApprove(false)//false跳转到授权页面
-                .redirectUris("http://baidu.com"); // 验证回调地址
+                // 未加密
+                //.secret("secret")
+                // 加密
+                .secret(passwordEncoder.encode("secret"))
+                //资源列表
+                //.resourceIds("res1")
+                // 该client允许的授权类型 authorization_code, password, refresh_token, implicit, client_credentials
+                .authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token", "client_credentials")
+                // 允许的授权范围
+                .scopes("ROLE_ADMIN", "ROLE_USER")
+                //false 跳转到授权页面
+                //.autoApprove(false)
+                // 验证回调地址
+                .redirectUris("http://www.baidu.com");
     }
+
+
 }

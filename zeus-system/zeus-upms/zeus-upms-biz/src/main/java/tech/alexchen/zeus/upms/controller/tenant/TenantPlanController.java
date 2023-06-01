@@ -26,7 +26,7 @@ import java.util.List;
  */
 @Api(tags = "系统管理 - 租户套餐")
 @RestController
-@RequestMapping("/tenant-type")
+@RequestMapping("/tenant-plan")
 public class TenantPlanController {
 
     @Resource
@@ -44,8 +44,8 @@ public class TenantPlanController {
     @PutMapping
     @ApiOperation("更新租户套餐")
     public R<Boolean> update(@Valid @RequestBody TenantPlanUpdateVO updateVO) {
-        TenantPlanDO tenantType = converter.convertFromUpdate(updateVO);
-        return R.ok(service.updateById(tenantType));
+        TenantPlanDO tenantPlan = converter.convertFromUpdate(updateVO);
+        return R.ok(service.updateById(tenantPlan));
     }
 
     @DeleteMapping("/{id}")
@@ -57,8 +57,8 @@ public class TenantPlanController {
     @GetMapping("/{id}")
     @ApiOperation("查询单个租户套餐")
     public R<TenantPlanResponseVO> getById(@PathVariable Long id) {
-        TenantPlanDO tenantTypeDO = service.getById(id);
-        TenantPlanResponseVO vo = converter.convertToResponse(tenantTypeDO);
+        TenantPlanDO tenantPlanDO = service.getById(id);
+        TenantPlanResponseVO vo = converter.convertToResponse(tenantPlanDO);
         return R.ok(vo);
     }
 

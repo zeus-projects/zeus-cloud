@@ -5,8 +5,8 @@ Content-Type: application/json
 {
   "name": "admin",
   "status": 0,
-  "tenantTypeId": 1,
-  "tenantTypeName": "超级管理员"
+  "tenantPlanId": 1,
+  "tenantPlanName": "超级管理员"
 }
 
 ### update
@@ -17,8 +17,8 @@ Content-Type: application/json
   "id": 1,
   "name": "admin",
   "status": 0,
-  "tenantTypeId": 1,
-  "tenantTypeName": "系统租户"
+  "tenantPlanId": 1,
+  "tenantPlanName": "系统租户"
 }
 
 ### delete

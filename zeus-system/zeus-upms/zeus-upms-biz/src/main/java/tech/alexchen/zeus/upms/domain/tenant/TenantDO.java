@@ -41,12 +41,12 @@ public class TenantDO extends BaseDO implements Serializable {
     /**
      * 租户套餐id
      */
-    private Integer tenantTypeId;
+    private Integer tenantPlanId;
 
     /**
      * 租户套餐名称
      */
-    private String tenantTypeName;
+    private String tenantPlanName;
 
     /**
      * 状态

@@ -11,10 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * SpringSecurity安全框架配置：
+ * SpringSecurity 安全框架配置
+ * "@EnableWebSecurity" 开启 Spring Security 的功能
  *
  * @author alexchen
- * @EnableWebSecurity 开启 Spring Security 的功能
  * @date 2023/2/15
  */
 @Configuration

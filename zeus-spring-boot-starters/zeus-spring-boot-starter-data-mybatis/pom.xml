@@ -17,23 +17,28 @@
     </properties>
 
     <dependencies>
+        <!-- springboot web（不传递） -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!-- mysql 驱动 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+        <!-- mybatis-plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
+        <!-- druid 连接池 -->
         <dependency>
             <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
+            <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
+        <!-- hutool -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-json</artifactId>

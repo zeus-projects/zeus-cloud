@@ -19,11 +19,6 @@
     </properties>
 
     <dependencies>
-        <!-- 在应用启动时加载 bootstrap 配置（例如 application.yml 或 bootstrap.properties） -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-bootstrap</artifactId>-->
-<!--        </dependency>-->
         <!-- Nacos 配置中心 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -49,6 +44,15 @@
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-spring-boot-starter-log</artifactId>
         </dependency>
     </dependencies>
 
