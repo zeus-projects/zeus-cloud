@@ -80,6 +80,34 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>%g/%a:%v</name>
+                        </image>
+                    </images>
+                </configuration>
+                <!-- <executions> -->
+                <!--     <execution> -->
+                <!--         <goals> -->
+                <!--             <goal>build</goal> -->
+                <!--         </goals> -->
+                <!--     </execution> -->
+                <!-- </executions> -->
             </plugin>
         </plugins>
         <resources>

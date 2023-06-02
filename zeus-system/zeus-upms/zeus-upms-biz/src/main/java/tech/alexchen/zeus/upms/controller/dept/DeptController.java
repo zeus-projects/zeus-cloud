@@ -4,8 +4,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tech.alexchen.zeus.common.response.R;
+import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptRequestVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptResponseVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptSaveVO;
@@ -14,6 +15,7 @@ import tech.alexchen.zeus.upms.convert.dept.DeptConverter;
 import tech.alexchen.zeus.upms.domain.dept.DeptDO;
 import tech.alexchen.zeus.upms.service.dept.DeptService;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -25,10 +27,12 @@ import java.util.List;
  */
 @Api(tags = "系统管理 - 部门")
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class DeptController {
 
     private final DeptService deptService;
+    
+    private final DeptConverter converter;
 
     @PostMapping
     @ApiOperation("创建部门")
@@ -53,20 +57,20 @@ public class DeptController {
     @ApiOperation("查询单个部门")
     public R<DeptResponseVO> getById(@PathVariable Long id) {
         DeptDO dept = deptService.getById(id);
-        return R.ok(DeptConverter.INSTANCE.convertToResponse(dept));
+        return R.ok(converter.convertToResponse(dept));
     }
 
     @GetMapping("/page")
     @ApiOperation("分页查询部门")
     public R<Page<DeptResponseVO>> page(Page page, DeptRequestVO vo) {
         Page<DeptDO> pageRes = deptService.pageDept(page, vo);
-        return R.ok(DeptConverter.INSTANCE.convertToPage(pageRes));
+        return R.ok(converter.convertToPage(pageRes));
     }
 
     @GetMapping("/list")
     @ApiOperation("列表查询部门")
     public R<List<DeptResponseVO>> list() {
-        return R.ok(DeptConverter.INSTANCE.convertToList(deptService.list()));
+        return R.ok(converter.convertToList(deptService.list()));
     }
 
 }

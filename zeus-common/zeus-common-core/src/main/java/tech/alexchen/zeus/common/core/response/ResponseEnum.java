@@ -1,11 +1,11 @@
-package tech.alexchen.zeus.common.response;
+package tech.alexchen.zeus.common.core.response;
 
 /**
  * @author alexchen
  */
 public interface ResponseEnum {
 
-    Integer getCode();
+    String getCode();
 
     String getMessage();
 

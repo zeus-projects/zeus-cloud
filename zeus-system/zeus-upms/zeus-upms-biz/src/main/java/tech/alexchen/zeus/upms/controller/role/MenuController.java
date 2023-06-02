@@ -2,15 +2,17 @@ package tech.alexchen.zeus.upms.controller.role;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tech.alexchen.zeus.common.response.R;
+import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.upms.controller.role.vo.menu.MenuResponseVO;
 import tech.alexchen.zeus.upms.controller.role.vo.menu.MenuSaveVO;
 import tech.alexchen.zeus.upms.controller.role.vo.menu.MenuUpdateVO;
 import tech.alexchen.zeus.upms.convert.permission.MenuConverter;
 import tech.alexchen.zeus.upms.service.permission.MenuService;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -24,6 +26,8 @@ import java.util.List;
 public class MenuController {
 
     private final MenuService menuService;
+
+    private final MenuConverter menuConverter;
 
     @ApiOperation("创建菜单")
     @PostMapping
@@ -48,7 +52,7 @@ public class MenuController {
     @ApiOperation("查询菜单")
     @GetMapping("/list")
     public R<List<MenuResponseVO>> list() {
-        List<MenuResponseVO> res = MenuConverter.INSTANCE.convertToList(menuService.list());
+        List<MenuResponseVO> res = menuConverter.convertToList(menuService.list());
         return R.ok(res);
     }
 

@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.common.exception;
+package tech.alexchen.zeus.common.core.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

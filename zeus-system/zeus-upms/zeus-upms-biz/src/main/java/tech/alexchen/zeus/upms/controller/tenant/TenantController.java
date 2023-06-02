@@ -4,10 +4,11 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tech.alexchen.zeus.common.enums.CommonStatusEnum;
-import tech.alexchen.zeus.common.response.R;
+import tech.alexchen.zeus.common.core.enums.CommonStatusEnum;
+import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.upms.controller.tenant.vo.tenant.TenantRequestVO;
 import tech.alexchen.zeus.upms.controller.tenant.vo.tenant.TenantResponseVO;
 import tech.alexchen.zeus.upms.controller.tenant.vo.tenant.TenantSaveVO;
@@ -16,6 +17,7 @@ import tech.alexchen.zeus.upms.convert.tenant.TenantConverter;
 import tech.alexchen.zeus.upms.domain.tenant.TenantDO;
 import tech.alexchen.zeus.upms.service.tenant.TenantService;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -30,10 +32,12 @@ public class TenantController {
 
     private final TenantService tenantService;
     
+    private final TenantConverter tenantConverter;
+    
     @PostMapping
     @ApiOperation("创建租户")
     public R<Long> save(@Valid @RequestBody TenantSaveVO vo) {
-        TenantDO tenantDO = TenantConverter.INSTANCE.convertFromSave(vo);
+        TenantDO tenantDO = tenantConverter.convertFromSave(vo);
         tenantService.save(tenantDO);
         return R.ok(tenantDO.getId());
     }
@@ -41,7 +45,7 @@ public class TenantController {
     @PutMapping
     @ApiOperation("更新租户套餐")
     public R<Boolean> update(@Valid @RequestBody TenantUpdateVO updateVO) {
-        TenantDO Tenant = TenantConverter.INSTANCE.convertFromUpdate(updateVO);
+        TenantDO Tenant = tenantConverter.convertFromUpdate(updateVO);
         return R.ok(tenantService.updateById(Tenant));
     }
 
@@ -55,14 +59,14 @@ public class TenantController {
     @ApiOperation("查询单个租户")
     public R<TenantResponseVO> getById(@PathVariable Long id) {
         TenantDO tenant = tenantService.getById(id);
-        return R.ok(TenantConverter.INSTANCE.convertToResponse(tenant));
+        return R.ok(tenantConverter.convertToResponse(tenant));
     }
 
     @GetMapping("/page")
     @ApiOperation("分页查询租户")
     public R<Page<TenantResponseVO>> page(Page page, TenantRequestVO param) {
         Page<TenantDO> pageRes = tenantService.page(page, param);
-        return R.ok(TenantConverter.INSTANCE.convertToPage(pageRes));
+        return R.ok(tenantConverter.convertToPage(pageRes));
     }
 
     @GetMapping("/list")
@@ -70,7 +74,7 @@ public class TenantController {
     public R<List<TenantResponseVO>> list() {
         // 只查询状态
         List<TenantDO> listRes = tenantService.list(Wrappers.<TenantDO>lambdaQuery().eq(TenantDO::getStatus, CommonStatusEnum.ENABLE.getStatus()));
-        return R.ok(TenantConverter.INSTANCE.convertToList(listRes));
+        return R.ok(tenantConverter.convertToList(listRes));
     }
 
 }

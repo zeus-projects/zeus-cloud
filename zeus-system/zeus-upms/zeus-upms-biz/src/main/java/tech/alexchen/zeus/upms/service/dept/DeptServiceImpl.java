@@ -5,9 +5,10 @@ import cn.hutool.core.lang.tree.TreeUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import tech.alexchen.zeus.common.enums.CommonStatusEnum;
-import tech.alexchen.zeus.common.exception.ExceptionUtil;
+import tech.alexchen.zeus.common.core.enums.CommonStatusEnum;
+import tech.alexchen.zeus.common.core.exception.ExceptionUtil;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptRequestVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptSaveVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptUpdateVO;
@@ -17,6 +18,7 @@ import tech.alexchen.zeus.upms.mapper.dept.DeptMapper;
 import tech.alexchen.zeus.upms.enums.DeptIdEnum;
 import tech.alexchen.zeus.upms.enums.ErrorCodeConstants;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -24,7 +26,10 @@ import java.util.List;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements DeptService {
+    
+    private final DeptConverter deptConverter;
 
     @Override
     public Long saveDept(DeptSaveVO vo) {
@@ -37,7 +42,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
         checkParentDeptEnable(vo.getParentId());
         // 检查名称是否重复
         checkDeptNameUnique(vo.getName(), vo.getParentId());
-        DeptDO dept = DeptConverter.INSTANCE.convertFromSave(vo);
+        DeptDO dept = deptConverter.convertFromSave(vo);
         this.save(dept);
         return dept.getId();
     }
@@ -48,7 +53,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, DeptDO> implements 
         checkParentDeptEnable(vo.getId(), vo.getParentId(), vo.getLevel());
         // 检查名称是否重复
         checkDeptNameUnique(vo.getId(), vo.getName(), vo.getParentId());
-        DeptDO dept = DeptConverter.INSTANCE.convertFromUpdate(vo);
+        DeptDO dept = deptConverter.convertFromUpdate(vo);
         return this.updateById(dept);
     }
 

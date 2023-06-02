@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 
 import lombok.*;
-import tech.alexchen.zeus.common.enums.CommonStatusEnum;
+import tech.alexchen.zeus.common.core.enums.CommonStatusEnum;
 import tech.alexchen.zeus.common.data.mybatis.entity.BaseDO;
 
 /**

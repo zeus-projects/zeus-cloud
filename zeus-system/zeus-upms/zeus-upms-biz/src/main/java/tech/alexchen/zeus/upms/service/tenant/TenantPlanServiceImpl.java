@@ -2,6 +2,7 @@ package tech.alexchen.zeus.upms.service.tenant;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import tech.alexchen.zeus.upms.controller.tenant.vo.type.TenantPlanRequestVO;
@@ -16,10 +17,11 @@ import javax.annotation.Resource;
 * @author alexchen
 */
 @Service
+@RequiredArgsConstructor
 public class TenantPlanServiceImpl extends ServiceImpl<TenantPlanMapper, TenantPlanDO> implements TenantPlanService{
 
-    @Resource
-    TenantPlanConverter converter;
+    private final TenantPlanConverter converter;
+
     @Override
     @CacheEvict(value = "upms:tenant-plan", allEntries = true)
     public Long saveTenantPlan(TenantPlanSaveVO vo) {

@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
-import tech.alexchen.zeus.common.enums.CommonStatusEnum;
+import tech.alexchen.zeus.common.core.enums.CommonStatusEnum;
 import tech.alexchen.zeus.common.data.mybatis.entity.BaseDO;
 import tech.alexchen.zeus.common.data.mybatis.typehandler.JsonLongSetTypeHandler;
 

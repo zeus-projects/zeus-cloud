@@ -1,6 +1,7 @@
 package tech.alexchen.zeus.upms.service.permission;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tech.alexchen.zeus.upms.controller.role.vo.menu.MenuSaveVO;
 import tech.alexchen.zeus.upms.controller.role.vo.menu.MenuUpdateVO;
@@ -12,11 +13,14 @@ import tech.alexchen.zeus.upms.mapper.permission.MenuMapper;
  * @author alexchen
  */
 @Service
+@RequiredArgsConstructor
 public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuDO> implements MenuService {
 
+    private final MenuConverter converter;
+    
     @Override
     public Long saveMenu(MenuSaveVO vo) {
-        MenuDO menu = MenuConverter.INSTANCE.convertFromSave(vo);
+        MenuDO menu = converter.convertFromSave(vo);
         // 检查父菜单
         checkParentMenu(vo.getParentId());
         // 检查名称是否重复
@@ -28,7 +32,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, MenuDO> implements 
 
     @Override
     public void updateMenu(MenuUpdateVO vo) {
-        MenuDO menu = MenuConverter.INSTANCE.convertFromUpdate(vo);
+        MenuDO menu = converter.convertFromUpdate(vo);
         // 检查父菜单
         checkParentMenu(vo.getParentId(), vo.getId());
         // 检查名称是否重复

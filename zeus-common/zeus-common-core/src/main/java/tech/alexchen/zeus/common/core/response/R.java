@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.common.response;
+package tech.alexchen.zeus.common.core.response;
 
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +22,7 @@ public class R<T> implements Serializable{
     /**
      * 状态码
      */
-    private Integer code;
+    private String code;
 
     /**
      * 响应信息
@@ -34,7 +34,7 @@ public class R<T> implements Serializable{
      */
     private T data;
 
-    public static <T> R<T> build(Integer code, String message, T data) {
+    public static <T> R<T> build(String code, String message, T data) {
         return R.<T>builder()
                 .timestamp(System.currentTimeMillis())
                 .code(code)
@@ -57,7 +57,9 @@ public class R<T> implements Serializable{
     }
 
     public static <T> R<T> ok(T data) {
-        return R.build(GlobalResponseEnum.SUCCESS.getCode(), GlobalResponseEnum.SUCCESS.getMessage(), data);
+        return R.build(GlobalResponseEnum.SUCCESS.getCode(),
+                GlobalResponseEnum.SUCCESS.getMessage(),
+                data);
     }
 
     public static <T> R<T> fail(String message) {

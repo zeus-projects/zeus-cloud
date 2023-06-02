@@ -4,9 +4,10 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tech.alexchen.zeus.common.enums.CommonStatusEnum;
-import tech.alexchen.zeus.common.response.R;
+import tech.alexchen.zeus.common.core.enums.CommonStatusEnum;
+import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.upms.controller.tenant.vo.type.TenantPlanRequestVO;
 import tech.alexchen.zeus.upms.controller.tenant.vo.type.TenantPlanResponseVO;
 import tech.alexchen.zeus.upms.controller.tenant.vo.type.TenantPlanSaveVO;
@@ -15,7 +16,6 @@ import tech.alexchen.zeus.upms.convert.tenant.TenantPlanConverter;
 import tech.alexchen.zeus.upms.domain.tenant.TenantPlanDO;
 import tech.alexchen.zeus.upms.service.tenant.TenantPlanService;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -27,14 +27,11 @@ import java.util.List;
 @Api(tags = "系统管理 - 租户套餐")
 @RestController
 @RequestMapping("/tenant-plan")
+@RequiredArgsConstructor
 public class TenantPlanController {
 
-    @Resource
-    TenantPlanService service;
-
-    @Resource
-    TenantPlanConverter converter;
-
+    private final TenantPlanService service;
+    private final TenantPlanConverter converter;
     @PostMapping
     @ApiOperation("创建租户套餐")
     public R<Long> save(@Valid @RequestBody TenantPlanSaveVO addVO) {

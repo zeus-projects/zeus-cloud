@@ -1,7 +1,7 @@
-package tech.alexchen.zeus.common.exception;
+package tech.alexchen.zeus.common.core.exception;
 
 import cn.hutool.core.util.StrUtil;
-import tech.alexchen.zeus.common.constants.GlobalErrorCode;
+import tech.alexchen.zeus.common.core.constants.GlobalErrorCode;
 
 /**
  * 异常信息工具类

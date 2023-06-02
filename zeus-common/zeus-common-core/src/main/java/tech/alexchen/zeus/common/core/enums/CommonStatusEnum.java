@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.common.enums;
+package tech.alexchen.zeus.common.core.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

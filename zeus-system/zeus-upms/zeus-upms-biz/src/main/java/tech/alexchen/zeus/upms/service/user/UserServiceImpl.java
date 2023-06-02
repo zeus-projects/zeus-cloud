@@ -3,14 +3,17 @@ package tech.alexchen.zeus.upms.service.user;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
-import tech.alexchen.zeus.common.exception.ExceptionUtil;
+import tech.alexchen.zeus.common.core.exception.ExceptionUtil;
 import tech.alexchen.zeus.upms.controller.user.vo.UserSaveVO;
 import tech.alexchen.zeus.upms.controller.user.vo.UserUpdateVO;
 import tech.alexchen.zeus.upms.convert.user.UserConverter;
 import tech.alexchen.zeus.upms.domain.user.UserDO;
 import tech.alexchen.zeus.upms.mapper.user.UserMapper;
+
+import javax.annotation.Resource;
 
 import static tech.alexchen.zeus.upms.enums.ErrorCodeConstants.USER_PHONE_EXISTS;
 import static tech.alexchen.zeus.upms.enums.ErrorCodeConstants.USER_USERNAME_EXISTS;
@@ -19,7 +22,10 @@ import static tech.alexchen.zeus.upms.enums.ErrorCodeConstants.USER_USERNAME_EXI
  * @author alexchen
  */
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements UserService {
+
+    private final UserConverter converter;
 
     @Override
     public Long saveUser(UserSaveVO vo) {
@@ -28,7 +34,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
         // 检查手机号码是否重复
         checkPhoneUnique(null, vo.getPhone());
         // TODO
-        UserDO user = UserConverter.INSTANCE.convertFromSave(vo);
+        UserDO user = converter.convertFromSave(vo);
         this.save(user);
         return user.getId();
     }
@@ -39,7 +45,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
         checkPhoneUnique(vo.getId(), vo.getPhone());
         // 检查手机号码是否重复
         checkPhoneUnique(vo.getId(), vo.getPhone());
-        UserDO user = UserConverter.INSTANCE.convertFromUpdate(vo);
+        UserDO user = converter.convertFromUpdate(vo);
         this.updateById(user);
     }
 
