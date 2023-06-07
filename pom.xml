@@ -13,8 +13,12 @@
         <java.version>1.8</java.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <lombok.version>1.18.24</lombok.version>
         <spring-boot.version>2.7.8</spring-boot.version>
+        <spring.cloud.version>2021.0.5</spring.cloud.version>
+        <spring.cloud.alibaba.version>2021.0.4.0</spring.cloud.alibaba.version>
+        <junit5.version>5.9.2</junit5.version>
+        <hutool.version>5.8.6</hutool.version>
+        <lombok.version>1.18.24</lombok.version>
         <docker.plugin.version>0.41.0</docker.plugin.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.20</org.projectlombok.version>
@@ -27,6 +31,58 @@
         <module>zeus-system</module>
         <module>zeus-lowcode</module>
     </modules>
+
+    <!-- 子模块按需继承的依赖 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- zeus 公共版本定义 -->
+            <dependency>
+                <groupId>tech.alexchen</groupId>
+                <artifactId>zeus-bom</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring.cloud.alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- springboot-bom -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- junit5-bom -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit5.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- hutool-bom -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-bom</artifactId>
+                <version>${hutool.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <!-- 所有子模块都继承的依赖 -->
     <dependencies>
@@ -43,20 +99,6 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
-    <!-- 子模块按需继承的依赖 -->
-    <dependencyManagement>
-        <dependencies>
-            <!-- zeus 公共版本定义 -->
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-bom</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <finalName>${project.name}</finalName>

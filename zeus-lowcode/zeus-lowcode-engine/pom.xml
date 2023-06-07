@@ -39,5 +39,14 @@
             <groupId>tech.alexchen</groupId>
             <artifactId>zeus-common-data-mybatis</artifactId>
         </dependency>
+        <dependency>
+            <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-common-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-common-test</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>

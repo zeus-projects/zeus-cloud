@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.auth.entity;
+package tech.alexchen.zeus.common.security.component;
 
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,7 +8,6 @@ import java.util.Collection;
 
 /**
  * @author alexchen
- * @date 2023/2/15
  */
 public class AuthUser extends User {
 

@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.auth.handler;
+package tech.alexchen.zeus.auth.support.handler;
 
 import cn.hutool.json.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -16,20 +16,23 @@ import java.io.IOException;
  * 自定义登录成功处理
  *
  * @author alexchen
- * @date 2023/2/15
  */
 @Slf4j
 @Component
 public class LoginAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
-
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request,
+                                        HttpServletResponse response,
+                                        FilterChain chain,
+                                        Authentication authentication) throws IOException, ServletException {
         AuthenticationSuccessHandler.super.onAuthenticationSuccess(request, response, chain, authentication);
     }
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request,
+                                        HttpServletResponse response,
+                                        Authentication authentication) throws IOException {
         log.info("登录成功");
         response.setContentType("application/json;charset=UTF-8");
         response.getWriter().write(JSONUtil.toJsonStr(authentication));
