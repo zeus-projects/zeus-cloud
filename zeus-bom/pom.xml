@@ -29,6 +29,8 @@
         <mockito.version>4.5.1</mockito.version>
         <spring.authorization.version>0.4.2</spring.authorization.version>
         <spring.security.oauth.autoconfigure.version>2.3.6.RELEASE</spring.security.oauth.autoconfigure.version>
+        <redisson.spring.boot.version>3.17.7</redisson.spring.boot.version>
+        <fastjson2.version>2.0.33</fastjson2.version>
     </properties>
 
     <dependencyManagement>
@@ -167,6 +169,16 @@
                 <groupId>org.springframework.security.oauth.boot</groupId>
                 <artifactId>spring-security-oauth2-autoconfigure</artifactId>
                 <version>${spring.security.oauth.autoconfigure.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2-extension-spring5</artifactId>
+                <version>${fastjson2.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
