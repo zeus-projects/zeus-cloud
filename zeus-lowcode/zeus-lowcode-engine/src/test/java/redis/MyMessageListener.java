@@ -1,3 +1,5 @@
+package redis;
+
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
