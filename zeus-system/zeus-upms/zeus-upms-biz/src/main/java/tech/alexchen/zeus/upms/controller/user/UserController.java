@@ -2,7 +2,6 @@ package tech.alexchen.zeus.upms.controller.user;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tech.alexchen.zeus.common.core.response.R;
@@ -10,7 +9,7 @@ import tech.alexchen.zeus.upms.controller.user.vo.UserResponseVO;
 import tech.alexchen.zeus.upms.controller.user.vo.UserSaveVO;
 import tech.alexchen.zeus.upms.controller.user.vo.UserUpdateVO;
 import tech.alexchen.zeus.upms.convert.user.UserConverter;
-import tech.alexchen.zeus.upms.domain.user.UserDO;
+import tech.alexchen.zeus.upms.entity.user.UserDO;
 import tech.alexchen.zeus.upms.service.user.UserService;
 
 import javax.validation.Valid;
@@ -22,12 +21,12 @@ import javax.validation.Valid;
  */
 @Api("系统管理 - 用户")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
-    private final UserConverter converter;
+    private final UserConverter userConverter;
 
     @ApiOperation("创建用户")
     @PostMapping
@@ -53,7 +52,7 @@ public class UserController {
     @GetMapping("/{id}")
     public R<UserResponseVO> getUserById(@PathVariable Long id) {
         UserDO userDO = userService.getById(id);
-        UserResponseVO user = converter.convertToResponse(userDO);
+        UserResponseVO user = userConverter.convertToResponse(userDO);
         return R.ok(user);
     }
 

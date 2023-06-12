@@ -1,6 +1,7 @@
 package tech.alexchen.zeus.upms.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
+import cn.hutool.core.util.StrUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,18 +11,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
+    @Value("${server.port}")
+    Integer serverPort;
+
+
     @GetMapping("/test")
     public String test() {
-        return "test";
+        return StrUtil.format("current server: {}", serverPort);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin")
     public String admin() {
         return "admin";
     }
 
-    @PreAuthorize("hasRole('USER')")
+//    @PreAuthorize("hasRole('USER')")
     @GetMapping("/user")
     public String user() {
         return "user";

@@ -6,7 +6,7 @@ import tech.alexchen.zeus.upms.controller.dept.vo.DeptResponseVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptSaveVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptUpdateVO;
 import tech.alexchen.zeus.upms.convert.BaseConverter;
-import tech.alexchen.zeus.upms.domain.dept.DeptDO;
+import tech.alexchen.zeus.upms.entity.dept.DeptDO;
 
 /**
  * @author alexchen

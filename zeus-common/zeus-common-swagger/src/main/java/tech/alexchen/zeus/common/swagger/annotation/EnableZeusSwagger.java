@@ -1,6 +1,7 @@
 package tech.alexchen.zeus.common.swagger.annotation;
 
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource;
 import tech.alexchen.zeus.common.swagger.config.SwaggerConfiguration;
 
 import java.lang.annotation.*;

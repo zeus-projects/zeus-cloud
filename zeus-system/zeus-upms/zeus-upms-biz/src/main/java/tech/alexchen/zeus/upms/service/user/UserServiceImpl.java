@@ -10,13 +10,11 @@ import tech.alexchen.zeus.common.core.exception.ExceptionUtil;
 import tech.alexchen.zeus.upms.controller.user.vo.UserSaveVO;
 import tech.alexchen.zeus.upms.controller.user.vo.UserUpdateVO;
 import tech.alexchen.zeus.upms.convert.user.UserConverter;
-import tech.alexchen.zeus.upms.domain.user.UserDO;
+import tech.alexchen.zeus.upms.entity.user.UserDO;
 import tech.alexchen.zeus.upms.mapper.user.UserMapper;
 
-import javax.annotation.Resource;
-
-import static tech.alexchen.zeus.upms.enums.ErrorCodeConstants.USER_PHONE_EXISTS;
-import static tech.alexchen.zeus.upms.enums.ErrorCodeConstants.USER_USERNAME_EXISTS;
+import static tech.alexchen.zeus.upms.api.enums.ErrorCodeConstants.USER_PHONE_EXISTS;
+import static tech.alexchen.zeus.upms.api.enums.ErrorCodeConstants.USER_USERNAME_EXISTS;
 
 /**
  * @author alexchen

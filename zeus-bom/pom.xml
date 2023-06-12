@@ -13,11 +13,6 @@
         <maven.compiler.target>8</maven.compiler.target>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-boot.version>2.7.8</spring-boot.version>
-        <spring.cloud.version>2021.0.5</spring.cloud.version>
-        <spring.cloud.alibaba.version>2021.0.4.0</spring.cloud.alibaba.version>
-        <junit5.version>5.9.2</junit5.version>
-        <hutool.version>5.8.6</hutool.version>
         <logback.version>1.2.11</logback.version>
         <servlet.api.version>2.5</servlet.api.version>
         <springfox.version>3.0.0</springfox.version>
@@ -43,7 +38,17 @@
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-apiversion</artifactId>
+                <artifactId>zeus-common-data-elasticsearch</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tech.alexchen</groupId>
+                <artifactId>zeus-common-data-influxdb</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tech.alexchen</groupId>
+                <artifactId>zeus-common-data-mongodb</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -63,6 +68,16 @@
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
+                <artifactId>zeus-common-gateway</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tech.alexchen</groupId>
+                <artifactId>zeus-common-kafka</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tech.alexchen</groupId>
                 <artifactId>zeus-common-log</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -73,17 +88,22 @@
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
+                <artifactId>zeus-common-sequence</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tech.alexchen</groupId>
                 <artifactId>zeus-common-swagger</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-web</artifactId>
+                <artifactId>zeus-common-test</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-test</artifactId>
+                <artifactId>zeus-common-web</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

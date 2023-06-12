@@ -13,12 +13,11 @@ import tech.alexchen.zeus.upms.controller.dept.vo.DeptRequestVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptSaveVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptUpdateVO;
 import tech.alexchen.zeus.upms.convert.dept.DeptConverter;
-import tech.alexchen.zeus.upms.domain.dept.DeptDO;
+import tech.alexchen.zeus.upms.entity.dept.DeptDO;
 import tech.alexchen.zeus.upms.mapper.dept.DeptMapper;
-import tech.alexchen.zeus.upms.enums.DeptIdEnum;
-import tech.alexchen.zeus.upms.enums.ErrorCodeConstants;
+import tech.alexchen.zeus.upms.api.enums.DeptIdEnum;
+import tech.alexchen.zeus.upms.api.enums.ErrorCodeConstants;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**

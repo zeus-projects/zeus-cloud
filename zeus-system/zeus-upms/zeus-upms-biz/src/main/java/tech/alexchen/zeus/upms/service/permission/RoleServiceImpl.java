@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import tech.alexchen.zeus.upms.controller.role.vo.role.RoleSaveVO;
 import tech.alexchen.zeus.upms.controller.role.vo.role.RoleUpdateVO;
-import tech.alexchen.zeus.upms.domain.permission.RoleDO;
+import tech.alexchen.zeus.upms.entity.permission.RoleDO;
 import tech.alexchen.zeus.upms.mapper.permission.RoleMapper;
 
 /**

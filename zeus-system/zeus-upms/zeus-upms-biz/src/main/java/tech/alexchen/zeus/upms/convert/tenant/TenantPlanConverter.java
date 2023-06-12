@@ -7,7 +7,7 @@ import tech.alexchen.zeus.upms.controller.tenant.vo.type.TenantPlanResponseVO;
 import tech.alexchen.zeus.upms.controller.tenant.vo.type.TenantPlanSaveVO;
 import tech.alexchen.zeus.upms.controller.tenant.vo.type.TenantPlanUpdateVO;
 import tech.alexchen.zeus.upms.convert.BaseConverter;
-import tech.alexchen.zeus.upms.domain.tenant.TenantPlanDO;
+import tech.alexchen.zeus.upms.entity.tenant.TenantPlanDO;
 
 /**
  * @author alexchen

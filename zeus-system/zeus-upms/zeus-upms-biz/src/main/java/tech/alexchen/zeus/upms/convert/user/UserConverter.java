@@ -7,7 +7,7 @@ import tech.alexchen.zeus.upms.controller.user.vo.UserResponseVO;
 import tech.alexchen.zeus.upms.controller.user.vo.UserSaveVO;
 import tech.alexchen.zeus.upms.controller.user.vo.UserUpdateVO;
 import tech.alexchen.zeus.upms.convert.BaseConverter;
-import tech.alexchen.zeus.upms.domain.user.UserDO;
+import tech.alexchen.zeus.upms.entity.user.UserDO;
 
 /**
  * @author alexchen

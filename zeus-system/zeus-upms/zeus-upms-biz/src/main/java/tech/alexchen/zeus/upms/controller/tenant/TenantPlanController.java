@@ -13,7 +13,7 @@ import tech.alexchen.zeus.upms.controller.tenant.vo.type.TenantPlanResponseVO;
 import tech.alexchen.zeus.upms.controller.tenant.vo.type.TenantPlanSaveVO;
 import tech.alexchen.zeus.upms.controller.tenant.vo.type.TenantPlanUpdateVO;
 import tech.alexchen.zeus.upms.convert.tenant.TenantPlanConverter;
-import tech.alexchen.zeus.upms.domain.tenant.TenantPlanDO;
+import tech.alexchen.zeus.upms.entity.tenant.TenantPlanDO;
 import tech.alexchen.zeus.upms.service.tenant.TenantPlanService;
 
 import javax.validation.Valid;

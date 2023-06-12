@@ -3,7 +3,6 @@ package tech.alexchen.zeus.upms.controller.dept;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tech.alexchen.zeus.common.core.response.R;
@@ -12,10 +11,9 @@ import tech.alexchen.zeus.upms.controller.dept.vo.DeptResponseVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptSaveVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptUpdateVO;
 import tech.alexchen.zeus.upms.convert.dept.DeptConverter;
-import tech.alexchen.zeus.upms.domain.dept.DeptDO;
+import tech.alexchen.zeus.upms.entity.dept.DeptDO;
 import tech.alexchen.zeus.upms.service.dept.DeptService;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 

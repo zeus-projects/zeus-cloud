@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import tech.alexchen.zeus.upms.controller.role.vo.menu.MenuSaveVO;
 import tech.alexchen.zeus.upms.controller.role.vo.menu.MenuUpdateVO;
 import tech.alexchen.zeus.upms.convert.permission.MenuConverter;
-import tech.alexchen.zeus.upms.domain.permission.MenuDO;
+import tech.alexchen.zeus.upms.entity.permission.MenuDO;
 import tech.alexchen.zeus.upms.mapper.permission.MenuMapper;
 
 /**

@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptRequestVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptSaveVO;
 import tech.alexchen.zeus.upms.controller.dept.vo.DeptUpdateVO;
-import tech.alexchen.zeus.upms.domain.dept.DeptDO;
+import tech.alexchen.zeus.upms.entity.dept.DeptDO;
 
 import java.util.List;
 

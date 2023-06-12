@@ -3,7 +3,7 @@ package tech.alexchen.zeus.upms.service.permission;
 import com.baomidou.mybatisplus.extension.service.IService;
 import tech.alexchen.zeus.upms.controller.role.vo.role.RoleSaveVO;
 import tech.alexchen.zeus.upms.controller.role.vo.role.RoleUpdateVO;
-import tech.alexchen.zeus.upms.domain.permission.RoleDO;
+import tech.alexchen.zeus.upms.entity.permission.RoleDO;
 
 /**
  * @author alexchen

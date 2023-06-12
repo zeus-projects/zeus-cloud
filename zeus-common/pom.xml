@@ -13,21 +13,21 @@
     <packaging>pom</packaging>
     <modules>
         <module>zeus-common-core</module>
+        <module>zeus-common-data-elasticsearch</module>
+        <module>zeus-common-data-influxdb</module>
+        <module>zeus-common-data-mongodb</module>
         <module>zeus-common-data-mybatis</module>
         <module>zeus-common-data-redis</module>
-        <module>zeus-common-data-es</module>
-        <module>zeus-common-data-mongodb</module>
-        <module>zeus-common-swagger</module>
-        <module>zeus-common-security</module>
-        <module>zeus-common-web</module>
-        <module>zeus-common-log</module>
-        <module>zeus-common-apiversion</module>
+        <module>zeus-common-feign</module>
         <module>zeus-common-gateway</module>
         <module>zeus-common-kafka</module>
-        <module>zeus-common-feign</module>
-        <module>zeus-common-data-influxdb</module>
+        <module>zeus-common-log</module>
+        <module>zeus-common-seata</module>
+        <module>zeus-common-security</module>
         <module>zeus-common-sequence</module>
+        <module>zeus-common-swagger</module>
         <module>zeus-common-test</module>
+        <module>zeus-common-web</module>
     </modules>
 
     <properties>

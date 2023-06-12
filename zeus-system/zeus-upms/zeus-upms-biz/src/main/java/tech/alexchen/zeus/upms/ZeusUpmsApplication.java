@@ -4,7 +4,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import tech.alexchen.zeus.common.security.annotation.EnableZeusResourceServer;
 import tech.alexchen.zeus.common.swagger.annotation.EnableZeusSwagger;
 
 /**
@@ -14,7 +13,7 @@ import tech.alexchen.zeus.common.swagger.annotation.EnableZeusSwagger;
 @EnableZeusSwagger
 @EnableDiscoveryClient
 @SpringBootApplication
-@EnableZeusResourceServer
+//@EnableZeusResourceServer
 public class ZeusUpmsApplication {
 
     public static void main(String[] args) {

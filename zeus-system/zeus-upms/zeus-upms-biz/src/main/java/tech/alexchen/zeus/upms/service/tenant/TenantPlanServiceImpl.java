@@ -8,10 +8,8 @@ import org.springframework.stereotype.Service;
 import tech.alexchen.zeus.upms.controller.tenant.vo.type.TenantPlanRequestVO;
 import tech.alexchen.zeus.upms.controller.tenant.vo.type.TenantPlanSaveVO;
 import tech.alexchen.zeus.upms.convert.tenant.TenantPlanConverter;
-import tech.alexchen.zeus.upms.domain.tenant.TenantPlanDO;
+import tech.alexchen.zeus.upms.entity.tenant.TenantPlanDO;
 import tech.alexchen.zeus.upms.mapper.tenant.TenantPlanMapper;
-
-import javax.annotation.Resource;
 
 /**
 * @author alexchen

@@ -3,7 +3,7 @@ package tech.alexchen.zeus.upms.service.permission;
 import com.baomidou.mybatisplus.extension.service.IService;
 import tech.alexchen.zeus.upms.controller.role.vo.menu.MenuSaveVO;
 import tech.alexchen.zeus.upms.controller.role.vo.menu.MenuUpdateVO;
-import tech.alexchen.zeus.upms.domain.permission.MenuDO;
+import tech.alexchen.zeus.upms.entity.permission.MenuDO;
 
 /**
  * @author alexchen

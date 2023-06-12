@@ -2,16 +2,12 @@ package tech.alexchen.zeus.upms.service.tenant;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import tech.alexchen.zeus.upms.controller.tenant.vo.type.TenantPlanSaveVO;
-import tech.alexchen.zeus.upms.domain.tenant.TenantPlanDO;
+import tech.alexchen.zeus.upms.entity.tenant.TenantPlanDO;
 
 import javax.annotation.Resource;
 import java.util.HashSet;
@@ -42,7 +38,7 @@ class TenantPlanServiceTest {
         saveVO.setMenuIds(menuIds);
         saveVO.setStatus(1);
         Long id = service.saveTenantPlan(saveVO);
-        Assert.assertNotNull(id);
+        Assertions.assertNotNull(id);
         key = id;
     }
 
@@ -50,7 +46,7 @@ class TenantPlanServiceTest {
     @Order(2)
     void query() {
         TenantPlanDO tenantPlanDO = service.getById(key);
-        Assert.assertNotNull(tenantPlanDO);
+        Assertions.assertNotNull(tenantPlanDO);
         plan = tenantPlanDO;
     }
 
@@ -59,12 +55,12 @@ class TenantPlanServiceTest {
     void update() {
         TenantPlanDO planDO = plan;
         planDO.setStatus(0);
-        Assert.assertTrue(service.updateById(planDO));
+        Assertions.assertTrue(service.updateById(planDO));
     }
 
     @Test
     @Order(4)
     void delete() {
-        Assert.assertTrue(service.removeById(key));
+        Assertions.assertTrue(service.removeById(key));
     }
 }
