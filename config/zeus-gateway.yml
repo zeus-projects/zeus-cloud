@@ -1,0 +1,3 @@
+swagger:
+  ignore-providers:
+    - zeus-auth
