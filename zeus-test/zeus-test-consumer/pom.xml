@@ -30,6 +30,10 @@
             <groupId>tech.alexchen</groupId>
             <artifactId>zeus-common-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-common-feign</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

@@ -9,9 +9,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-public class ZeusTestProduceApplication {
+public class ZeusTestProducerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ZeusTestProduceApplication.class, args);
+        SpringApplication.run(ZeusTestProducerApplication.class, args);
     }
 }
