@@ -1,3 +1,34 @@
-swagger:
-  ignore-providers:
-    - zeus-auth
+spring:
+  cloud:
+    gateway:
+      # 跨域配置
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+            allowed-methods: "*"
+            allowed-headers: "*"
+            allow-credentials: true
+            exposedHeaders: "Content-Disposition,Content-Type,Cache-Control"
+      # 超时配置
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 10s
+      # 路由配置
+      routes:
+        - id: zeus-auth
+          uri: lb://zeus-auth
+          predicates:
+            - Path=/auth/**
+        - id: zeus-upms
+          uri: lb://zeus-upms
+          predicates:
+            - Path=/admin/**
+        - id: zeus-test-consumer
+          uri: lb://zeus-test-consumer
+          predicates:
+            - Path=/consumer/**
+        - id: zeus-test-producer
+          uri: lb://zeus-test-producer
+          predicates:
+            - Path=/producer/**
