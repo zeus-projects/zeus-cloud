@@ -1,7 +1,6 @@
 spring:
   cloud:
     gateway:
-      # 跨域配置
       globalcors:
         corsConfigurations:
           '[/**]':
@@ -10,11 +9,9 @@ spring:
             allowed-headers: "*"
             allow-credentials: true
             exposedHeaders: "Content-Disposition,Content-Type,Cache-Control"
-      # 超时配置
       httpclient:
         connect-timeout: 1000
         response-timeout: 10s
-      # 路由配置
       routes:
         - id: zeus-auth
           uri: lb://zeus-auth
@@ -32,3 +29,11 @@ spring:
           uri: lb://zeus-test-producer
           predicates:
             - Path=/producer/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                deny-empty-key: true
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 5
+                redis-rate-limiter.requestedTokens: 1
+                key-resolver: "#{@remoteAddrKeyResolver}"

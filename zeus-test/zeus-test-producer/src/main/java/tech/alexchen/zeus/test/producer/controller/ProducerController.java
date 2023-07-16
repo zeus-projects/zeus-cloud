@@ -13,4 +13,14 @@ public class ProducerController {
     public String hello() {
         return "Producer say: Hello!";
     }
+
+    @GetMapping("/limit")
+    public String limit() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return "Producer limit";
+    }
 }
