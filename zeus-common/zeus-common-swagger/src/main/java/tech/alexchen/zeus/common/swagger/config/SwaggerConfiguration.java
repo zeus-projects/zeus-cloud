@@ -49,7 +49,7 @@ public class SwaggerConfiguration {
         // openapi 规范 3.0
         Docket docket = new Docket(DocumentationType.OAS_30)
                 .enable(enabled)
-                .groupName("ZeusBoot")
+                .groupName("Zeus")
                 .apiInfo(apiInfo())
                 // 设置全局请求参数
                 .globalRequestParameters(getGlobalRequestParameters());
@@ -79,9 +79,9 @@ public class SwaggerConfiguration {
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("ZeusBoot Api Documentation")
-                .description("ZeusBoot Api Documentation")
-                .contact(new Contact("AlexChen", "https://blog.alexchen.tech", "alexchen.tech@gmail.com"))
+        return new ApiInfoBuilder().title("Zeus Api Documentation")
+                .description("Zeus Api Documentation")
+                .contact(new Contact("AlexChen", "https://www.alexchen.tech", "alexchen.tech@gmail.com"))
                 .version("1.0")
                 .build();
     }
