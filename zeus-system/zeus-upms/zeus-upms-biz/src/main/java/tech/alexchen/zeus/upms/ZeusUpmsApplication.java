@@ -4,13 +4,13 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import tech.alexchen.zeus.common.swagger.annotation.EnableZeusSwagger;
+import tech.alexchen.zeus.common.springdoc.annotation.EnableSpringDoc;
 
 /**
  * @author alexchen
  */
 @MapperScan("tech.alexchen.zeus.upms.mapper")
-@EnableZeusSwagger
+@EnableSpringDoc
 @EnableDiscoveryClient
 @SpringBootApplication
 //@EnableZeusResourceServer

@@ -1,7 +1,7 @@
 package tech.alexchen.zeus.upms.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import tech.alexchen.zeus.common.data.mybatis.entity.BaseDO;
@@ -28,7 +28,7 @@ public class SysMenu extends BaseDO implements Serializable {
      * 菜单id
      */
     @NotNull(message="[菜单id]不能为空")
-    @ApiModelProperty("菜单id")
+    @Schema(name = "菜单id")
     private Long id;
 
     /**
@@ -36,7 +36,7 @@ public class SysMenu extends BaseDO implements Serializable {
      */
     @NotBlank(message="[菜单名称]不能为空")
     @Size(max= 64,message="编码长度不能超过64")
-    @ApiModelProperty("菜单名称")
+    @Schema(name = "菜单名称")
     @Length(max= 64,message="编码长度不能超过64")
     private String name;
 
@@ -44,21 +44,21 @@ public class SysMenu extends BaseDO implements Serializable {
      * 父菜单ID
      */
     @NotNull(message="[父菜单ID]不能为空")
-    @ApiModelProperty("父菜单ID")
+    @Schema(name = "父菜单ID")
     private Long parentId;
 
     /**
      * 菜单类型
      */
     @NotNull(message="[菜单类型]不能为空")
-    @ApiModelProperty("菜单类型")
+    @Schema(name = "菜单类型")
     private Integer type;
 
     /**
      * 显示顺序
      */
     @NotNull(message="[显示顺序]不能为空")
-    @ApiModelProperty("显示顺序")
+    @Schema(name = "显示顺序")
     private Integer sort;
 
     /**
@@ -66,7 +66,7 @@ public class SysMenu extends BaseDO implements Serializable {
      */
     @NotBlank(message="[权限标识]不能为空")
     @Size(max= 100,message="编码长度不能超过100")
-    @ApiModelProperty("权限标识")
+    @Schema(name = "权限标识")
     @Length(max= 100,message="编码长度不能超过100")
     private String permission;
 
@@ -74,7 +74,7 @@ public class SysMenu extends BaseDO implements Serializable {
      * 路由地址
      */
     @Size(max= 200,message="编码长度不能超过200")
-    @ApiModelProperty("路由地址")
+    @Schema(name = "路由地址")
     @Length(max= 200,message="编码长度不能超过200")
     private String path;
 
@@ -82,7 +82,7 @@ public class SysMenu extends BaseDO implements Serializable {
      * 菜单图标
      */
     @Size(max= 100,message="编码长度不能超过100")
-    @ApiModelProperty("菜单图标")
+    @Schema(name = "菜单图标")
     @Length(max= 100,message="编码长度不能超过100")
     private String icon;
 
@@ -90,7 +90,7 @@ public class SysMenu extends BaseDO implements Serializable {
      * 组件路径
      */
     @Size(max= 255,message="编码长度不能超过255")
-    @ApiModelProperty("组件路径")
+    @Schema(name = "组件路径")
     @Length(max= 255,message="编码长度不能超过255")
     private String component;
 
@@ -98,14 +98,14 @@ public class SysMenu extends BaseDO implements Serializable {
      * 状态（0：正常 1：停用）
      */
     @NotNull(message="[状态（0：正常 1：停用）]不能为空")
-    @ApiModelProperty("状态（0：正常 1：停用）")
+    @Schema(name = "状态（0：正常 1：停用）")
     private Integer status;
 
     /**
      * 是否可见
      */
     @NotNull(message="[是否可见]不能为空")
-    @ApiModelProperty("是否可见")
+    @Schema(name = "是否可见")
     private Boolean visible;
 
 }

@@ -25,7 +25,7 @@
         <module>zeus-common-seata</module>
         <module>zeus-common-security</module>
         <module>zeus-common-sequence</module>
-        <module>zeus-common-swagger</module>
+        <module>zeus-common-springdoc</module>
         <module>zeus-common-test</module>
         <module>zeus-common-web</module>
     </modules>

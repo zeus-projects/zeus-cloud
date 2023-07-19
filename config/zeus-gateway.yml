@@ -18,7 +18,7 @@ spring:
           predicates:
             - Path=/auth/**
         - id: zeus-upms
-          uri: lb://zeus-upms
+          uri: lb://zeus-upms-biz
           predicates:
             - Path=/admin/**
         - id: zeus-test-consumer
@@ -37,3 +37,14 @@ spring:
                 redis-rate-limiter.burstCapacity: 5
                 redis-rate-limiter.requestedTokens: 1
                 key-resolver: "#{@remoteAddrKeyResolver}"
+
+# springdoc 自动接口文档配置
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /openapi
+    # 接口分组，通常一个服务一组，url 为获取 openapi 数据的接口，path 第一部分为前缀，与路由保持一致；后面为子服务配置的 openapi 接口地址
+    urls:
+      - name: zeus-upms-biz
+        url: /admin/v3/api-docs

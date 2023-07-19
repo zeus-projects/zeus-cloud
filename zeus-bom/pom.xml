@@ -15,8 +15,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <logback.version>1.2.11</logback.version>
         <servlet.api.version>2.5</servlet.api.version>
-        <springfox.version>3.0.0</springfox.version>
-        <knife4j.version>3.0.3</knife4j.version>
+        <springdoc.version>1.7.0</springdoc.version>
+        <swagger.core.version>2.2.8</swagger.core.version>
+        <knife4j.version>4.1.0</knife4j.version>
         <mysql.connector.version>8.0.30</mysql.connector.version>
         <mybatis-plus.version>3.5.2</mybatis-plus.version>
         <druid.version>1.2.9</druid.version>
@@ -93,7 +94,7 @@
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-swagger</artifactId>
+                <artifactId>zeus-common-springdoc</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -129,16 +130,31 @@
                 <artifactId>servlet-api</artifactId>
                 <version>${servlet.api.version}</version>
             </dependency>
-            <!-- swagger + knife4j-->
+            <!-- 接口文档-->
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-boot-starter</artifactId>
-                <version>${springfox.version}</version>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-webmvc-core</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-webflux-ui</artifactId>
+                <version>${springdoc.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-spring-ui</artifactId>
+                <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger.core.version}</version>
             </dependency>
             <!-- 开发组件依赖 -->
             <dependency>

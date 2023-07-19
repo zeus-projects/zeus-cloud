@@ -1,11 +1,11 @@
-package tech.alexchen.zeus.common.swagger.apiversion;
+package tech.alexchen.zeus.common.apiversion.config;
 
 
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.lang.NonNull;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-import tech.alexchen.zeus.common.swagger.annotation.ApiVersion;
+import tech.alexchen.zeus.common.apiversion.annotation.ApiVersion;
 
 import java.lang.reflect.Method;
 

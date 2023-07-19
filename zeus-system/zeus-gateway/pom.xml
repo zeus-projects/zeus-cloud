@@ -45,5 +45,13 @@
             <groupId>tech.alexchen</groupId>
             <artifactId>zeus-common-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-common-log</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-webflux-ui</artifactId>
+        </dependency>
     </dependencies>
 </project>

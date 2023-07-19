@@ -23,8 +23,8 @@
             <artifactId>zeus-common-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-common-swagger</artifactId>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
         </dependency>
         <dependency>
             <groupId>tech.alexchen</groupId>

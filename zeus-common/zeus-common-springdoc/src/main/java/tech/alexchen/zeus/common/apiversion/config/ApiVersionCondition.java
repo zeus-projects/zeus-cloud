@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.common.swagger.apiversion;
+package tech.alexchen.zeus.common.apiversion.config;
 
 
 import lombok.Getter;

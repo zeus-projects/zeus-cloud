@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.common.swagger.annotation;
+package tech.alexchen.zeus.common.apiversion.annotation;
 
 
 

@@ -1,6 +1,6 @@
 package tech.alexchen.zeus.upms.controller;
 
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -34,27 +34,27 @@ public class SysMenuController {
 
     private final SysMenuConverter menuConverter;
 
-    @ApiOperation("创建菜单")
+    @Operation(summary = "创建菜单")
     @PostMapping
     public R<Long> save(@Validated(SaveGroup.class) @RequestBody SysMenuDTO dto) {
         return R.ok(menuService.saveMenu(menuConverter.toEntity(dto)));
     }
 
-    @ApiOperation("更新菜单")
+    @Operation(summary = "更新菜单")
     @PutMapping
     public R<Boolean> update(@Validated(UpdateGroup.class) @RequestBody SysMenuDTO dto) {
         menuService.updateMenu(menuConverter.toEntity(dto));
         return R.ok(true);
     }
 
-    @ApiOperation("删除菜单")
+    @Operation(summary = "删除菜单")
     @DeleteMapping("/{id}")
     public R<Boolean> remove(@PathVariable @Valid @NotNull Long id) {
         menuService.removeMenuById(id);
         return R.ok(true);
     }
 
-    @ApiOperation("查询菜单")
+    @Operation(summary = "查询菜单")
     @GetMapping("/list")
     public R<List<SysMenuVO>> list() {
         List<SysMenu> menuList = menuService.list();
