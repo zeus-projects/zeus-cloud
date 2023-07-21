@@ -3,33 +3,19 @@ package tech.alexchen.zeus.common.core.response;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 /**
- * R 返回信息枚举
- *
  * @author alexchen
  */
 @Getter
 @AllArgsConstructor
-public enum GlobalResponseEnum implements ResponseEnum {
+public enum GlobalResponseEnum implements Responsive {
 
-    SUCCESS("00000", "success"),
-    FAIL("99999", "failed");
+    SUCCESS(new ResponseCode("00000", "操作成功")),
+    SERVICE_ERROR(new ResponseCode("A0001", "用户端错误")),
+    SERVER_ERROR(new ResponseCode("B0001", "服务端错误")),
+    THIRD_PARTY_SERVICE_ERROR(new ResponseCode("C0001", "调用第三方服务出错")),
+    FAILED(new ResponseCode("99999", "操作失败"));
 
-    public static final List<GlobalResponseEnum> RESPONSE_ENUM_ALL =
-            Collections.unmodifiableList(Arrays.asList(GlobalResponseEnum.values()));
-
-    /**
-     * 状态码
-     */
-    private final String code;
-
-    /**
-     * 信息
-     */
-    private final String message;
+    private final ResponseCode response;
 
 }

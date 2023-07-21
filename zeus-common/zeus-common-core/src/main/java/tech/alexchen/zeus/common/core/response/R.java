@@ -1,12 +1,10 @@
 package tech.alexchen.zeus.common.core.response;
 
-import cn.hutool.core.date.DateTime;
 import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.concurrent.TimeUnit;
 
 /**
  * 统一返回包装
@@ -46,11 +44,11 @@ public class R<T> implements Serializable{
                 .build();
     }
 
-    public static <T> R<T> build(ResponseEnum responseEnum, T data) {
+    public static <T> R<T> build(ResponseCode responseCode, T data) {
         return R.<T>builder()
                 .timestamp(Instant.now().toEpochMilli())
-                .code(responseEnum.getCode())
-                .message(responseEnum.getMessage())
+                .code(responseCode.getCode())
+                .message(responseCode.getMessage())
                 .data(data)
                 .build();
     }
@@ -70,8 +68,6 @@ public class R<T> implements Serializable{
     }
 
     public static <T> R<T> fail(String message, T data) {
-        return R.build(GlobalResponseEnum.FAIL.getCode(), message, data);
+        return R.build(GlobalResponseEnum.FAILED.getCode(), message, data);
     }
-
-
 }

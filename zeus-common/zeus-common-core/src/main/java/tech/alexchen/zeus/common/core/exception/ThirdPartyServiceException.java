@@ -1,22 +1,29 @@
 package tech.alexchen.zeus.common.core.exception;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import tech.alexchen.zeus.common.core.response.ResponseCode;
+import tech.alexchen.zeus.common.core.response.Responsive;
 
 /**
  * @author alexchen
  */
-@Data
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public final class ThirdPartyServiceException extends AbstractServiceException {
+public final class ThirdPartyServiceException extends RuntimeException implements Responsive {
 
-    public ThirdPartyServiceException() {}
+    private final ResponseCode response;
 
     public ThirdPartyServiceException(String code, String message) {
-        super(code, message);
+        this.response = new ResponseCode(code, message);
     }
 
-    public ThirdPartyServiceException(ErrorCode errorCode) {
-        super(errorCode);
+    public <E extends Responsive> ThirdPartyServiceException(E e) {
+        this.response = e.getResponse();
+    }
+    @Override
+    public ResponseCode getResponse() {
+        return response;
     }
 }
