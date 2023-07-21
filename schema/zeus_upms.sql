@@ -4,47 +4,6 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for sys_tenant_plan
--- ----------------------------
-DROP TABLE IF EXISTS `sys_tenant_plan`;
-CREATE TABLE `sys_tenant_plan`
-(
-    `id`          bigint        not null auto_increment comment '租户套餐id',
-    `name`        varchar(64)   not null comment '租户套餐名称',
-    `status`      tinyint       NOT NULL COMMENT '状态',
-    `menu_ids`    varchar(2048) NOT NULL COMMENT '关联的菜单编号',
-    `create_by`   varchar(64)   not null comment '创建人',
-    `create_time` datetime      not null DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '创建时间',
-    `update_by`   varchar(64)   NOT NULL DEFAULT ' ' COMMENT '修改人',
-    `update_time` datetime      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    `deleted`     bit(1)        NOT NULL DEFAULT b'0' COMMENT '逻辑删除（0：正常 1：删除）',
-    PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_0900_ai_ci COMMENT = '租户套餐';
-
--- ----------------------------
--- Table structure for sys_tenant
--- ----------------------------
-DROP TABLE IF EXISTS `sys_tenant`;
-CREATE TABLE `sys_tenant`
-(
-    `id`               bigint      not null auto_increment comment '租户id',
-    `name`             varchar(64) not null comment '租户名称',
-    `tenant_plan_id`   int         not null comment '租户套餐id',
-    `tenant_plan_name` varchar(64) not null comment '租户套餐名称',
-    `status`           tinyint     NOT NULL COMMENT '状态（0：正常 1：停用）',
-    `create_by`        varchar(64) not null comment '创建人',
-    `create_time`      datetime    not null DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '创建时间',
-    `update_by`        varchar(64) NOT NULL DEFAULT ' ' COMMENT '修改人',
-    `update_time`      datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    `deleted`          bit(1)      NOT NULL DEFAULT b'0' COMMENT '逻辑删除（0：正常 1：删除）',
-    PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_0900_ai_ci COMMENT = '租户';
-
--- ----------------------------
 -- Table structure for sys_dept
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dept`;
@@ -61,11 +20,10 @@ CREATE TABLE `sys_dept`
     `update_by`   varchar(64) NOT NULL DEFAULT ' ' COMMENT '修改人',
     `update_time` datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     `deleted`     bit(1)      NOT NULL DEFAULT b'0' COMMENT '逻辑删除（0：正常 1：删除）',
-    `tenant_id`   bigint               DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_0900_ai_ci COMMENT ='部门管理';
+  COLLATE = utf8mb4_0900_ai_ci COMMENT ='部门';
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -154,11 +112,11 @@ CREATE TABLE `sys_user`
     `email`       varchar(128)         DEFAULT NULL COMMENT '拓展字段:邮箱',
     `avatar`      varchar(255)         DEFAULT NULL COMMENT '头像',
     `dept_id`     bigint               DEFAULT NULL COMMENT '部门ID',
+    `role_ids`    varchar(1024)        DEFAULT NULL COMMENT '用户所属角色',
     `lock_flag`   char(1)              DEFAULT '0' COMMENT '锁定标记：0(未锁定)、1(已锁定)',
     `status`      tinyint     NOT NULL COMMENT '状态（0：正常 1：停用）',
     `login_ip`    varchar(50) NULL     DEFAULT '' COMMENT '最后登录IP',
     `login_date`  datetime    NULL     DEFAULT NULL COMMENT '最后登录时间',
-    `tenant_id`   bigint      NOT NULL DEFAULT '0' COMMENT '所属租户',
     `create_by`   varchar(64) not null comment '创建人',
     `create_time` datetime    not null DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '创建时间',
     `update_by`   varchar(64) NOT NULL DEFAULT ' ' COMMENT '修改人',

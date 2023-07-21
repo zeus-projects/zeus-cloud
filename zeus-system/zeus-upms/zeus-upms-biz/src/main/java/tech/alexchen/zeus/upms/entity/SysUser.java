@@ -7,6 +7,7 @@ import tech.alexchen.zeus.common.data.mybatis.entity.TenantBaseDO;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author alexchen
@@ -65,6 +66,11 @@ public class SysUser extends TenantBaseDO implements Serializable {
      * 部门ID
      */
     private Long deptId;
+
+    /**
+     * 角色
+     */
+    private List<String> role_ids;
 
     /**
      * 锁定标记：0(未锁定)、1(已锁定)

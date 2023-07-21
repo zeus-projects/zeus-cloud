@@ -1,7 +1,9 @@
 package tech.alexchen.zeus.upms.controller;
 
+import cn.hutool.core.lang.tree.Tree;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.common.core.validation.SaveGroup;
 import tech.alexchen.zeus.common.core.validation.UpdateGroup;
+import tech.alexchen.zeus.upms.api.constant.SysConstant;
 import tech.alexchen.zeus.upms.api.dto.SysDeptDTO;
 import tech.alexchen.zeus.upms.convert.SysDeptConverter;
 import tech.alexchen.zeus.upms.entity.SysDept;
@@ -26,6 +29,7 @@ import java.util.List;
  */
 @Tag(name = "系统管理 - 部门")
 @RestController
+@RequestMapping("/dept")
 @RequiredArgsConstructor
 public class SysDeptController {
 
@@ -35,7 +39,7 @@ public class SysDeptController {
 
     @PostMapping
     @Operation(summary = "创建部门")
-    public R<Long> save(@Validated(SaveGroup.class) @RequestBody SysDeptDTO dto) {
+    public R<Long> save(@Valid @RequestBody SysDeptDTO dto) {
         Long id = sysDeptService.saveDept(converter.toEntity(dto));
         return R.ok(id);
     }
@@ -60,8 +64,11 @@ public class SysDeptController {
     }
 
     @GetMapping("/page")
-    @Operation(summary = "分页查询部门")
-    public R<Page<SysDept>> page(Page page, SysDeptDTO dto) {
+    @Operation(summary = "分页查询部门", parameters = {
+            @Parameter(name = "size", description = "每页显示条数，默认 10"),
+            @Parameter(name = "current", description = "当前页")
+    })
+    public R<Page<SysDept>> page(Page<SysDept> page, SysDeptDTO dto) {
         Page<SysDept> pageRes = sysDeptService.pageDept(page, converter.toEntity(dto));
         return R.ok(pageRes);
     }
@@ -70,6 +77,13 @@ public class SysDeptController {
     @Operation(summary = "列表查询部门")
     public R<List<SysDept>> list() {
         return R.ok(sysDeptService.list());
+    }
+
+    @GetMapping("/tree")
+    @Operation(summary = "查询部门列表树")
+    public R<List<Tree<Long>>> tree(Long parentId) {
+        List<Tree<Long>> tree = sysDeptService.getDeptTreeByParentId(parentId);
+        return R.ok(tree);
     }
 
 }

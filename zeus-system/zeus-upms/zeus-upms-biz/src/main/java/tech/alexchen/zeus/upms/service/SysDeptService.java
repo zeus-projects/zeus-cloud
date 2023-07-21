@@ -19,12 +19,12 @@ public interface SysDeptService extends IService<SysDept> {
      */
     Long saveDept(SysDept entity);
 
-    /**
-     * 更新部门
-     * @param entity 部门信息
-     * @return 更新成功与否
-     */
-    Boolean updateDept(SysDept entity);
+//    /**
+//     * 更新部门
+//     * @param entity 部门信息
+//     * @return 更新成功与否
+//     */
+//    Boolean updateDept(SysDept entity);
 
     /**
      * 删除部门
@@ -39,14 +39,13 @@ public interface SysDeptService extends IService<SysDept> {
      * @param entity 查询条件
      * @return 分页数据
      */
-    Page<SysDept> pageDept(Page page, SysDept entity);
+    Page<SysDept> pageDept(Page<SysDept> page, SysDept entity);
 
     /**
      * 获取部门下的子部门
      *
      * @param parentId 父部门 id
      * @return 树型列表
-     * @throws Exception
      */
     List<Tree<Long>> getDeptTreeByParentId(Long parentId);
 

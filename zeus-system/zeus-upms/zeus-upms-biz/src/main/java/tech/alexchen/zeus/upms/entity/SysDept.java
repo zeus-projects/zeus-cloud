@@ -59,9 +59,4 @@ public class SysDept extends BaseDO implements Serializable {
      */
     private Integer status;
 
-    /**
-     * 租户 ID
-     */
-    private Long tenantId;
-
 }

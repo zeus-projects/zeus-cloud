@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * @author alexchen
  */
-@Tag(name = "菜单管理")
+@Tag(name = "系统管理 - 菜单管理")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/menu")
