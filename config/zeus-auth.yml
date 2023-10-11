@@ -1,4 +1,3 @@
-# 数据源
 spring:
   freemarker:
     allow-request-override: false

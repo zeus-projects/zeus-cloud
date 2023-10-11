@@ -5,8 +5,8 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      username: ${MYSQL_USER:root}
-      password: ${MYSQL_PWD:root}
+      username: ${MYSQL_USER:zeus}
+      password: ${MYSQL_PWD:NaCt9Enxkm0htIaj6wTNyp3w!W}
       url: jdbc:mysql://${MYSQL_HOST:zeus-mysql}:${MYSQL_PORT:3306}/${MYSQL_DB:zeus_lowcode}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
       stat-view-servlet:
         enabled: true

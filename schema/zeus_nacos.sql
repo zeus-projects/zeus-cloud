@@ -202,3 +202,249 @@ CREATE TABLE `permissions` (
 INSERT INTO users (username, password, enabled) VALUES ('nacos', '$2a$10$EuWPZHzz32dJN7jexM34MOeYirDdFAZm2kuWj7VEOJhhZkDrxfvUu', TRUE);
 
 INSERT INTO roles (username, role) VALUES ('nacos', 'ROLE_ADMIN');
+
+INSERT INTO zeus_nacos.config_info (data_id, group_id, content, md5, gmt_create, gmt_modified, src_user, src_ip, app_name, tenant_id, c_desc, c_use, effect, type, c_schema) VALUES ('zeus-common.yml', 'DEFAULT_GROUP', '# 解决 swagger 路径匹配错误
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher', 'e2ab1da123f11a82224b72be2da367b3', '2023-10-12 02:41:16', '2023-10-12 02:41:16', null, '192.168.0.107', '', '', null, null, null, 'yaml', null);
+INSERT INTO zeus_nacos.config_info (data_id, group_id, content, md5, gmt_create, gmt_modified, src_user, src_ip, app_name, tenant_id, c_desc, c_use, effect, type, c_schema) VALUES ('zeus-gateway.yml', 'DEFAULT_GROUP', '# zeus-gateway.yml
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          \'[/**]\':
+            allowedOriginPatterns: "*"
+            allowed-methods: "*"
+            allowed-headers: "*"
+            allow-credentials: true
+            exposedHeaders: "Content-Disposition,Content-Type,Cache-Control"
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 10s
+      routes:
+        - id: zeus-auth
+          uri: lb://zeus-auth
+          predicates:
+            - Path=/auth/**
+        - id: zeus-upms
+          uri: lb://zeus-upms-biz
+          predicates:
+            - Path=/admin/**
+        - id: zeus-test-consumer
+          uri: lb://zeus-test-consumer
+          predicates:
+            - Path=/consumer/**
+        - id: zeus-test-producer
+          uri: lb://zeus-test-producer
+          predicates:
+            - Path=/producer/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                deny-empty-key: true
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 5
+                redis-rate-limiter.requestedTokens: 1
+                key-resolver: "#{@remoteAddrKeyResolver}"
+
+# springdoc 自动接口文档配置
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /openapi
+    # 接口分组，通常一个服务一组，url 为获取 openapi 数据的接口，path 第一部分为前缀，与路由保持一致；后面为子服务配置的 openapi 接口地址
+    urls:
+      - name: zeus-upms-biz
+        url: /admin/v3/api-docs', '228d72af7fb39160192c71e78feb3218', '2023-10-12 02:42:31', '2023-10-12 02:42:31', null, '192.168.0.107', '', '', '网关服务', null, null, 'yaml', null);
+INSERT INTO zeus_nacos.config_info (data_id, group_id, content, md5, gmt_create, gmt_modified, src_user, src_ip, app_name, tenant_id, c_desc, c_use, effect, type, c_schema) VALUES ('zeus-auth.yml', 'DEFAULT_GROUP', '# 数据源
+spring:
+  freemarker:
+    allow-request-override: false
+    allow-session-override: false
+    cache: true
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    enabled: true
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: true
+    prefer-file-system-access: true
+    suffix: .ftl
+    template-loader-path: classpath:/templates/', '74f53b71c7799aa754da75662378b93c', '2023-10-12 02:43:38', '2023-10-12 02:43:38', null, '192.168.0.107', '', '', '认证授权服务', null, null, 'yaml', null);
+INSERT INTO zeus_nacos.config_info (data_id, group_id, content, md5, gmt_create, gmt_modified, src_user, src_ip, app_name, tenant_id, c_desc, c_use, effect, type, c_schema) VALUES ('zeus-upms-biz.yml', 'DEFAULT_GROUP', 'spring:
+  autoconfigure:
+    exclude: org.springframework.cloud.gateway.config.GatewayAutoConfiguration,org.springframework.cloud.gateway.config.GatewayClassPathWarningAutoConfiguration
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: ${MYSQL_USER:zeus}
+      password: ${MYSQL_PWD:NaCt9Enxkm0htIaj6wTNyp3w!W}
+      url: jdbc:mysql://${MYSQL_HOST:ecs.alexchen.tech}:${MYSQL_PORT:3306}/${MYSQL_DB:zeus_upms}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
+      stat-view-servlet:
+        enabled: true
+        allow: ""
+        url-pattern: /druid/*
+        #login-username: admin
+        #login-password: admin
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-millis: 10000
+          merge-sql: false
+        wall:
+          config:
+            multi-statement-allow: true', '23e63f09e8298d4ad87dcdad3371266a', '2023-10-12 02:45:21', '2023-10-12 02:45:21', null, '192.168.0.107', '', '', null, null, null, 'yaml', null);
+INSERT INTO zeus_nacos.config_info (data_id, group_id, content, md5, gmt_create, gmt_modified, src_user, src_ip, app_name, tenant_id, c_desc, c_use, effect, type, c_schema) VALUES ('zeus-lowcode-engine.yml', 'DEFAULT_GROUP', 'spring:
+  autoconfigure:
+    exclude: org.springframework.cloud.gateway.config.GatewayAutoConfiguration,org.springframework.cloud.gateway.config.GatewayClassPathWarningAutoConfiguration
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: ${MYSQL_USER:zeus}
+      password: ${MYSQL_PWD:NaCt9Enxkm0htIaj6wTNyp3w!W}
+      url: jdbc:mysql://${MYSQL_HOST:zeus-mysql}:${MYSQL_PORT:3306}/${MYSQL_DB:zeus_lowcode}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
+      stat-view-servlet:
+        enabled: true
+        allow: ""
+        url-pattern: /druid/*
+        #login-username: admin
+        #login-password: admin
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-millis: 10000
+          merge-sql: false
+        wall:
+          config:
+            multi-statement-allow: true', '202e402dfb51e4081098fa7ad73f352e', '2023-10-12 02:48:21', '2023-10-12 02:48:21', null, '192.168.0.107', '', '', null, null, null, 'yaml', null);
+
+INSERT INTO zeus_nacos.his_config_info (id, data_id, group_id, app_name, content, md5, gmt_create, gmt_modified, src_user, src_ip, op_type, tenant_id) VALUES (0, 'zeus-common.yml', 'DEFAULT_GROUP', '', '# 解决 swagger 路径匹配错误
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher', 'e2ab1da123f11a82224b72be2da367b3', '2023-10-12 02:41:18', '2023-10-12 02:41:16', null, '192.168.0.107', 'I', '');
+INSERT INTO zeus_nacos.his_config_info (id, data_id, group_id, app_name, content, md5, gmt_create, gmt_modified, src_user, src_ip, op_type, tenant_id) VALUES (0, 'zeus-gateway.yml', 'DEFAULT_GROUP', '', '# zeus-gateway.yml
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          \'[/**]\':
+            allowedOriginPatterns: "*"
+            allowed-methods: "*"
+            allowed-headers: "*"
+            allow-credentials: true
+            exposedHeaders: "Content-Disposition,Content-Type,Cache-Control"
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 10s
+      routes:
+        - id: zeus-auth
+          uri: lb://zeus-auth
+          predicates:
+            - Path=/auth/**
+        - id: zeus-upms
+          uri: lb://zeus-upms-biz
+          predicates:
+            - Path=/admin/**
+        - id: zeus-test-consumer
+          uri: lb://zeus-test-consumer
+          predicates:
+            - Path=/consumer/**
+        - id: zeus-test-producer
+          uri: lb://zeus-test-producer
+          predicates:
+            - Path=/producer/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                deny-empty-key: true
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 5
+                redis-rate-limiter.requestedTokens: 1
+                key-resolver: "#{@remoteAddrKeyResolver}"
+
+# springdoc 自动接口文档配置
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /openapi
+    # 接口分组，通常一个服务一组，url 为获取 openapi 数据的接口，path 第一部分为前缀，与路由保持一致；后面为子服务配置的 openapi 接口地址
+    urls:
+      - name: zeus-upms-biz
+        url: /admin/v3/api-docs', '228d72af7fb39160192c71e78feb3218', '2023-10-12 02:42:32', '2023-10-12 02:42:31', null, '192.168.0.107', 'I', '');
+INSERT INTO zeus_nacos.his_config_info (id, data_id, group_id, app_name, content, md5, gmt_create, gmt_modified, src_user, src_ip, op_type, tenant_id) VALUES (0, 'zeus-auth.yml', 'DEFAULT_GROUP', '', '# 数据源
+spring:
+  freemarker:
+    allow-request-override: false
+    allow-session-override: false
+    cache: true
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    enabled: true
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: true
+    prefer-file-system-access: true
+    suffix: .ftl
+    template-loader-path: classpath:/templates/', '74f53b71c7799aa754da75662378b93c', '2023-10-12 02:43:39', '2023-10-12 02:43:38', null, '192.168.0.107', 'I', '');
+INSERT INTO zeus_nacos.his_config_info (id, data_id, group_id, app_name, content, md5, gmt_create, gmt_modified, src_user, src_ip, op_type, tenant_id) VALUES (0, 'zeus-upms-biz.yml', 'DEFAULT_GROUP', '', 'spring:
+  autoconfigure:
+    exclude: org.springframework.cloud.gateway.config.GatewayAutoConfiguration,org.springframework.cloud.gateway.config.GatewayClassPathWarningAutoConfiguration
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: ${MYSQL_USER:zeus}
+      password: ${MYSQL_PWD:NaCt9Enxkm0htIaj6wTNyp3w!W}
+      url: jdbc:mysql://${MYSQL_HOST:ecs.alexchen.tech}:${MYSQL_PORT:3306}/${MYSQL_DB:zeus_upms}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
+      stat-view-servlet:
+        enabled: true
+        allow: ""
+        url-pattern: /druid/*
+        #login-username: admin
+        #login-password: admin
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-millis: 10000
+          merge-sql: false
+        wall:
+          config:
+            multi-statement-allow: true', '23e63f09e8298d4ad87dcdad3371266a', '2023-10-12 02:45:21', '2023-10-12 02:45:21', null, '192.168.0.107', 'I', '');
+INSERT INTO zeus_nacos.his_config_info (id, data_id, group_id, app_name, content, md5, gmt_create, gmt_modified, src_user, src_ip, op_type, tenant_id) VALUES (0, 'zeus-lowcode-engine.yml', 'DEFAULT_GROUP', '', 'spring:
+  autoconfigure:
+    exclude: org.springframework.cloud.gateway.config.GatewayAutoConfiguration,org.springframework.cloud.gateway.config.GatewayClassPathWarningAutoConfiguration
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: ${MYSQL_USER:zeus}
+      password: ${MYSQL_PWD:NaCt9Enxkm0htIaj6wTNyp3w!W}
+      url: jdbc:mysql://${MYSQL_HOST:zeus-mysql}:${MYSQL_PORT:3306}/${MYSQL_DB:zeus_lowcode}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
+      stat-view-servlet:
+        enabled: true
+        allow: ""
+        url-pattern: /druid/*
+        #login-username: admin
+        #login-password: admin
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-millis: 10000
+          merge-sql: false
+        wall:
+          config:
+            multi-statement-allow: true', '202e402dfb51e4081098fa7ad73f352e', '2023-10-12 02:48:22', '2023-10-12 02:48:21', null, '192.168.0.107', 'I', '');
