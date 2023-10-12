@@ -43,20 +43,8 @@ public class SysDept extends BaseDO implements Serializable {
     private Long parentId;
 
     /**
-     * 部门等级
-     */
-    private Integer level;
-
-    /**
      * 排序
      */
-    private Integer sort;
-
-    /**
-     * 状态
-     *
-     * 枚举 {@link CommonStatusEnum}
-     */
-    private Integer status;
+    private Integer weight;
 
 }

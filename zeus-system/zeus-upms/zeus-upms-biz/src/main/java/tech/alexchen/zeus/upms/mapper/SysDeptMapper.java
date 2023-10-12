@@ -32,7 +32,6 @@ public interface SysDeptMapper extends BaseMapper<SysDept> {
     default Page<SysDept> page(Page<SysDept> page, SysDept entity) {
         return this.selectPage(page, Wrappers.<SysDept>lambdaQuery()
                 .eq(StrUtil.isNotBlank(entity.getName()), SysDept::getName, entity.getName())
-                .eq(entity.getStatus() != null, SysDept::getStatus, entity.getStatus())
         );
     }
 
