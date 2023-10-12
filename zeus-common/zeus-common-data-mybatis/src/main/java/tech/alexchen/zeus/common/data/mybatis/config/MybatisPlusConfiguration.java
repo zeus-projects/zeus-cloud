@@ -2,6 +2,8 @@ package tech.alexchen.zeus.common.data.mybatis.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -33,10 +35,14 @@ public class MybatisPlusConfiguration {
      */
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
-        MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         // 添加分页插件
-        mybatisPlusInterceptor.addInnerInterceptor(new PaginationInnerInterceptor());
-        return mybatisPlusInterceptor;
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor());
+        // 防全表更新与删除插件
+        interceptor.addInnerInterceptor(new BlockAttackInnerInterceptor());
+        // 乐观锁插件
+        interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
+        return interceptor;
     }
 
 }
