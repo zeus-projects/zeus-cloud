@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import tech.alexchen.zeus.common.core.exception.ServerException;
 import tech.alexchen.zeus.common.core.exception.ServiceException;
 import tech.alexchen.zeus.common.core.exception.ThirdPartyServiceException;
+import tech.alexchen.zeus.common.core.exception.ZeusRuntimeException;
 import tech.alexchen.zeus.common.core.response.R;
-import tech.alexchen.zeus.common.core.response.Responsive;
 
 import java.util.List;
 
@@ -91,7 +91,7 @@ public class WebMvcExceptionHandler {
      */
     @ExceptionHandler({ServiceException.class, ServerException.class, ThirdPartyServiceException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public <T extends Responsive> R<String> handleServiceException(T e) {
+    public <T extends ZeusRuntimeException> R<String> handleServiceException(T e) {
         log.error("业务异常, Exception: {}", e.getMessage());
         return R.build(e.getCode(), e.getMessage(), null);
     }

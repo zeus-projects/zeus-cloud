@@ -29,7 +29,6 @@
         <module>zeus-bom</module>
         <module>zeus-common</module>
         <module>zeus-system</module>
-        <module>zeus-lowcode</module>
         <module>zeus-test</module>
     </modules>
 

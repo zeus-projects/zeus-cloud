@@ -58,9 +58,7 @@ public class R<T> implements Serializable{
     }
 
     public static <T> R<T> ok(T data) {
-        return R.build(GlobalResponseEnum.SUCCESS.getCode(),
-                GlobalResponseEnum.SUCCESS.getMessage(),
-                data);
+        return R.build(GlobalResponseEnum.SUCCESS.getResponse(), data);
     }
 
     public static <T> R<T> fail(String message) {

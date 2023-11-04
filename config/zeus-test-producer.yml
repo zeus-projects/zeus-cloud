@@ -1,0 +1,14 @@
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST:zeus-kafka}:${KAFKA_PORT:9092}
+    producer:
+      batch-size: 16384 #批量大小
+      acks: 0 #应答级别:多少个分区副本备份完成时向生产者发送ack确认(可选0、1、all/-1)
+      retries: 10 # 消息发送重试次数
+      #transaction-id-prefix: transaction
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        linger:
+          ms: 2000 #提交延迟

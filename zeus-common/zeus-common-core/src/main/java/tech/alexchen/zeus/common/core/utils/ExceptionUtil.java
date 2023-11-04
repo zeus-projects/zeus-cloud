@@ -5,7 +5,6 @@ import tech.alexchen.zeus.common.core.exception.ServiceException;
 import tech.alexchen.zeus.common.core.exception.ThirdPartyServiceException;
 import tech.alexchen.zeus.common.core.response.GlobalResponseEnum;
 import tech.alexchen.zeus.common.core.response.ResponseCode;
-import tech.alexchen.zeus.common.core.response.Responsive;
 
 import java.util.function.Supplier;
 
@@ -16,8 +15,8 @@ import java.util.function.Supplier;
  */
 public class ExceptionUtil {
 
-    public static RuntimeException service(Responsive responsive) {
-        return new ServiceException(responsive);
+    public static RuntimeException service(String code, String message) {
+        return new ServiceException(code, message);
     }
     public static RuntimeException service(ResponseCode errorCode) {
         return new ServiceException(errorCode);
@@ -28,14 +27,12 @@ public class ExceptionUtil {
     }
 
     public static RuntimeException service() {
-        return service(GlobalResponseEnum.SERVICE_ERROR);
+        return service(GlobalResponseEnum.SERVICE_ERROR.getResponse());
     }
 
-
-    public static RuntimeException server(Responsive responsive) {
-        return new ServiceException(responsive);
+    public static RuntimeException server(String code, String message) {
+        return new ServerException(code, message);
     }
-
     public static RuntimeException server(ResponseCode errorCode) {
         return new ServerException(errorCode);
     }
@@ -45,13 +42,13 @@ public class ExceptionUtil {
     }
 
     public static RuntimeException server() {
-        return server(GlobalResponseEnum.SERVER_ERROR);
+        return server(GlobalResponseEnum.SERVER_ERROR.getResponse());
     }
 
-
-    public static RuntimeException thirdPartyService(Responsive responsive) {
-        return new ServiceException(responsive);
+    public static RuntimeException thirdPartyService(String code, String message) {
+        return new ThirdPartyServiceException(code, message);
     }
+
     public static RuntimeException thirdPartyService(ResponseCode errorCode) {
         return new ThirdPartyServiceException(errorCode);
     }
@@ -61,6 +58,6 @@ public class ExceptionUtil {
     }
 
     public static RuntimeException thirdPartyService() {
-        return thirdPartyService(GlobalResponseEnum.THIRD_PARTY_SERVICE_ERROR);
+        return thirdPartyService(GlobalResponseEnum.THIRD_PARTY_SERVICE_ERROR.getResponse());
     }
 }

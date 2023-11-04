@@ -2,14 +2,13 @@ package tech.alexchen.zeus.upms.api.enums;
 
 import lombok.AllArgsConstructor;
 import tech.alexchen.zeus.common.core.response.ResponseCode;
-import tech.alexchen.zeus.common.core.response.Responsive;
 
 /**
  * @author alexchen
  */
 
 @AllArgsConstructor
-public enum ResponseCodeEnum implements Responsive {
+public enum ResponseCodeEnum {
 
     // 部门模块
     DEPT_NAME_DUPLICATE ( new ResponseCode("A00001", "已经存在该名字的部门")),
@@ -25,7 +24,6 @@ public enum ResponseCodeEnum implements Responsive {
 
     private final ResponseCode response;
 
-    @Override
     public ResponseCode getResponse() {
         return response;
     }

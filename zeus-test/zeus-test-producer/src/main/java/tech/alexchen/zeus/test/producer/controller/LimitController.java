@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author alexchen
  */
 @RestController
-public class ProducerController {
+public class LimitController {
 
     @GetMapping("/hello")
     public String hello() {

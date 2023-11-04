@@ -1,8 +1,7 @@
 package tech.alexchen.zeus.common.core.exception;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
 import tech.alexchen.zeus.common.core.response.ResponseCode;
-import tech.alexchen.zeus.common.core.response.Responsive;
 
 
 /**
@@ -10,23 +9,15 @@ import tech.alexchen.zeus.common.core.response.Responsive;
  *
  * @author alexchen
  */
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public final class ServiceException extends RuntimeException implements Responsive {
+public final class ServiceException extends ZeusRuntimeException {
 
-
-    private final ResponseCode response;
 
     public ServiceException(String code, String message) {
-        this.response = new ResponseCode(code, message);
+        super(code, message);
     }
 
-    public <E extends Responsive> ServiceException(E e) {
-        this.response = e.getResponse();
-    }
-
-    @Override
-    public ResponseCode getResponse() {
-        return response;
+    public ServiceException(ResponseCode responseCode) {
+        super(responseCode);
     }
 }

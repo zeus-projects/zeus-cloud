@@ -24,5 +24,4 @@ public class DefaultExceptionHandler {
         return R.fail(e.getLocalizedMessage());
     }
 
-
 }

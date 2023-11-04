@@ -112,11 +112,6 @@
                 <artifactId>zeus-upms-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-lowcode-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
             <!-- ################# 开发依赖 ################# -->
             <!-- slf4j + logback -->
             <dependency>
@@ -146,6 +141,12 @@
                 <artifactId>springdoc-openapi-webflux-ui</artifactId>
                 <version>${springdoc.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-webflux-core</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.github.xiaoymin/knife4j-openapi3-spring-boot-starter -->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>

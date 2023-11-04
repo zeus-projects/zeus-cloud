@@ -14,7 +14,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ResponseCode {
 
+    /**
+     * 响应状态码，00000 为正常，其他为错误
+     */
     private String code;
+
+    /**
+     * 响应信息
+     */
     private String message;
 
 }

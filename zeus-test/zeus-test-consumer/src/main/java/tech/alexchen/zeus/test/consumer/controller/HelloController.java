@@ -10,7 +10,7 @@ import javax.annotation.Resource;
  * @author alexchen
  */
 @RestController
-public class ConsumerController {
+public class HelloController {
 
     @Resource
     private ProducerFeign feign;
