@@ -60,7 +60,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         if (user == null) {
             return;
         }
-        Assert.isTrue(user.getId().equals(id), () -> ExceptionUtil.service(USER_USERNAME_EXISTS));
+        Assert.isTrue(user.getId().equals(id), () -> ExceptionUtil.service(USER_USERNAME_EXISTS.getResponse()));
     }
 
     /**
@@ -74,7 +74,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             return;
         }
         SysUser user = this.getBaseMapper().selectByPhone(phone);
-        Assert.isTrue(id != null && user.getPhone().equals(phone), () -> ExceptionUtil.service(USER_PHONE_EXISTS));
+        Assert.isTrue(id != null && user.getPhone().equals(phone), () -> ExceptionUtil.service(USER_PHONE_EXISTS.getResponse()));
     }
 
 }

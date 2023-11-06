@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.test.producer.entity;
+package tech.alexchen.zeus.test.producer.kafka;
 
 import lombok.Data;
 
@@ -11,6 +11,8 @@ import java.io.Serializable;
 public class KafkaMessage implements Serializable {
 
     private String topic;
+
+    private Integer partition;
 
     private String key;
 

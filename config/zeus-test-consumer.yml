@@ -10,7 +10,7 @@ spring:
       # latest:重置为分区中最新的offset(消费分区中新产生的数据);
       # none:只要有一个分区不存在已提交的offset,就抛出异常;
       auto-offset-reset: latest
-      max-poll-records: 500 #单次拉取消息的最大条数
+      max-poll-records: 10 #单次拉取消息的最大条数
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       properties:
@@ -20,3 +20,5 @@ spring:
         request:
           timeout:
             ms: 18000 # 消费请求的超时时间
+    listener:
+      type: batch

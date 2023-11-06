@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import org.apache.ibatis.type.JdbcType;
-import tech.alexchen.zeus.common.data.mybatis.typehandler.JsonLocalDateTimeTypeHandler;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
