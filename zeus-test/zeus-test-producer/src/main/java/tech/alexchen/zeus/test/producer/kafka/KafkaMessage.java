@@ -16,6 +16,6 @@ public class KafkaMessage implements Serializable {
 
     private String key;
 
-    private Object message;
+    private String value;
 
 }
