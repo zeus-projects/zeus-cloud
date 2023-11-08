@@ -18,8 +18,8 @@ public class KafkaSingleConsumerTest {
     /**
      * kafka 单条消费
      */
-    @KafkaListener(topics = {"topic-single"})
-    public void onNormalMessage(ConsumerRecord<String, Object> record) {
+    @KafkaListener(groupId = "single-test",topics = {"topic-single"})
+    public void onSingleMessage(ConsumerRecord<String, Object> record) {
         System.out.println(StrUtil.format(">>> kafka single message, topic: {}, partition: {}, key: {}, value: {}",
                 record.topic(), record.partition(), record.key(), record.value()));
     }
