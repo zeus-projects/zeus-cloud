@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 /**
  * @author alexchen
  */
-@FeignClient(name = "zeus-test-producer")
+@FeignClient(name = "zeus-test-producer", contextId="hello")
 public interface ProducerFeign {
 
     @GetMapping("/hello")

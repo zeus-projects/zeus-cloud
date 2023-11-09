@@ -1,0 +1,13 @@
+seata:
+  enable: true
+  tx-service-group: zeus_tx_group
+  service:
+    vgroupMapping:
+      zeus_tx_group: default
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: zeus-nacos:8848
+      group : "SEATA_GROUP"
+      namespace: "public"

@@ -23,7 +23,6 @@
         <module>zeus-nacos</module>
         <module>zeus-upms</module>
         <module>zeus-gateway</module>
-        <module>zeus-seata-server</module>
     </modules>
 
 </project>

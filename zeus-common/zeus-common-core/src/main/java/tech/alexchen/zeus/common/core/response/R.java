@@ -1,7 +1,7 @@
 package tech.alexchen.zeus.common.core.response;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -11,9 +11,14 @@ import java.time.Instant;
  *
  * @author alexchen
  */
-@Data
 @Builder
-public class R<T> implements Serializable{
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Accessors(chain = true)
+public class R<T> implements Serializable {
 
     /**
      * 13 时间戳
