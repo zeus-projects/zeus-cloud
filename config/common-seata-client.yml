@@ -1,5 +1,5 @@
 seata:
-  enable: true
+  enabled: true
   tx-service-group: zeus_tx_group
   service:
     vgroupMapping:
