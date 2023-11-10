@@ -12,6 +12,7 @@
     <artifactId>zeus-common</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>zeus-common-bom</module>
         <module>zeus-common-core</module>
         <module>zeus-common-data-elasticsearch</module>
         <module>zeus-common-data-influxdb</module>

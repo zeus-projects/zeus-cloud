@@ -1,0 +1,20 @@
+server:
+  port: 7300
+
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_HOST:zeus-nacos}:${NACOS_PORT:8848}
+      config:
+        enabled: false
+#        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+#  config:
+#    import:
+#      - optional:nacos:${spring.application.name}.yml
+  elasticsearch:
+    uris: http://zeus-es:9200
+
+

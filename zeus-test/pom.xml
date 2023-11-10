@@ -13,8 +13,12 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>zeus-test-consumer</module>
-        <module>zeus-test-producer</module>
+        <module>zeus-test-kafka-consumer</module>
+        <module>zeus-test-kafka-producer</module>
+        <module>zeus-test-elasticsearch</module>
+        <module>zeus-test-seata-order</module>
+        <module>zeus-test-seata-stock</module>
+        <module>zeus-test-redis</module>
     </modules>
 
     <properties>

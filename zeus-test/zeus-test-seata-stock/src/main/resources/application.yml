@@ -1,0 +1,15 @@
+server:
+  port: 7320
+
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_HOST:zeus-nacos}:${NACOS_PORT:8848}
+  config:
+    import:
+      - optional:nacos:common-seata-client.yml
+      - optional:nacos:${spring.application.name}.yml
+

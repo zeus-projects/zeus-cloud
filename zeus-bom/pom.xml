@@ -12,8 +12,8 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <logback.version>1.2.11</logback.version>
         <servlet.api.version>2.5</servlet.api.version>
         <springdoc.version>1.7.0</springdoc.version>
@@ -33,93 +33,20 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- ################# zeus-common ################# -->
+            <!-- zeus-common -->
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-core</artifactId>
+                <artifactId>zeus-common-bom</artifactId>
                 <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-data-elasticsearch</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-data-influxdb</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-data-mongodb</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-data-mybatis</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-data-redis</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-feign</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-gateway</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-kafka</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-log</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-seata</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-security</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-sequence</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-springdoc</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-test</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-web</artifactId>
-                <version>${project.version}</version>
-            </dependency>
+            <!-- zeus-upms -->
             <dependency>
                 <groupId>tech.alexchen</groupId>
                 <artifactId>zeus-upms-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!-- ################# 开发依赖 ################# -->
             <!-- slf4j + logback -->
             <dependency>
                 <groupId>ch.qos.logback</groupId>

@@ -1,0 +1,17 @@
+store:
+  mode: db
+  db:
+    datasource: druid
+    dbType: mysql
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://zeus-mysql:3306/seata_server?useUnicode=true
+    user: zeus
+    password: NaCt9Enxkm0htIaj6wTNyp3w!W
+    minConn: 5
+    maxConn: 30
+    globalTable: global_table
+    branchTable: branch_table
+    distributedLockTable: distributed_lock
+    queryLimit: 100
+    lockTable: lock_table
+    maxWait: 5000
