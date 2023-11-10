@@ -14,12 +14,12 @@ public interface SearchService {
      * @param words 查询词
      * @return 结果
      */
-    public List<SearchResult> prompt(String words);
+    List<SearchResult> prompt(String words);
 
     /**
      * 根据输入返回搜索结果
      * @param words 查询词
      * @return 结果
      */
-    public List<SearchResult> search(String words);
+    List<SearchResult> search(String words);
 }
