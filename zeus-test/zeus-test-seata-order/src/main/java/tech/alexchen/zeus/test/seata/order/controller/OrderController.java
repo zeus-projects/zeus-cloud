@@ -6,15 +6,17 @@ import org.springframework.web.bind.annotation.RestController;
 import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.test.seata.order.service.OrderService;
 
+import javax.annotation.Resource;
+
 /**
  * @author alexchen
  */
 @RestController
 @RequestMapping("/seata/order")
-@AllArgsConstructor
 public class OrderController {
 
-    private final OrderService orderService;
+    @Resource
+    private OrderService orderService;
 
     /**
      * 下单：插入订单表、扣减库存，正常

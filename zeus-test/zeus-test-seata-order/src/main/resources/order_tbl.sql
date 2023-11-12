@@ -1,4 +1,4 @@
-use zeus_test_consumer;
+use seata_order;
 
 DROP TABLE IF EXISTS `order_tbl`;
 CREATE TABLE `order_tbl` (

@@ -4,9 +4,9 @@ server:
 db:
   num: 1
   user: ${MYSQL_USER:zeus}
-  password: ${MYSQL_PWD:NaCt9Enxkm0htIaj6wTNyp3w!W}
+  password: ${MYSQL_PWD:zeus}
   url:
-    0: jdbc:mysql://${MYSQL_HOST:ecs.alexchen.tech}:${MYSQL_PORT:3306}/${MYSQL_DB:zeus_nacos}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
+    0: jdbc:mysql://${MYSQL_HOST:zeus-mysql}:${MYSQL_PORT:3306}/${MYSQL_DB:zeus_nacos}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
 
 nacos:
   core:

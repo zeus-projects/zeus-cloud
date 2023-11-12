@@ -1,5 +1,5 @@
 -- 创建 stock库、业务表、undo_log表
-use zeus_test_consumer;
+use seata_stock;
 
 DROP TABLE IF EXISTS `stock_tbl`;
 CREATE TABLE `stock_tbl` (

@@ -283,8 +283,8 @@ INSERT INTO zeus_nacos.config_info (data_id, group_id, content, md5, gmt_create,
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: ${MYSQL_USER:zeus}
-      password: ${MYSQL_PWD:NaCt9Enxkm0htIaj6wTNyp3w!W}
-      url: jdbc:mysql://${MYSQL_HOST:ecs.alexchen.tech}:${MYSQL_PORT:3306}/${MYSQL_DB:zeus_upms}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
+      password: ${MYSQL_PWD:zeus}
+      url: jdbc:mysql://${MYSQL_HOST:zeus-mysql}:${MYSQL_PORT:3306}/${MYSQL_DB:zeus_upms}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
       stat-view-servlet:
         enabled: true
         allow: ""
@@ -308,7 +308,7 @@ INSERT INTO zeus_nacos.config_info (data_id, group_id, content, md5, gmt_create,
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: ${MYSQL_USER:zeus}
-      password: ${MYSQL_PWD:NaCt9Enxkm0htIaj6wTNyp3w!W}
+      password: ${MYSQL_PWD:zeus}
       url: jdbc:mysql://${MYSQL_HOST:zeus-mysql}:${MYSQL_PORT:3306}/${MYSQL_DB:zeus_lowcode}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
       stat-view-servlet:
         enabled: true
@@ -406,8 +406,8 @@ INSERT INTO zeus_nacos.his_config_info (id, data_id, group_id, app_name, content
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: ${MYSQL_USER:zeus}
-      password: ${MYSQL_PWD:NaCt9Enxkm0htIaj6wTNyp3w!W}
-      url: jdbc:mysql://${MYSQL_HOST:ecs.alexchen.tech}:${MYSQL_PORT:3306}/${MYSQL_DB:zeus_upms}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
+      password: ${MYSQL_PWD:zeus}
+      url: jdbc:mysql://${MYSQL_HOST:zeus-mysql}:${MYSQL_PORT:3306}/${MYSQL_DB:zeus_upms}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
       stat-view-servlet:
         enabled: true
         allow: ""
@@ -431,7 +431,7 @@ INSERT INTO zeus_nacos.his_config_info (id, data_id, group_id, app_name, content
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: ${MYSQL_USER:zeus}
-      password: ${MYSQL_PWD:NaCt9Enxkm0htIaj6wTNyp3w!W}
+      password: ${MYSQL_PWD:zeus}
       url: jdbc:mysql://${MYSQL_HOST:zeus-mysql}:${MYSQL_PORT:3306}/${MYSQL_DB:zeus_lowcode}?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
       stat-view-servlet:
         enabled: true

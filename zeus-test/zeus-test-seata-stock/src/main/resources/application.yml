@@ -8,8 +8,14 @@ spring:
     nacos:
       discovery:
         server-addr: ${NACOS_HOST:zeus-nacos}:${NACOS_PORT:8848}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
   config:
     import:
-      - optional:nacos:common-seata-client.yml
       - optional:nacos:${spring.application.name}.yml
-
+      - optional:nacos:seata-client.yml?group=SEATA_GROUP
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${MYSQL_USER:zeus}
+    password: ${MYSQL_PWD:zeus}
+    url: jdbc:mysql://${MYSQL_HOST:zeus-mysql}:${MYSQL_PORT:3306}/${MYSQL_DB:seata_stock}

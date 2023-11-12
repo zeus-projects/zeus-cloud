@@ -38,9 +38,17 @@
             <groupId>tech.alexchen</groupId>
             <artifactId>zeus-common-data-mybatis</artifactId>
         </dependency>
+        <!-- <dependency> -->
+        <!--     <groupId>tech.alexchen</groupId> -->
+        <!--     <artifactId>zeus-common-seata</artifactId> -->
+        <!-- </dependency> -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+        </dependency>
         <dependency>
             <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-common-seata</artifactId>
+            <artifactId>zeus-common-test</artifactId>
         </dependency>
     </dependencies>
 </project>

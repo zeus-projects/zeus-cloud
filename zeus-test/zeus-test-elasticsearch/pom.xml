@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>zeus-test-elasticsearch</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
