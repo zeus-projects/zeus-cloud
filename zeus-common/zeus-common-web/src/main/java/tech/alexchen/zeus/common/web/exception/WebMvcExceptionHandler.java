@@ -1,5 +1,7 @@
 package tech.alexchen.zeus.common.web.exception;
 
+import cn.hutool.core.util.StrUtil;
+import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
@@ -96,4 +98,16 @@ public class WebMvcExceptionHandler {
         return R.build(e.getCode(), e.getMessage(), null);
     }
 
+    /**
+     * 远程调用异常
+     *
+     * @param e 异常
+     * @return R
+     */
+    @ExceptionHandler({FeignException.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public R<String> handleFeignException(FeignException e) {
+        log.error("远程调用异常, 请求路径: {}", e.request().url());
+        return R.fail(StrUtil.format("远程调用异常, url: {}", e.request().url()));
+    }
 }

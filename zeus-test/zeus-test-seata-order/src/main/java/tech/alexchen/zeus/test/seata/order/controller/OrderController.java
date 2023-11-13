@@ -46,4 +46,13 @@ public class OrderController {
         orderService.placeOrder2("1", "product-1", 1);
         return R.ok(true);
     }
+
+    /**
+     * 下单：插入订单表、扣减库存，模拟本地服务异常回滚
+     */
+    @RequestMapping("/placeOrder/rollback/no")
+    public R<Boolean> placeOrderRollback3() {
+        orderService.placeOrder3("1", "product-1", 1);
+        return R.ok(true);
+    }
 }

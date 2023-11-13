@@ -48,4 +48,16 @@ public class OrderService {
         throw new RuntimeException("模拟本地异常回滚");
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    public void placeOrder3(String userId, String commodityCode, Integer count) {
+        BigDecimal orderMoney = new BigDecimal(count).multiply(new BigDecimal(5));
+        Order order = new Order().setUserId(userId).setCommodityCode(commodityCode).setCount(count).setMoney(
+                orderMoney);
+        // 本地操作
+        orderMapper.insert(order);
+        // 远程调用
+        stockFeignClient.deduct(commodityCode, count);
+        // 本地异常
+        throw new RuntimeException("模拟本地异常无全局事务，远程无法回滚");
+    }
 }
