@@ -34,5 +34,9 @@
             <groupId>tech.alexchen</groupId>
             <artifactId>zeus-common-data-redis</artifactId>
         </dependency>
+        <dependency>
+            <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-common-log</artifactId>
+        </dependency>
     </dependencies>
 </project>
