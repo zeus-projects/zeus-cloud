@@ -1,5 +1,5 @@
 server:
-  port: 7200
+  port: 7300
 
 spring:
   application:
@@ -8,8 +8,12 @@ spring:
     nacos:
       discovery:
         server-addr: ${NACOS_HOST:zeus-nacos}:${NACOS_PORT:8848}
-      config:
-        server-addr: ${spring.cloud.nacos.discovery.server-addr}
-  config:
-    import:
-      - optional:nacos:${spring.application.name}.yml
+#      config:
+#        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+#  config:
+#    import:
+#      - optional:nacos:${spring.application.name}.yml
+  redis:
+    host: zeus-redis
+    port: 16379
+    password: 1qaz@wsx?S

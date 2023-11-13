@@ -1,7 +1,5 @@
 package tech.alexchen.zeus.common.web.exception;
 
-import cn.hutool.core.util.StrUtil;
-import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
@@ -40,7 +38,7 @@ public class WebMvcExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public R<String> handleException(Exception e) {
-        log.error("返回异常服务: {}, exception: {}", applicationName, e.getMessage(), e);
+        log.error("服务 {} 发生异常, exception: {}", applicationName, e.getMessage(), e);
         return R.fail(e.getLocalizedMessage());
     }
 
@@ -53,7 +51,7 @@ public class WebMvcExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public R<String> handleIllegalArgumentException(IllegalArgumentException e) {
-        log.error("非法参数, exception = {}", e.getMessage(), e);
+        log.error("非法参数, exception: {}", e.getMessage(), e);
         return R.fail(e.getMessage());
     }
 
@@ -67,7 +65,7 @@ public class WebMvcExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public R<String> handleBodyValidException(MethodArgumentNotValidException e) {
         List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
-        log.error("参数绑定异常, exception = {}", fieldErrors.get(0).getDefaultMessage());
+        log.error("参数绑定异常, exception: {}", fieldErrors.get(0).getDefaultMessage());
         return R.fail(String.format("%s %s", fieldErrors.get(0).getField(), fieldErrors.get(0).getDefaultMessage()));
     }
 
@@ -81,7 +79,7 @@ public class WebMvcExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public R<String> handleBodyValidException(BindException e) {
         List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
-        log.error("参数绑定异常, exception = {}", fieldErrors.get(0).getDefaultMessage());
+        log.error("参数绑定异常, exception: {}", fieldErrors.get(0).getDefaultMessage());
         return R.fail(fieldErrors.get(0).getDefaultMessage());
     }
 
@@ -98,16 +96,4 @@ public class WebMvcExceptionHandler {
         return R.build(e.getCode(), e.getMessage(), null);
     }
 
-    /**
-     * 远程调用异常
-     *
-     * @param e 异常
-     * @return R
-     */
-    @ExceptionHandler({FeignException.class})
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public R<String> handleFeignException(FeignException e) {
-        log.error("远程调用异常, 请求路径: {}", e.request().url());
-        return R.fail(StrUtil.format("远程调用异常, url: {}", e.request().url()));
-    }
 }

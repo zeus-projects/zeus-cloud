@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
@@ -21,15 +22,23 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 public class RedisConfiguration {
 
     @Bean
-    public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        RedisTemplate<Object, Object> template = new RedisTemplate<>();
+    @Primary
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(redisConnectionFactory);
-        // 使用 fastjson2 来进行序列化
+        // 使用 Jackson 序列化
+//        template.setKeySerializer(RedisSerializer.string());
+//        template.setValueSerializer(RedisSerializer.json());
+//        template.setHashKeySerializer(RedisSerializer.string());
+//        template.setHashValueSerializer(RedisSerializer.json());
+
+        // 使用 fastjson2 序列化
         GenericFastJsonRedisSerializer fastJsonRedisSerializer = new GenericFastJsonRedisSerializer();
         template.setKeySerializer(RedisSerializer.string());
-        template.setValueSerializer(fastJsonRedisSerializer);
         template.setHashKeySerializer(RedisSerializer.string());
+        template.setValueSerializer(fastJsonRedisSerializer);
         template.setHashValueSerializer(fastJsonRedisSerializer);
         return template;
     }
+
 }

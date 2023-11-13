@@ -1,5 +1,5 @@
 server:
-  port: 7310
+  port: 7400
 
 spring:
   application:

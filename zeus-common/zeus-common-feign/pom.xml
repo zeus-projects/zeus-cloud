@@ -46,7 +46,12 @@
         <dependency>
             <groupId>org.springframework.retry</groupId>
             <artifactId>spring-retry</artifactId>
-            <optional>true</optional>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-common-core</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>
