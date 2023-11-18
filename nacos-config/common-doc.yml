@@ -1,5 +1,0 @@
-# 解决 swagger 路径匹配错误
-spring:
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher

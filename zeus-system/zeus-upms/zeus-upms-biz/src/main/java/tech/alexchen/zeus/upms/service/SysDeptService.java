@@ -3,7 +3,7 @@ package tech.alexchen.zeus.upms.service;
 import cn.hutool.core.lang.tree.Tree;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import tech.alexchen.zeus.upms.entity.SysDept;
+import tech.alexchen.zeus.upms.api.entity.SysDept;
 
 import java.util.List;
 
@@ -15,16 +15,15 @@ public interface SysDeptService extends IService<SysDept> {
     /**
      * 创建部门，处理受影响的其他数据
      * @param entity  部门信息
-     * @return 部门 id
      */
-    Long saveDept(SysDept entity);
+    void saveDept(SysDept entity);
 
-//    /**
-//     * 更新部门
-//     * @param entity 部门信息
-//     * @return 更新成功与否
-//     */
-//    Boolean updateDept(SysDept entity);
+    /**
+     * 更新部门
+     * @param entity 部门信息
+     * @return 更新成功与否
+     */
+    Boolean updateDept(SysDept entity);
 
     /**
      * 删除部门

@@ -5,9 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tech.alexchen.zeus.common.core.response.R;
-import tech.alexchen.zeus.upms.api.dto.SysUserDTO;
-import tech.alexchen.zeus.upms.convert.SysUserConverter;
-import tech.alexchen.zeus.upms.entity.SysUser;
+import tech.alexchen.zeus.upms.api.entity.SysUser;
 import tech.alexchen.zeus.upms.service.SysUserService;
 
 import javax.validation.Valid;
@@ -17,33 +15,30 @@ import javax.validation.Valid;
  *
  * @author alexchen
  */
-@Tag(name = "系统管理 - 用户")
+@Tag(name = "用户管理")
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
 public class SysUserController {
 
     private final SysUserService sysUserService;
-    private final SysUserConverter converter;
 
     @Operation(summary = "创建用户")
     @PostMapping
-    public R<Long> saveUser(@Valid @RequestBody SysUserDTO dto) {
-        return R.ok(sysUserService.saveUser(converter.toEntity(dto)));
+    public R<Long> saveUser(@Valid @RequestBody SysUser entity) {
+        return R.ok(sysUserService.saveUser(entity));
     }
 
-    @Operation(summary = "修改用户")
+    @Operation(summary = "更新用户")
     @PutMapping
-    public R<Boolean> updateUser(@Valid @RequestBody SysUserDTO dto) {
-        sysUserService.updateUser(converter.toEntity(dto));
-        return R.ok(true);
+    public R<Boolean> updateUser(@Valid @RequestBody SysUser entity) {
+        return R.bool(sysUserService.updateUser(entity), "更新失败");
     }
 
     @Operation(summary = "删除用户")
     @DeleteMapping("/{id}")
     public R<Boolean> removeUser(@PathVariable Long id) {
-        sysUserService.removeUserById(id);
-        return R.ok(true);
+        return R.bool(sysUserService.removeUserById(id), "删除失败");
     }
 
     @Operation(summary = "查询单个用户")

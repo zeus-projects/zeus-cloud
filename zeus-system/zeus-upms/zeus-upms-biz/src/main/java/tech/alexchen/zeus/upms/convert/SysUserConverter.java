@@ -3,7 +3,7 @@ package tech.alexchen.zeus.upms.convert;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import tech.alexchen.zeus.upms.api.dto.SysUserDTO;
-import tech.alexchen.zeus.upms.entity.SysUser;
+import tech.alexchen.zeus.upms.api.entity.SysUser;
 
 /**
  * @author alexchen

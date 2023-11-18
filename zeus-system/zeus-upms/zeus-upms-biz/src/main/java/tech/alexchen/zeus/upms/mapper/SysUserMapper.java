@@ -2,7 +2,7 @@ package tech.alexchen.zeus.upms.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import tech.alexchen.zeus.upms.entity.SysUser;
+import tech.alexchen.zeus.upms.api.entity.SysUser;
 
 /**
  * @author alexchen

@@ -203,7 +203,7 @@ INSERT INTO users (username, password, enabled) VALUES ('nacos', '$2a$10$EuWPZHz
 
 INSERT INTO roles (username, role) VALUES ('nacos', 'ROLE_ADMIN');
 
-INSERT INTO zeus_nacos.config_info (data_id, group_id, content, md5, gmt_create, gmt_modified, src_user, src_ip, app_name, tenant_id, c_desc, c_use, effect, type, c_schema) VALUES ('common-doc.yml', 'DEFAULT_GROUP', '# 解决 swagger 路径匹配错误
+INSERT INTO zeus_nacos.config_info (data_id, group_id, content, md5, gmt_create, gmt_modified, src_user, src_ip, app_name, tenant_id, c_desc, c_use, effect, type, c_schema) VALUES ('common-springdoc.yml', 'DEFAULT_GROUP', '# 解决 swagger 路径匹配错误
 spring:
   mvc:
     pathmatch:
@@ -326,7 +326,7 @@ INSERT INTO zeus_nacos.config_info (data_id, group_id, content, md5, gmt_create,
           config:
             multi-statement-allow: true', '202e402dfb51e4081098fa7ad73f352e', '2023-10-12 02:48:21', '2023-10-12 02:48:21', null, '192.168.0.107', '', '', null, null, null, 'yaml', null);
 
-INSERT INTO zeus_nacos.his_config_info (id, data_id, group_id, app_name, content, md5, gmt_create, gmt_modified, src_user, src_ip, op_type, tenant_id) VALUES (0, 'common-doc.yml', 'DEFAULT_GROUP', '', '# 解决 swagger 路径匹配错误
+INSERT INTO zeus_nacos.his_config_info (id, data_id, group_id, app_name, content, md5, gmt_create, gmt_modified, src_user, src_ip, op_type, tenant_id) VALUES (0, 'common-springdoc.yml', 'DEFAULT_GROUP', '', '# 解决 swagger 路径匹配错误
 spring:
   mvc:
     pathmatch:

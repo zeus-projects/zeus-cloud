@@ -10,10 +10,4 @@ public interface SysConstant {
      */
     Long ROOT_DEPT_ID = 0L;
 
-    /**
-     * 一级部门 level
-     */
-    Integer FIRST_DEPT_LEVEL = 1;
-
-
 }

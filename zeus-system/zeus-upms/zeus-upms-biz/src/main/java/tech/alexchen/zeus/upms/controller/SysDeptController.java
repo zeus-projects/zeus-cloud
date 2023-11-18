@@ -2,17 +2,20 @@ package tech.alexchen.zeus.upms.controller;
 
 import cn.hutool.core.lang.tree.Tree;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import tech.alexchen.zeus.common.core.response.R;
-import tech.alexchen.zeus.common.core.validation.UpdateGroup;
-import tech.alexchen.zeus.upms.api.dto.SysDeptDTO;
-import tech.alexchen.zeus.upms.convert.SysDeptConverter;
-import tech.alexchen.zeus.upms.entity.SysDept;
+import tech.alexchen.zeus.upms.api.entity.SysDept;
 import tech.alexchen.zeus.upms.service.SysDeptService;
 
 import javax.validation.Valid;
@@ -25,33 +28,32 @@ import java.util.List;
  *
  * @author alexchen
  */
-@Tag(name = "系统管理 - 部门")
+@Tag(name = "部门管理")
 @RestController
 @RequestMapping("/dept")
 @RequiredArgsConstructor
 public class SysDeptController {
 
     private final SysDeptService sysDeptService;
-    
-    private final SysDeptConverter converter;
 
     @PostMapping
-    @Operation(summary = "创建部门")
-    public R<Long> save(@Valid @RequestBody SysDeptDTO dto) {
-        Long id = sysDeptService.saveDept(converter.toEntity(dto));
-        return R.ok(id);
+    @Operation(summary = "创建部门", description = "创建部门接口，创建成功后返回部门 id")
+    public R<Long> save(@Valid @RequestBody SysDept entity) {
+        sysDeptService.saveDept(entity);
+        return R.ok(entity.getId());
     }
 
     @PutMapping
-    @Operation(summary = "更新部门")
-    public R<Boolean> update(@Validated(UpdateGroup.class) @RequestBody SysDeptDTO dto) {
-        return R.ok(sysDeptService.updateById(converter.toEntity(dto)));
+    @Operation(summary = "更新部门", description = "更新部门信息")
+    public R<Boolean> update(@Valid @RequestBody SysDept entity) {
+        return R.bool(sysDeptService.updateDept(entity));
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "删除部门")
+    @Parameter(description = "部门 id", required = true, in = ParameterIn.PATH)
     public R<Boolean> removeById(@PathVariable @Valid @NotNull(message = "部门 id 不能为空") Long id) {
-        return R.ok(sysDeptService.removeDept(id));
+        return R.bool(sysDeptService.removeDept(id));
     }
 
     @GetMapping("/{id}")
@@ -62,12 +64,16 @@ public class SysDeptController {
     }
 
     @GetMapping("/page")
-    @Operation(summary = "分页查询部门", parameters = {
-            @Parameter(name = "size", description = "每页显示条数，默认 10"),
-            @Parameter(name = "current", description = "当前页")
+    @Operation(summary = "分页查询部门")
+    @Parameters(value = {
+            @Parameter(name = "size", description = "每页显示条数，默认 10", example = "10"),
+            @Parameter(name = "current", description = "当前页，默认 1", example = "1"),
+            @Parameter(name = "name", description = "部门名称"),
+            @Parameter(name = "page", hidden = true),
+            @Parameter(name = "dto", hidden = true)
     })
-    public R<Page<SysDept>> page(Page<SysDept> page, SysDeptDTO dto) {
-        Page<SysDept> pageRes = sysDeptService.pageDept(page, converter.toEntity(dto));
+    public R<Page<SysDept>> page(Page<SysDept> page, SysDept dto) {
+        Page<SysDept> pageRes = sysDeptService.pageDept(page, dto);
         return R.ok(pageRes);
     }
 

@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import tech.alexchen.zeus.upms.entity.SysDept;
+import tech.alexchen.zeus.upms.api.entity.SysDept;
 
 /**
  * @author alexchen

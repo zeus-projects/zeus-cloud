@@ -44,5 +44,10 @@
             <artifactId>hutool-json</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-common-springdoc</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>

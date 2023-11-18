@@ -12,8 +12,8 @@ spring:
         enabled: true
         allow: ""
         url-pattern: /druid/*
-        #login-username: admin
-        #login-password: admin
+        #login-username: druid
+        #login-password: druid
       filter:
         stat:
           enabled: true
@@ -23,7 +23,3 @@ spring:
         wall:
           config:
             multi-statement-allow: true
-
-logging:
-  level:
-    tech.alexchen.zeus.upms: debug

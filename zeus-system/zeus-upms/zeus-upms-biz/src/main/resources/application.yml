@@ -13,12 +13,4 @@ spring:
   config:
     import:
       - optional:nacos:${spring.application.name}.yml
-
-# http://localhost:9000/swagger-ui.html
-springdoc:
-  api-docs:
-    enabled: true
-    path: /v3/api-docs
-  swagger-ui:
-    config-url: /swagger-ui.html
-
+      - optional:nacos:common-springdoc.yml

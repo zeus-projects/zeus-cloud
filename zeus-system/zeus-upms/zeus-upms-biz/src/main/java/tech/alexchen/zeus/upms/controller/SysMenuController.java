@@ -8,14 +8,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import tech.alexchen.zeus.common.core.response.R;
-import tech.alexchen.zeus.common.core.validation.SaveGroup;
 import tech.alexchen.zeus.common.core.validation.UpdateGroup;
-import tech.alexchen.zeus.upms.api.dto.SysMenuDTO;
-import tech.alexchen.zeus.upms.api.vo.SysMenuVO;
-import tech.alexchen.zeus.upms.convert.SysMenuConverter;
-import tech.alexchen.zeus.upms.entity.SysMenu;
+import tech.alexchen.zeus.upms.api.entity.SysMenu;
 import tech.alexchen.zeus.upms.service.SysMenuService;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -23,43 +20,37 @@ import java.util.List;
 /**
  * @author alexchen
  */
-@Tag(name = "系统管理 - 菜单管理")
+@Tag(name = "菜单管理")
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/menu")
+@RequiredArgsConstructor
 @SecurityRequirement(name = HttpHeaders.AUTHORIZATION)
 public class SysMenuController {
 
     private final SysMenuService menuService;
 
-    private final SysMenuConverter menuConverter;
-
     @Operation(summary = "创建菜单")
     @PostMapping
-    public R<Long> save(@Validated(SaveGroup.class) @RequestBody SysMenuDTO dto) {
-        return R.ok(menuService.saveMenu(menuConverter.toEntity(dto)));
+    public R<Long> save(@Valid @RequestBody SysMenu entity) {
+        menuService.saveMenu(entity);
+        return R.ok(entity.getId());
     }
 
     @Operation(summary = "更新菜单")
     @PutMapping
-    public R<Boolean> update(@Validated(UpdateGroup.class) @RequestBody SysMenuDTO dto) {
-        menuService.updateMenu(menuConverter.toEntity(dto));
-        return R.ok(true);
+    public R<Boolean> update(@Validated(UpdateGroup.class) @RequestBody SysMenu entity) {
+        return R.bool(menuService.updateMenu(entity), "更新失败");
     }
 
     @Operation(summary = "删除菜单")
     @DeleteMapping("/{id}")
     public R<Boolean> remove(@PathVariable @Valid @NotNull Long id) {
-        menuService.removeMenuById(id);
-        return R.ok(true);
+        return R.bool(menuService.removeMenuById(id), "删除失败");
     }
 
     @Operation(summary = "查询菜单")
     @GetMapping("/list")
-    public R<List<SysMenuVO>> list() {
-        List<SysMenu> menuList = menuService.list();
-        List<SysMenuVO> voList = menuConverter.toSysMenuVOList(menuList);
-        return R.ok(voList);
+    public R<List<SysMenu>> list() {
+        return R.ok(menuService.list());
     }
-
 }

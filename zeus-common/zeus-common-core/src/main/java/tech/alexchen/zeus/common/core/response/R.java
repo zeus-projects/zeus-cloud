@@ -73,4 +73,12 @@ public class R<T> implements Serializable {
     public static <T> R<T> fail(String message, T data) {
         return R.build(GlobalResponseEnum.FAILED.getCode(), message, data);
     }
+
+    public static R<Boolean> bool(boolean bool) {
+        return bool ? R.ok(true) : R.fail(null, false);
+    }
+
+    public static R<Boolean> bool(boolean bool, String message) {
+        return bool ? R.ok(true) : R.fail(message, false);
+    }
 }

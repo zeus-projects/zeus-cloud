@@ -1,5 +1,6 @@
 package tech.alexchen.zeus.common.data.mybatis.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -14,11 +15,13 @@ import java.io.Serializable;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class TenantBaseDO extends BaseDO implements Serializable {
+@Schema
+public class BaseTenantEntity extends BaseEntity implements Serializable {
 
     /**
      * 租户 id
      */
+    @Schema(description = "租户 id")
     private Long tenantId;
 
 }
