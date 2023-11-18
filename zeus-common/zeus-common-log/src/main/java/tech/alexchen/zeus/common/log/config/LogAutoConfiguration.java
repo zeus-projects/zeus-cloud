@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
 import tech.alexchen.zeus.common.log.aop.SysLogAspect;
+import tech.alexchen.zeus.common.log.aop.TimerLogAspect;
 import tech.alexchen.zeus.common.log.event.SysLogListener;
 
 /**
@@ -24,5 +25,10 @@ public class LogAutoConfiguration {
     @Bean
     public SysLogAspect sysLogAspect(ApplicationEventPublisher publisher) {
         return new SysLogAspect(publisher);
+    }
+
+    @Bean
+    public TimerLogAspect timerLogAspect() {
+        return new TimerLogAspect();
     }
 }

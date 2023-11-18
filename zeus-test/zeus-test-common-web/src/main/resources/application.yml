@@ -1,0 +1,17 @@
+server:
+  port: 7080
+
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_HOST:zeus-nacos}:${NACOS_PORT:8848}
+        enabled: false
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        enabled: false
+  config:
+    import:
+      - optional:nacos:${spring.application.name}.yml

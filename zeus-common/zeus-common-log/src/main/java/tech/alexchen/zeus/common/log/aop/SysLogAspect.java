@@ -28,7 +28,7 @@ public class SysLogAspect {
         // 获取切点信息
         String className = point.getTarget().getClass().getName();
         String methodName = point.getSignature().getName();
-        log.debug("[类名]:{},[方法]:{}", className, methodName);
+        log.debug("class: {}, method: {}", className, methodName);
 
         Object result;
         SysLogInfo logInfo = new SysLogInfo();
