@@ -1,9 +1,6 @@
 package tech.alexchen.zeus.upms.api.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
@@ -28,6 +25,7 @@ public class SysUser implements Serializable {
      * 用户ID
      */
     @Schema(description = "用户ID")
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**

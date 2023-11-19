@@ -1,9 +1,6 @@
 package tech.alexchen.zeus.upms.api.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
@@ -33,6 +30,7 @@ public class SysRole implements Serializable {
      */
     @NotNull(message = "[角色 id]不能为空")
     @Schema(name = "id",description = "角色 id")
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
