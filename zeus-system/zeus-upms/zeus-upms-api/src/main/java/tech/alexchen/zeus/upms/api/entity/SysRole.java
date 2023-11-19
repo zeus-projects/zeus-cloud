@@ -9,7 +9,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.apache.ibatis.type.JdbcType;
 import org.hibernate.validator.constraints.Length;
-import tech.alexchen.zeus.common.data.mybatis.entity.BaseEntity;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

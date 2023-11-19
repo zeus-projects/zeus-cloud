@@ -44,9 +44,10 @@
             <artifactId>hutool-json</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!-- swagger3 注解 -->
         <dependency>
-            <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-common-springdoc</artifactId>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
             <scope>provided</scope>
         </dependency>
     </dependencies>

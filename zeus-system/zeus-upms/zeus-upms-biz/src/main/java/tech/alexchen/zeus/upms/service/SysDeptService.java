@@ -1,44 +1,54 @@
 package tech.alexchen.zeus.upms.service;
 
 import cn.hutool.core.lang.tree.Tree;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.baomidou.mybatisplus.extension.service.IService;
+import tech.alexchen.zeus.common.data.mybatis.pojo.PageX;
+import tech.alexchen.zeus.upms.api.dto.SysDeptQueryDTO;
+import tech.alexchen.zeus.upms.api.dto.SysDeptSaveDTO;
+import tech.alexchen.zeus.upms.api.dto.SysDeptUpdateDTO;
 import tech.alexchen.zeus.upms.api.entity.SysDept;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
  * @author alexchen
  */
-public interface SysDeptService extends IService<SysDept> {
+public interface SysDeptService {
 
     /**
-     * 创建部门，处理受影响的其他数据
-     * @param entity  部门信息
+     * 创建部门
+     *
+     * @param dto  部门信息
+     * @return 部门 id
      */
-    void saveDept(SysDept entity);
+    Long saveDept(@Valid SysDeptSaveDTO dto);
 
     /**
      * 更新部门
-     * @param entity 部门信息
-     * @return 更新成功与否
+     * @param dto 部门信息
      */
-    Boolean updateDept(SysDept entity);
+    void updateDept(@Valid SysDeptUpdateDTO dto);
 
     /**
      * 删除部门
      * @param id 部门 id
-     * @return 删除成功与否
      */
-    Boolean removeDept(Long id);
+    void removeDept(@NotNull Long id);
 
     /**
      * 分页查询部门
      * @param page 分页信息
-     * @param entity 查询条件
+     * @param dto 查询条件
      * @return 分页数据
      */
-    Page<SysDept> pageDept(Page<SysDept> page, SysDept entity);
+    PageX<SysDept> getDeptPage(PageX<SysDept> page, SysDeptQueryDTO dto);
+
+    /**
+     * 返回部门列表
+     * @param parentId 父级部门 ID
+     */
+    List<SysDept> getDeptListByParentId(Long parentId);
 
     /**
      * 获取部门下的子部门
@@ -48,4 +58,10 @@ public interface SysDeptService extends IService<SysDept> {
      */
     List<Tree<Long>> getDeptTreeByParentId(Long parentId);
 
+    /**
+     * 根据 id 查询部门
+     * @param id 部门 id
+     * @return SysDept
+     */
+    SysDept getDeptById(@NotNull Long id);
 }

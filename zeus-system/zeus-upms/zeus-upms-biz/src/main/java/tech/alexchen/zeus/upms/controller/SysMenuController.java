@@ -24,7 +24,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/menu")
 @RequiredArgsConstructor
-@SecurityRequirement(name = HttpHeaders.AUTHORIZATION)
 public class SysMenuController {
 
     private final SysMenuService menuService;
