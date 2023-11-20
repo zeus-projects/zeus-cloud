@@ -12,18 +12,17 @@ import java.util.Set;
  *
  * @author alexchen
  */
-public class JsonLongSetTypeHandler extends AbstractJsonTypeHandler<Object> {
+public class JsonLongSetTypeHandler extends AbstractJsonTypeHandler<Set<Long>> {
 
     private static final TypeReference<Set<Long>> TYPE_REFERENCE = new TypeReference<Set<Long>>(){};
 
     @Override
-    protected Object parse(String json) {
+    protected Set<Long> parse(String json) {
         return JSONUtil.toBean(json, TYPE_REFERENCE, false);
     }
 
     @Override
-    protected String toJson(Object obj) {
+    protected String toJson(Set<Long> obj) {
         return JSONUtil.toJsonStr(obj);
     }
-
 }
