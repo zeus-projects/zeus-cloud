@@ -22,10 +22,6 @@
             <groupId>tech.alexchen</groupId>
             <artifactId>zeus-common-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-common-springdoc</artifactId>
-        </dependency>
         <!--web 模块-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
