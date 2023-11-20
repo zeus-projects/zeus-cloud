@@ -2,22 +2,16 @@ package tech.alexchen.zeus.upms.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.Assert;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import tech.alexchen.zeus.upms.api.dto.SysMenuSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysMenuUpdateDTO;
-import tech.alexchen.zeus.upms.convert.SysMenuConverter;
 import tech.alexchen.zeus.upms.api.entity.SysMenu;
+import tech.alexchen.zeus.upms.convert.SysMenuConverter;
 import tech.alexchen.zeus.upms.mapper.SysMenuMapper;
 import tech.alexchen.zeus.upms.service.SysMenuService;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author alexchen
@@ -52,6 +46,11 @@ public class SysMenuServiceImpl implements SysMenuService {
         List<SysMenu> menus = mapper.selectMenusByParentId(id);
         Assert.isTrue(CollUtil.isEmpty(menus), "Cannot delete a menu with submenus");
         mapper.deleteById(id);
+    }
+
+    @Override
+    public SysMenu getMenuById(Long id) {
+        return mapper.selectById(id);
     }
 
     @Override

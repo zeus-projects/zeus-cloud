@@ -1,39 +1,48 @@
 package tech.alexchen.zeus.upms.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
+import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
+import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
+import tech.alexchen.zeus.upms.api.dto.SysRoleSaveDTO;
+import tech.alexchen.zeus.upms.api.dto.SysRoleUpdateDTO;
 import tech.alexchen.zeus.upms.api.entity.SysRole;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author alexchen
  */
-public interface SysRoleService extends IService<SysRole> {
+public interface SysRoleService {
 
     /**
      * 保存角色
      *
-     * @param entity 角色信息
+     * @param dto 角色信息
      */
-    void saveRole(SysRole entity);
+    Long saveRole(SysRoleSaveDTO dto);
 
     /**
      * 更新角色
-     * @param entity 角色信息
+     * @param dto 角色信息
      */
-    Boolean updateRoleById(SysRole entity);
+    void updateRoleById(SysRoleUpdateDTO dto);
 
     /**
      * 删除角色
      * @param id 角色 id
      */
-    Boolean removeRoleById(Long id);
+    void removeRoleById(Long id);
 
+    /**
+     * 分页查询
+     */
+    PageResult<SysRole> getDeptPage(PageParam page);
 
     /**
      * 更新角色的菜单权限
      * @param roleId 角色 id
      * @param menus 菜单 id 列表
      */
-    Boolean updateRoleMenus(Long roleId, List<Long> menus);
+    void updateRoleMenus(Long roleId, Set<Long> menus);
+
 }
+

@@ -7,11 +7,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tech.alexchen.zeus.common.core.response.R;
-import tech.alexchen.zeus.common.data.mybatis.pojo.PageX;
-import tech.alexchen.zeus.upms.api.dto.SysDeptQueryDTO;
-import tech.alexchen.zeus.upms.api.entity.SysDept;
 import tech.alexchen.zeus.upms.api.dto.SysDeptSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysDeptUpdateDTO;
+import tech.alexchen.zeus.upms.api.entity.SysDept;
 import tech.alexchen.zeus.upms.api.vo.SysDeptVO;
 import tech.alexchen.zeus.upms.convert.SysDeptConverter;
 import tech.alexchen.zeus.upms.service.SysDeptService;
@@ -35,12 +33,18 @@ public class SysDeptController {
     private final SysDeptService sysDeptService;
     private final SysDeptConverter converter;
 
+    /**
+     * 创建部门
+     */
     @PostMapping
     @Operation(summary = "创建部门", description = "创建部门接口，创建成功后返回部门 id")
     public R<Long> save(@Valid @RequestBody SysDeptSaveDTO dto) {
         return R.ok(sysDeptService.saveDept(dto));
     }
 
+    /**
+     * 更新部门
+     */
     @PutMapping
     @Operation(summary = "更新部门", description = "更新部门信息")
     public R<Boolean> update(@Valid @RequestBody SysDeptUpdateDTO dto) {
@@ -48,6 +52,9 @@ public class SysDeptController {
         return R.ok(true);
     }
 
+    /**
+     * 删除部门
+     */
     @DeleteMapping("/{id}")
     @Operation(summary = "删除部门", parameters = {
             @Parameter(description = "部门 ID", example = "1")
@@ -57,8 +64,11 @@ public class SysDeptController {
         return R.ok(true);
     }
 
+    /**
+     * 查询部门详情
+     */
     @GetMapping("/{id}")
-    @Operation(summary = "根据ID查询部门", parameters = {
+    @Operation(summary = "查询部门详情", parameters = {
             @Parameter(description = "部门 ID", example = "1")
     })
     public R<SysDeptVO> getById(@PathVariable @NotNull(message = "部门 id 不能为空") Long id) {
@@ -66,15 +76,11 @@ public class SysDeptController {
         return R.ok(converter.toVO(dept));
     }
 
-    @GetMapping("/page")
-    @Operation(summary = "分页查询部门")
-    public R<PageX<SysDept>> page(PageX<SysDept> page, SysDeptQueryDTO dto) {
-        PageX<SysDept> pageRes = sysDeptService.getDeptPage(page, dto);
-        return R.ok(pageRes);
-    }
-
+    /**
+     * 查询部门列表
+     */
     @GetMapping("/list")
-    @Operation(summary = "列表查询部门", parameters = {
+    @Operation(summary = "查询部门列表", parameters = {
             @Parameter(description = "父级部门 id", example = "0")
     })
     public R<List<SysDeptVO>> list(Long parentId) {
@@ -82,6 +88,9 @@ public class SysDeptController {
         return R.ok(voList);
     }
 
+    /**
+     * 查询部门列表树
+     */
     @GetMapping("/tree")
     @Operation(summary = "查询部门列表树", parameters = {
             @Parameter(description = "父级部门 id", example = "0")

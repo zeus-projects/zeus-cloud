@@ -5,7 +5,8 @@ import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import tech.alexchen.zeus.common.data.mybatis.pojo.PageX;
+import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
+import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
 import tech.alexchen.zeus.upms.api.dto.SysDeptQueryDTO;
 import tech.alexchen.zeus.upms.api.dto.SysDeptSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysDeptUpdateDTO;
@@ -29,7 +30,6 @@ public class SysDeptServiceImpl implements SysDeptService {
 
     private final SysDeptMapper mapper;
     private final SysDeptConverter converter;
-
 
     @Override
     public Long saveDept(SysDeptSaveDTO dto) {
@@ -63,7 +63,7 @@ public class SysDeptServiceImpl implements SysDeptService {
     }
 
     @Override
-    public PageX<SysDept> getDeptPage(PageX<SysDept> page, SysDeptQueryDTO dto) {
+    public PageResult<SysDept> getDeptPage(PageParam page, SysDeptQueryDTO dto) {
         return mapper.selectDeptPage(page, dto.getId(), dto.getName());
     }
 

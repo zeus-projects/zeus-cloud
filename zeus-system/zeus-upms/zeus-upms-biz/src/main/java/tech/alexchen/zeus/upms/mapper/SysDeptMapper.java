@@ -2,9 +2,10 @@ package tech.alexchen.zeus.upms.mapper;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import tech.alexchen.zeus.common.data.mybatis.pojo.PageX;
+import tech.alexchen.zeus.common.data.mybatis.enhance.BaseMapperX;
+import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
+import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
 import tech.alexchen.zeus.upms.api.constant.SysConstant;
 import tech.alexchen.zeus.upms.api.entity.SysDept;
 
@@ -13,7 +14,7 @@ import java.util.List;
 /**
  * @author alexchen
  */
-public interface SysDeptMapper extends BaseMapper<SysDept> {
+public interface SysDeptMapper extends BaseMapperX<SysDept> {
 
     /**
      * 根据名称查询部门
@@ -32,7 +33,7 @@ public interface SysDeptMapper extends BaseMapper<SysDept> {
      * @param name 部门名称
      * @return 部门分页数据
      */
-    default PageX<SysDept> selectDeptPage(PageX<SysDept> page, Long id, String name) {
+    default PageResult<SysDept> selectDeptPage(PageParam page, Long id, String name) {
         return this.selectPage(page, Wrappers.<SysDept>lambdaQuery()
                 .eq(ObjectUtil.isNotNull(id), SysDept::getId, id)
                 .eq(StrUtil.isNotBlank(name), SysDept::getName, name)

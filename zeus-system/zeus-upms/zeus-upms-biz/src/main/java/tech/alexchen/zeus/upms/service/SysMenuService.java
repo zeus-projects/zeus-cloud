@@ -1,6 +1,5 @@
 package tech.alexchen.zeus.upms.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import tech.alexchen.zeus.upms.api.dto.SysMenuSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysMenuUpdateDTO;
 import tech.alexchen.zeus.upms.api.entity.SysMenu;
@@ -35,7 +34,16 @@ public interface SysMenuService {
     void removeMenuById(Long id);
 
     /**
+     * 根据 id 查询菜单详情
+     *
+     * @param id 菜单 id
+     */
+    SysMenu getMenuById(Long id);
+
+    /**
      * 获取菜单列表
      */
     List<SysMenu> getMenuList();
+
+
 }

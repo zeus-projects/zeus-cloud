@@ -1,12 +1,14 @@
 package tech.alexchen.zeus.upms.api.enums;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import tech.alexchen.zeus.common.core.response.ResponseCode;
 
 /**
  * @author alexchen
  */
 
+@Getter
 @AllArgsConstructor
 public enum ResponseCodeEnum {
 
@@ -24,7 +26,4 @@ public enum ResponseCodeEnum {
 
     private final ResponseCode response;
 
-    public ResponseCode getResponse() {
-        return response;
-    }
 }
