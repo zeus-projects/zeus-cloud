@@ -14,6 +14,7 @@ public class DefaultMetaObjectHandler implements MetaObjectHandler {
 
     private static final String CREATE_BY = "admin";
     private static final String UPDATE_BY = "admin";
+
     @Override
     public void insertFill(MetaObject metaObject) {
         LocalDateTime current = LocalDateTime.now();

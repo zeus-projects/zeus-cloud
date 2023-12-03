@@ -3,7 +3,7 @@ package tech.alexchen.zeus.common.sequence.generator;
 /**
  * @author alexchen
  */
-public class SnowflakeIdGenerator implements IdGenerator{
+public class SnowflakeIdGenerator implements IdGenerator {
 
 
     @Override

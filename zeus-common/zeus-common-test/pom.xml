@@ -34,10 +34,10 @@
             <artifactId>junit-jupiter-engine</artifactId>
         </dependency>
         <!-- 兼容旧 Junit 的引擎，包含 junit4 -->
-<!--        <dependency>-->
-<!--            <groupId>org.junit.vintage</groupId>-->
-<!--            <artifactId>junit-vintage-engine</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.junit.vintage</groupId>-->
+        <!--            <artifactId>junit-vintage-engine</artifactId>-->
+        <!--        </dependency>-->
         <!-- JUnit 参数化测试 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>

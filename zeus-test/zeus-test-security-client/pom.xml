@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>tech.alexchen</groupId>
-        <artifactId>zeus-common</artifactId>
+        <artifactId>zeus-test</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>zeus-common-seata</artifactId>
+    <artifactId>zeus-test-security-client</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -19,18 +19,24 @@
 
     <dependencies>
         <dependency>
-            <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-common-core</artifactId>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
-        <!-- seata-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <!--  seata kryo 序列化-->
-        <!--        <dependency>-->
-        <!--            <groupId>io.seata</groupId>-->
-        <!--            <artifactId>seata-serializer-kryo</artifactId>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-common-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-common-log</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>tech.alexchen</groupId>
+            <artifactId>zeus-common-security</artifactId>
+        </dependency>
     </dependencies>
 </project>

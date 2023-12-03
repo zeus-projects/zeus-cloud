@@ -58,10 +58,10 @@
             <groupId>tech.alexchen</groupId>
             <artifactId>zeus-common-log</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>tech.alexchen</groupId>-->
-<!--            <artifactId>zeus-common-security</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>tech.alexchen</groupId>-->
+        <!--            <artifactId>zeus-common-security</artifactId>-->
+        <!--        </dependency>-->
     </dependencies>
 
     <build>

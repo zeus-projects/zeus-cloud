@@ -4,9 +4,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.security.Timestamp;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.util.Set;
 
 /**

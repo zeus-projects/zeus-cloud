@@ -15,7 +15,7 @@ public class SysLogListener {
 
     @Async
     @EventListener(SysLogEvent.class)
-    public void handleLog(SysLogEvent event){
+    public void handleLog(SysLogEvent event) {
         SysLogInfo logInfo = event.getSysLogInfo();
         log.debug("{} 执行耗时 {} ms", logInfo.getTitle(), logInfo.getTime());
     }

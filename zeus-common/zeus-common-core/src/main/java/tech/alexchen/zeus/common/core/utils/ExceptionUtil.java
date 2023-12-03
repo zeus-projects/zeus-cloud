@@ -18,6 +18,7 @@ public class ExceptionUtil {
     public static RuntimeException service(String code, String message) {
         return new ServiceException(code, message);
     }
+
     public static RuntimeException service(ResponseCode errorCode) {
         return new ServiceException(errorCode);
     }
@@ -33,6 +34,7 @@ public class ExceptionUtil {
     public static RuntimeException server(String code, String message) {
         return new ServerException(code, message);
     }
+
     public static RuntimeException server(ResponseCode errorCode) {
         return new ServerException(errorCode);
     }

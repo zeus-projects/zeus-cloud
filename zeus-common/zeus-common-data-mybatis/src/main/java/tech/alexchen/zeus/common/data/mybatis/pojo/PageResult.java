@@ -34,7 +34,8 @@ public class PageResult<T> extends PageParam implements Serializable {
     @Schema(description = "数据列表")
     protected List<T> records = Collections.emptyList();
 
-    public PageResult() {}
+    public PageResult() {
+    }
 
     public PageResult(long size, long current, long total, long pages, List<T> records) {
         super(size, current);

@@ -22,14 +22,14 @@ public class SysMenuUpdateDTO implements Serializable {
     /**
      * 菜单id
      */
-    @NotNull(message="菜单id不能为空")
+    @NotNull(message = "菜单id不能为空")
     @Schema(description = "菜单id")
     private Long id;
 
     /**
      * 菜单名称
      */
-    @Length(max= 64, message="编码长度不能超过64")
+    @Length(max = 64, message = "编码长度不能超过64")
     @Schema(description = "菜单名称")
     private String name;
 
@@ -42,7 +42,7 @@ public class SysMenuUpdateDTO implements Serializable {
     /**
      * 菜单类型
      */
-    @NotNull(message="菜单类型不能为空")
+    @NotNull(message = "菜单类型不能为空")
     @Schema(description = "菜单类型")
     private Integer type;
 
@@ -55,21 +55,21 @@ public class SysMenuUpdateDTO implements Serializable {
     /**
      * 权限标识
      */
-    @Length(max= 255, message="长度不能超过255")
+    @Length(max = 255, message = "长度不能超过255")
     @Schema(description = "权限标识")
     private String permission;
 
     /**
      * 路由地址
      */
-    @Length(max= 255, message="长度不能超过255")
+    @Length(max = 255, message = "长度不能超过255")
     @Schema(description = "路由地址")
     private String path;
 
     /**
      * 菜单图标
      */
-    @Length(max= 255, message="长度不能超过255")
+    @Length(max = 255, message = "长度不能超过255")
     @Schema(description = "菜单图标")
     private String icon;
 

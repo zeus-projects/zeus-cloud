@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 
 /**
  * 部门 数据库实体
+ *
  * @author alexchen
  */
 @Data

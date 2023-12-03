@@ -18,13 +18,14 @@
     </properties>
 
     <dependencies>
+        <!-- 资源服务器 -->
         <dependency>
-            <groupId>org.springframework.security.oauth.boot</groupId>
-            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>tech.alexchen</groupId>-->
-<!--            <artifactId>zeus-common-data-redis</artifactId>-->
-<!--        </dependency>-->
+        <!-- <dependency> -->
+        <!--     <groupId>tech.alexchen</groupId> -->
+        <!--     <artifactId>zeus-common-data-redis</artifactId> -->
+        <!-- </dependency> -->
     </dependencies>
 </project>

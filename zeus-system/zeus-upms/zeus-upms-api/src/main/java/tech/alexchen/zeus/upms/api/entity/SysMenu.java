@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName(value ="sys_menu")
+@TableName(value = "sys_menu")
 public class SysMenu implements Serializable {
 
     /**

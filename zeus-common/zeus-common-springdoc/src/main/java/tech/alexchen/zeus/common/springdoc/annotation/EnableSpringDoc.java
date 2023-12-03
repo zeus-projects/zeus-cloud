@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Import({ SpringDocConfiguration.class })
+@Import({SpringDocConfiguration.class})
 public @interface EnableSpringDoc {
 
 }

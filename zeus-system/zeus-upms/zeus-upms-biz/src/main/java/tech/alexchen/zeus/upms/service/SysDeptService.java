@@ -20,25 +20,28 @@ public interface SysDeptService {
     /**
      * 创建部门
      *
-     * @param dto  部门信息
+     * @param dto 部门信息
      * @return 部门 id
      */
     Long saveDept(@Valid SysDeptSaveDTO dto);
 
     /**
      * 更新部门
+     *
      * @param dto 部门信息
      */
     void updateDept(@Valid SysDeptUpdateDTO dto);
 
     /**
      * 删除部门
+     *
      * @param id 部门 id
      */
     void removeDept(@NotNull Long id);
 
     /**
      * 根据 id 查询部门
+     *
      * @param id 部门 id
      * @return SysDept
      */
@@ -46,14 +49,16 @@ public interface SysDeptService {
 
     /**
      * 分页查询部门
+     *
      * @param page 分页信息
-     * @param dto 查询条件
+     * @param dto  查询条件
      * @return 分页数据
      */
     PageResult<SysDept> getDeptPage(PageParam page, SysDeptQueryDTO dto);
 
     /**
      * 返回部门列表
+     *
      * @param parentId 父级部门 ID
      */
     List<SysDept> getDeptListByParentId(Long parentId);

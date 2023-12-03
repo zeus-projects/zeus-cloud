@@ -20,6 +20,7 @@
         <module>zeus-test-seata-stock</module>
         <module>zeus-test-redis</module>
         <module>zeus-test-common-web</module>
+        <module>zeus-test-security-client</module>
     </modules>
 
     <properties>

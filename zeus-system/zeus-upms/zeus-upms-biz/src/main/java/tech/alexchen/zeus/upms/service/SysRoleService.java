@@ -22,12 +22,14 @@ public interface SysRoleService {
 
     /**
      * 更新角色
+     *
      * @param dto 角色信息
      */
     void updateRoleById(SysRoleUpdateDTO dto);
 
     /**
      * 删除角色
+     *
      * @param id 角色 id
      */
     void removeRoleById(Long id);
@@ -39,8 +41,9 @@ public interface SysRoleService {
 
     /**
      * 更新角色的菜单权限
+     *
      * @param roleId 角色 id
-     * @param menus 菜单 id 列表
+     * @param menus  菜单 id 列表
      */
     void updateRoleMenus(Long roleId, Set<Long> menus);
 

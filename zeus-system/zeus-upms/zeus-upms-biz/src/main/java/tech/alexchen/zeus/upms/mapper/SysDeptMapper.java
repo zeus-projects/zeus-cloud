@@ -28,8 +28,8 @@ public interface SysDeptMapper extends BaseMapperX<SysDept> {
     /**
      * 分页条件查询部门信息
      *
-     * @param page   分页信息
-     * @param id 部门 ID
+     * @param page 分页信息
+     * @param id   部门 ID
      * @param name 部门名称
      * @return 部门分页数据
      */

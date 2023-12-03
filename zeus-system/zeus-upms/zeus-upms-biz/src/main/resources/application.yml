@@ -1,5 +1,5 @@
 server:
-  port: 9000
+  port: 8000
 
 spring:
   application:
@@ -14,3 +14,10 @@ spring:
     import:
       - optional:nacos:${spring.application.name}.yml
       - optional:nacos:common-springdoc.yml
+  security:
+    oauth2:
+      resourceserver:
+        opaque-token:
+          introspection-uri: http://zeus-gateway:9000/oauth2/introspect
+          client-id: zeus
+          client-secret: zeus
