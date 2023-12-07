@@ -6,7 +6,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-import tech.alexchen.zeus.auth.custom.authentication.ZeusAuthenticationProvider;
+import tech.alexchen.zeus.auth.security.ZeusUserDetailsAuthenticationProvider;
 
 /**
  * @author alexchen
@@ -26,7 +26,7 @@ public class WebSecurityConfiguration {
                                 .anyRequest().authenticated()
                 )
                 .formLogin(Customizer.withDefaults());
-        http.authenticationProvider(new ZeusAuthenticationProvider());
+        http.authenticationProvider(new ZeusUserDetailsAuthenticationProvider());
         return http.build();
     }
 

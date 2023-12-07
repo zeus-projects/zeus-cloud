@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.auth.custom.client;
+package tech.alexchen.zeus.auth.security;
 
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
@@ -30,6 +30,7 @@ public class ZeusRegisteredClientRepository implements RegisteredClientRepositor
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantTypes(authorizationGrantTypes -> {
                     authorizationGrantTypes.add(AuthorizationGrantType.AUTHORIZATION_CODE);
+                    authorizationGrantTypes.add(AuthorizationGrantType.PASSWORD);
                     authorizationGrantTypes.add(AuthorizationGrantType.REFRESH_TOKEN);
                     authorizationGrantTypes.add(AuthorizationGrantType.CLIENT_CREDENTIALS);
                 })

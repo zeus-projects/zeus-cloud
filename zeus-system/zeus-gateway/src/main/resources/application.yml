@@ -13,23 +13,3 @@ spring:
   config:
     import:
       - optional:nacos:${spring.application.name}.yml
-  security:
-    oauth2:
-      client:
-        provider:
-          zeus:
-            issuer-uri: http://zeus-auth:9000
-        registration:
-          zeus:
-            provider: zeus
-            client-id: zeus
-            client-name: zeus
-            client-secret: zeus
-            client-authentication-method: client_secret_basic
-            authorization-grant-type: authorization_code
-            redirect-uri: http://zeus-gateway:9999/login/oauth2/code/zeus
-            scope: read,write,openid
-
-logging:
-  level:
-    org.springframework.security: trace

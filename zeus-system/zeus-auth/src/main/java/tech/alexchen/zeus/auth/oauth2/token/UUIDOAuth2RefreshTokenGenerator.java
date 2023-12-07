@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.auth.custom.token;
+package tech.alexchen.zeus.auth.oauth2.token;
 
 import org.springframework.lang.Nullable;
 import org.springframework.security.crypto.keygen.StringKeyGenerator;

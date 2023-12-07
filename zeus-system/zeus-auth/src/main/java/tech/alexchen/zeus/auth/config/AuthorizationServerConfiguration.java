@@ -13,31 +13,38 @@ import org.springframework.context.annotation.Role;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
+import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationService;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2AuthorizationServerConfigurer;
 import org.springframework.security.oauth2.server.authorization.settings.AuthorizationServerSettings;
 import org.springframework.security.oauth2.server.authorization.token.DelegatingOAuth2TokenGenerator;
 import org.springframework.security.oauth2.server.authorization.token.JwtGenerator;
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenGenerator;
+import org.springframework.security.oauth2.server.authorization.web.authentication.*;
+import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationConverter;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
-import tech.alexchen.zeus.auth.custom.authentication.ZeusAuthenticationProvider;
-import tech.alexchen.zeus.auth.custom.token.UUIDOAuth2AccessTokenGenerator;
-import tech.alexchen.zeus.auth.custom.token.UUIDOAuth2RefreshTokenGenerator;
-import tech.alexchen.zeus.auth.custom.token.ZeusOAuth2TokenCustomizer;
-import tech.alexchen.zeus.auth.properties.AuthorizationProperties;
+import tech.alexchen.zeus.auth.oauth2.password.OAuth2UsernamePasswordAuthenticationConverter;
+import tech.alexchen.zeus.auth.oauth2.password.OAuth2UsernamePasswordAuthenticationProvider;
+import tech.alexchen.zeus.auth.security.ZeusUserDetailsAuthenticationProvider;
+import tech.alexchen.zeus.auth.oauth2.token.UUIDOAuth2AccessTokenGenerator;
+import tech.alexchen.zeus.auth.oauth2.token.UUIDOAuth2RefreshTokenGenerator;
+import tech.alexchen.zeus.auth.oauth2.token.ZeusOAuth2TokenCustomizer;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.Arrays;
 import java.util.UUID;
 
 /**
@@ -65,6 +72,7 @@ public class AuthorizationServerConfiguration {
                         // 指明为 localhost，就不会自动配置为本机的内网 ip，防止 client 和 resource 因为端点不一致导致的错误
                         AuthorizationServerSettings.builder().issuer(authorizationProperties.getIssuerUrl()).build()
                 )
+                .tokenEndpoint((tokenEndpoint) -> tokenEndpoint.accessTokenRequestConverter(accessTokenRequestConverter()))
         ;
         http.exceptionHandling((exceptions) -> exceptions
                 .defaultAuthenticationEntryPointFor(
@@ -73,16 +81,40 @@ public class AuthorizationServerConfiguration {
                         new MediaTypeRequestMatcher(MediaType.TEXT_HTML)
                 )
         );
-        http.authenticationProvider(new ZeusAuthenticationProvider());
-        return http.build();
+        // 先 build，后面才可以通过 http.getSharedObject 方法获取到 AuthenticationManager
+        DefaultSecurityFilterChain securityFilterChain = http.build();
+
+        addCustomOAuth2GrantAuthenticationProvider(http);
+        return securityFilterChain;
+    }
+
+    public AuthenticationConverter accessTokenRequestConverter() {
+        return new DelegatingAuthenticationConverter(Arrays.asList(
+                new OAuth2UsernamePasswordAuthenticationConverter(),
+                new OAuth2RefreshTokenAuthenticationConverter(),
+                new OAuth2ClientCredentialsAuthenticationConverter(),
+                new OAuth2AuthorizationCodeAuthenticationConverter(),
+                new OAuth2AuthorizationCodeRequestAuthenticationConverter()));
+    }
+
+    public void addCustomOAuth2GrantAuthenticationProvider(HttpSecurity http) {
+        // 表单认证使用自定义 provider，处理 UsernamePasswordAuthenticationToken
+        http.authenticationProvider(new ZeusUserDetailsAuthenticationProvider());
+
+        // 添加 oauth2 的密码模式，处理 OAuth2UsernamePasswordAuthenticationToken
+        AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManager.class);
+        OAuth2AuthorizationService authorizationService = http.getSharedObject(OAuth2AuthorizationService.class);
+        OAuth2UsernamePasswordAuthenticationProvider customProvider = new OAuth2UsernamePasswordAuthenticationProvider(
+                authorizationService, oAuth2TokenGenerator(), authenticationManager);
+        http.authenticationProvider(customProvider);
     }
 
     /**
      * 注入自定义的 opaqueToken 生成器，用于生成较短的 access_token 和 refresh_token
      */
     @Bean
-    public OAuth2TokenGenerator<?> oAuth2TokenGenerator(JWKSource<SecurityContext> jwkSource) {
-        JwtEncoder jwtEncoder = new NimbusJwtEncoder(jwkSource);
+    public OAuth2TokenGenerator<?> oAuth2TokenGenerator() {
+        JwtEncoder jwtEncoder = new NimbusJwtEncoder(jwkSource(generateRsaKey()));
         JwtGenerator jwtGenerator = new JwtGenerator(jwtEncoder);
 
         UUIDOAuth2AccessTokenGenerator uuidOAuth2AccessTokenGenerator = new UUIDOAuth2AccessTokenGenerator();

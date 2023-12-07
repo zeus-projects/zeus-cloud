@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.auth.custom.authentication;
+package tech.alexchen.zeus.auth.security;
 
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
@@ -21,7 +21,7 @@ import org.springframework.util.Assert;
  *
  * @author alexchen
  */
-public class ZeusAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
+public class ZeusUserDetailsAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
 
     private static final String USER_NOT_FOUND_PASSWORD = "userNotFoundPassword";
 
@@ -33,7 +33,7 @@ public class ZeusAuthenticationProvider extends AbstractUserDetailsAuthenticatio
 
     private UserDetailsPasswordService userDetailsPasswordService;
 
-    public ZeusAuthenticationProvider() {
+    public ZeusUserDetailsAuthenticationProvider() {
         setPasswordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
         setUserDetailsService(new ZeusUserDetailsService());
     }

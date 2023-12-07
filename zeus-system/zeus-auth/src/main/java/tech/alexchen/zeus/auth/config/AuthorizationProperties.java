@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.auth.properties;
+package tech.alexchen.zeus.auth.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

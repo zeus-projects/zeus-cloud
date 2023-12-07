@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.auth.custom.token;
+package tech.alexchen.zeus.auth.oauth2.token;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.User;

@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.auth.custom.authentication;
+package tech.alexchen.zeus.auth.security;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
