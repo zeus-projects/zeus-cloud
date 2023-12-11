@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.*;
 import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
+import tech.alexchen.zeus.common.security.resource.annotation.Inner;
+import tech.alexchen.zeus.upms.api.dto.SysUserAuthDTO;
 import tech.alexchen.zeus.upms.api.dto.SysUserSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysUserUpdateDTO;
-import tech.alexchen.zeus.upms.api.entity.SysUser;
 import tech.alexchen.zeus.upms.api.vo.SysUserVO;
 import tech.alexchen.zeus.upms.convert.SysUserConverter;
+import tech.alexchen.zeus.upms.entity.SysUser;
 import tech.alexchen.zeus.upms.service.SysUserService;
 
 import javax.validation.Valid;
@@ -63,10 +65,30 @@ public class SysUserController {
      * 根据用户 id 查询用户信息
      */
     @GetMapping("/{id}")
-    @Operation(summary = "查询单个用户")
+    @Operation(summary = "根据用户ID查询")
     public R<SysUserVO> getUserById(@PathVariable Long id) {
         SysUser sysUser = sysUserService.getUserById(id);
         return R.ok(converter.toVO(sysUser));
+    }
+
+    /**
+     * 根据用户名查询用户信息
+     */
+    @GetMapping("/name/{username}")
+    @Operation(summary = "根据用户名查询")
+    public R<SysUserAuthDTO> getUserByName(@PathVariable String username) {
+        SysUser sysUser = sysUserService.getUserByName(username);
+        return R.ok(converter.toAuthDTO(sysUser));
+    }
+
+    /**
+     * 根据用户名查询用户授权信息
+     */
+    @Inner
+    @GetMapping("/auth/{username}")
+    @Operation(summary = "查询用户授权信息")
+    public R<SysUserAuthDTO> getUserAuthInfo(@PathVariable String username) {
+        return R.ok(sysUserService.getUserAuthInfo(username));
     }
 
     /**

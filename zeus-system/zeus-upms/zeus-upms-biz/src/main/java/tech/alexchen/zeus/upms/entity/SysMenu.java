@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.upms.api.entity;
+package tech.alexchen.zeus.upms.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.AllArgsConstructor;
@@ -10,39 +10,65 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 部门 数据库实体
- *
  * @author alexchen
  */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName(value = "sys_dept")
-public class SysDept implements Serializable {
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
+@TableName(value = "sys_menu")
+public class SysMenu implements Serializable {
 
     /**
-     * 部门 ID
+     * 菜单id
      */
     @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
-     * 部门名称
+     * 菜单名称
      */
     private String name;
 
     /**
-     * 上级部门 ID
+     * 父菜单ID
      */
     private Long parentId;
 
     /**
-     * 排序
+     * 菜单类型
+     */
+    private Integer type;
+
+    /**
+     * 显示顺序
      */
     private Integer weight;
+
+    /**
+     * 权限标识
+     */
+    private String permission;
+
+    /**
+     * 路由地址
+     */
+    private String path;
+
+    /**
+     * 菜单图标
+     */
+    private String icon;
+
+    /**
+     * 是否隐藏（0:显示；1:隐藏）
+     */
+    private Integer hide;
+
+    /**
+     * 是否需要登陆才可访问（0:不需要；1:需要）
+     */
+    private Integer requiresAuth;
 
     /**
      * 创建人

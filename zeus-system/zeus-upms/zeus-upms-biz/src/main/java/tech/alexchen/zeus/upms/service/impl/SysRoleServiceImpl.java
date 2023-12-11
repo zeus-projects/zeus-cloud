@@ -1,5 +1,6 @@
 package tech.alexchen.zeus.upms.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.Assert;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -7,11 +8,12 @@ import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
 import tech.alexchen.zeus.upms.api.dto.SysRoleSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysRoleUpdateDTO;
-import tech.alexchen.zeus.upms.api.entity.SysRole;
 import tech.alexchen.zeus.upms.convert.SysRoleConverter;
+import tech.alexchen.zeus.upms.entity.SysRole;
 import tech.alexchen.zeus.upms.mapper.SysRoleMapper;
 import tech.alexchen.zeus.upms.service.SysRoleService;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -45,7 +47,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     }
 
     @Override
-    public PageResult<SysRole> getDeptPage(PageParam page) {
+    public PageResult<SysRole> getRolePage(PageParam page) {
         return mapper.selectPage(page, null);
     }
 
@@ -54,6 +56,14 @@ public class SysRoleServiceImpl implements SysRoleService {
         SysRole role = mapper.selectById(roleId);
         role.setMenus(menus);
         mapper.updateById(role);
+    }
+
+    @Override
+    public Set<String> getRolePermissions(Set<Long> roleIdSet) {
+        if (CollUtil.isEmpty(roleIdSet)) {
+            return new HashSet<>();
+        }
+        return mapper.getRolePermissions(roleIdSet);
     }
 
 }

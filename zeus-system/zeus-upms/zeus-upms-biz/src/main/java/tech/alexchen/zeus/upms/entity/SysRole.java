@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.upms.api.entity;
+package tech.alexchen.zeus.upms.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.v3.oas.annotations.media.Schema;

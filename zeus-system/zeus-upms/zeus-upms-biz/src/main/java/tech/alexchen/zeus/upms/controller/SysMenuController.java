@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.upms.api.dto.SysMenuSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysMenuUpdateDTO;
-import tech.alexchen.zeus.upms.api.entity.SysMenu;
 import tech.alexchen.zeus.upms.api.vo.SysMenuVO;
 import tech.alexchen.zeus.upms.convert.SysMenuConverter;
+import tech.alexchen.zeus.upms.entity.SysMenu;
 import tech.alexchen.zeus.upms.service.SysMenuService;
 
 import javax.validation.Valid;

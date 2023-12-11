@@ -4,6 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import tech.alexchen.zeus.common.security.resource.annotation.EnableOauth2ResourceServer;
 import tech.alexchen.zeus.common.springdoc.annotation.EnableSpringDoc;
 
 /**
@@ -13,7 +14,7 @@ import tech.alexchen.zeus.common.springdoc.annotation.EnableSpringDoc;
 @EnableSpringDoc
 @EnableDiscoveryClient
 @SpringBootApplication
-//@EnableZeusResourceServer
+@EnableOauth2ResourceServer
 public class ZeusUpmsApplication {
 
     public static void main(String[] args) {

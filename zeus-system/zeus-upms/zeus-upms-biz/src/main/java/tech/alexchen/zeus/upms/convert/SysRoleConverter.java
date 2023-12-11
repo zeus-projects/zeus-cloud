@@ -5,8 +5,8 @@ import org.mapstruct.MappingConstants;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
 import tech.alexchen.zeus.upms.api.dto.SysRoleSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysRoleUpdateDTO;
-import tech.alexchen.zeus.upms.api.entity.SysRole;
 import tech.alexchen.zeus.upms.api.vo.SysRoleVO;
+import tech.alexchen.zeus.upms.entity.SysRole;
 
 /**
  * @author alexchen

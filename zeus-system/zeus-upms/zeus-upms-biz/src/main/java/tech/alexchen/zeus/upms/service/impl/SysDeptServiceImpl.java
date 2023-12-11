@@ -10,8 +10,8 @@ import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
 import tech.alexchen.zeus.upms.api.dto.SysDeptQueryDTO;
 import tech.alexchen.zeus.upms.api.dto.SysDeptSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysDeptUpdateDTO;
-import tech.alexchen.zeus.upms.api.entity.SysDept;
 import tech.alexchen.zeus.upms.convert.SysDeptConverter;
+import tech.alexchen.zeus.upms.entity.SysDept;
 import tech.alexchen.zeus.upms.mapper.SysDeptMapper;
 import tech.alexchen.zeus.upms.service.SysDeptService;
 

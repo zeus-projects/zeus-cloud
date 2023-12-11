@@ -5,13 +5,14 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.upms.api.dto.SysDeptSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysDeptUpdateDTO;
-import tech.alexchen.zeus.upms.api.entity.SysDept;
 import tech.alexchen.zeus.upms.api.vo.SysDeptVO;
 import tech.alexchen.zeus.upms.convert.SysDeptConverter;
+import tech.alexchen.zeus.upms.entity.SysDept;
 import tech.alexchen.zeus.upms.service.SysDeptService;
 
 import javax.validation.Valid;
@@ -36,6 +37,7 @@ public class SysDeptController {
     /**
      * 创建部门
      */
+    @PreAuthorize("pms.hasPermission('sys_dept.write')")
     @PostMapping
     @Operation(summary = "创建部门", description = "创建部门接口，创建成功后返回部门 id")
     public R<Long> save(@Valid @RequestBody SysDeptSaveDTO dto) {
@@ -45,6 +47,7 @@ public class SysDeptController {
     /**
      * 更新部门
      */
+    @PreAuthorize("pms.hasPermission('sys_dept.write')")
     @PutMapping
     @Operation(summary = "更新部门", description = "更新部门信息")
     public R<Boolean> update(@Valid @RequestBody SysDeptUpdateDTO dto) {
@@ -55,6 +58,7 @@ public class SysDeptController {
     /**
      * 删除部门
      */
+    @PreAuthorize("pms.hasPermission('sys_dept.write')")
     @DeleteMapping("/{id}")
     @Operation(summary = "删除部门", parameters = {
             @Parameter(description = "部门 ID", example = "1")

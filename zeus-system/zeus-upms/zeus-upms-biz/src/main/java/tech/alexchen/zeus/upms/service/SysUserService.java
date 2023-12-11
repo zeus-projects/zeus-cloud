@@ -2,9 +2,10 @@ package tech.alexchen.zeus.upms.service;
 
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
+import tech.alexchen.zeus.upms.api.dto.SysUserAuthDTO;
 import tech.alexchen.zeus.upms.api.dto.SysUserSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysUserUpdateDTO;
-import tech.alexchen.zeus.upms.api.entity.SysUser;
+import tech.alexchen.zeus.upms.entity.SysUser;
 
 import javax.validation.Valid;
 
@@ -37,6 +38,16 @@ public interface SysUserService {
      * 根据用户 id 查询用户信息
      */
     SysUser getUserById(Long id);
+
+    /**
+     * 根据用户名查询
+     */
+    SysUser getUserByName(String username);
+
+    /**
+     * 查询用户授权信息
+     */
+    SysUserAuthDTO getUserAuthInfo(String username);
 
     /**
      * 分页查询用户信息

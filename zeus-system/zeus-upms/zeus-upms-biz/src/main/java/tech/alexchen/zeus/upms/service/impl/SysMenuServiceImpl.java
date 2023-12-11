@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tech.alexchen.zeus.upms.api.dto.SysMenuSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysMenuUpdateDTO;
-import tech.alexchen.zeus.upms.api.entity.SysMenu;
 import tech.alexchen.zeus.upms.convert.SysMenuConverter;
+import tech.alexchen.zeus.upms.entity.SysMenu;
 import tech.alexchen.zeus.upms.mapper.SysMenuMapper;
 import tech.alexchen.zeus.upms.service.SysMenuService;
 

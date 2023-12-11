@@ -1,5 +1,6 @@
 package tech.alexchen.zeus.common.core.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -80,5 +81,15 @@ public class R<T> implements Serializable {
 
     public static R<Boolean> bool(boolean bool, String message) {
         return bool ? R.ok(true) : R.fail(message, false);
+    }
+
+    @JsonIgnore
+    public boolean isSuccess() {
+        return GlobalResponseEnum.SUCCESS.getCode().equals(this.code);
+    }
+
+    @JsonIgnore
+    public boolean isFailed() {
+        return !GlobalResponseEnum.SUCCESS.getCode().equals(this.code);
     }
 }

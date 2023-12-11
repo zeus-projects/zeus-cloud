@@ -4,7 +4,7 @@ import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
 import tech.alexchen.zeus.upms.api.dto.SysRoleSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysRoleUpdateDTO;
-import tech.alexchen.zeus.upms.api.entity.SysRole;
+import tech.alexchen.zeus.upms.entity.SysRole;
 
 import java.util.Set;
 
@@ -37,7 +37,7 @@ public interface SysRoleService {
     /**
      * 分页查询
      */
-    PageResult<SysRole> getDeptPage(PageParam page);
+    PageResult<SysRole> getRolePage(PageParam page);
 
     /**
      * 更新角色的菜单权限
@@ -47,5 +47,9 @@ public interface SysRoleService {
      */
     void updateRoleMenus(Long roleId, Set<Long> menus);
 
+    /**
+     * 获取角色菜单权限列表
+     */
+    Set<String> getRolePermissions(Set<Long> roleIdSet);
 }
 

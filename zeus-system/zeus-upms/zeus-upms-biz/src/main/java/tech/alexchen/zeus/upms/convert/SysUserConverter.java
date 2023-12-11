@@ -4,10 +4,11 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
+import tech.alexchen.zeus.upms.api.dto.SysUserAuthDTO;
 import tech.alexchen.zeus.upms.api.dto.SysUserSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysUserUpdateDTO;
-import tech.alexchen.zeus.upms.api.entity.SysUser;
 import tech.alexchen.zeus.upms.api.vo.SysUserVO;
+import tech.alexchen.zeus.upms.entity.SysUser;
 
 /**
  * @author alexchen
@@ -24,6 +25,8 @@ public interface SysUserConverter {
 
     @Mapping(target = "birthday", expression = "java(LocalDateTimeUtil.toEpochMilli(entity.getBirthday()))")
     SysUserVO toVO(SysUser entity);
+
+    SysUserAuthDTO toAuthDTO(SysUser entity);
 
     PageResult<SysUserVO> toPageVO(PageResult<SysUser> pageResult);
 

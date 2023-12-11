@@ -7,7 +7,7 @@ import tech.alexchen.zeus.common.data.mybatis.enhance.BaseMapperX;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
 import tech.alexchen.zeus.upms.api.constant.SysConstant;
-import tech.alexchen.zeus.upms.api.entity.SysDept;
+import tech.alexchen.zeus.upms.entity.SysDept;
 
 import java.util.List;
 

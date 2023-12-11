@@ -4,8 +4,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import tech.alexchen.zeus.upms.api.dto.SysMenuSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysMenuUpdateDTO;
-import tech.alexchen.zeus.upms.api.entity.SysMenu;
 import tech.alexchen.zeus.upms.api.vo.SysMenuVO;
+import tech.alexchen.zeus.upms.entity.SysMenu;
 
 import java.util.List;
 

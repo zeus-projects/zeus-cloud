@@ -9,9 +9,9 @@ import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
 import tech.alexchen.zeus.upms.api.dto.SysRoleSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysRoleUpdateDTO;
-import tech.alexchen.zeus.upms.api.entity.SysRole;
 import tech.alexchen.zeus.upms.api.vo.SysRoleVO;
 import tech.alexchen.zeus.upms.convert.SysRoleConverter;
+import tech.alexchen.zeus.upms.entity.SysRole;
 import tech.alexchen.zeus.upms.service.SysRoleService;
 
 import javax.validation.Valid;
@@ -64,7 +64,7 @@ public class SysRoleController {
     @GetMapping("/page")
     @Operation(summary = "角色分页列表")
     public R<PageResult<SysRoleVO>> page(PageParam page) {
-        PageResult<SysRole> pageResult = service.getDeptPage(page);
+        PageResult<SysRole> pageResult = service.getRolePage(page);
         PageResult<SysRoleVO> pageVO = converter.toPageVO(pageResult);
         return R.ok(pageVO);
     }
