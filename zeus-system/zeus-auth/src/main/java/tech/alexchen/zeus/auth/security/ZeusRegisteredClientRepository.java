@@ -20,7 +20,7 @@ import java.util.Map;
 @Component
 public class ZeusRegisteredClientRepository implements RegisteredClientRepository {
 
-    // Todo 改成使用数据库保存
+    // Todo 改成使用 upms 远程调用保存
     private final static Map<String, RegisteredClient> clientMap = new HashMap<>();
 
     static {

@@ -5,6 +5,7 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
@@ -35,7 +37,6 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
 import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
 import tech.alexchen.zeus.auth.oauth2.password.OAuth2UsernamePasswordAuthenticationConverter;
 import tech.alexchen.zeus.auth.oauth2.password.OAuth2UsernamePasswordAuthenticationProvider;
-import tech.alexchen.zeus.auth.security.ZeusUserDetailsAuthenticationProvider;
 import tech.alexchen.zeus.auth.oauth2.token.UUIDOAuth2AccessTokenGenerator;
 import tech.alexchen.zeus.auth.oauth2.token.UUIDOAuth2RefreshTokenGenerator;
 import tech.alexchen.zeus.auth.oauth2.token.ZeusOAuth2TokenCustomizer;
@@ -54,13 +55,10 @@ import java.util.UUID;
  */
 @Configuration
 @EnableConfigurationProperties(AuthorizationProperties.class)
+@AllArgsConstructor
 public class AuthorizationServerConfiguration {
 
     private final AuthorizationProperties authorizationProperties;
-
-    public AuthorizationServerConfiguration(AuthorizationProperties authorizationProperties) {
-        this.authorizationProperties = authorizationProperties;
-    }
 
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -81,6 +79,7 @@ public class AuthorizationServerConfiguration {
                         new MediaTypeRequestMatcher(MediaType.TEXT_HTML)
                 )
         );
+        http.csrf(AbstractHttpConfigurer::disable);
         // 先 build，后面才可以通过 http.getSharedObject 方法获取到 AuthenticationManager
         DefaultSecurityFilterChain securityFilterChain = http.build();
 
@@ -99,7 +98,7 @@ public class AuthorizationServerConfiguration {
 
     public void addCustomOAuth2GrantAuthenticationProvider(HttpSecurity http) {
         // 表单认证使用自定义 provider，处理 UsernamePasswordAuthenticationToken
-        http.authenticationProvider(new ZeusUserDetailsAuthenticationProvider());
+//        http.authenticationProvider(new ZeusUserDetailsAuthenticationProvider());
 
         // 添加 oauth2 的密码模式，处理 OAuth2UsernamePasswordAuthenticationToken
         AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManager.class);
