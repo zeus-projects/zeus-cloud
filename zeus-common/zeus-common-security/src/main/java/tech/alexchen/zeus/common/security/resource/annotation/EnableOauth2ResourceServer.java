@@ -1,6 +1,9 @@
 package tech.alexchen.zeus.common.security.resource.annotation;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import tech.alexchen.zeus.common.security.resource.config.ResourceServerAutoConfiguration;
 
 import java.lang.annotation.*;
 
@@ -14,6 +17,7 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@Import(value = {ResourceServerAutoConfiguration.class})
 public @interface EnableOauth2ResourceServer {
 
 }
