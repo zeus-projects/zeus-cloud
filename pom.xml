@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>tech.alexchen</groupId>
-    <artifactId>zeus</artifactId>
+    <artifactId>zeus-cloud</artifactId>
     <version>1.0</version>
     <name>zeus</name>
     <packaging>pom</packaging>
