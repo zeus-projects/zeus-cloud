@@ -84,7 +84,6 @@ public class SysUserController {
     /**
      * 根据用户名查询用户授权信息
      */
-    @Inner
     @GetMapping("/auth/{username}")
     @Operation(summary = "查询用户授权信息")
     public R<SysUserAuthDTO> getUserAuthInfo(@PathVariable String username) {
