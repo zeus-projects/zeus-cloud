@@ -1,6 +1,10 @@
+DROP DATABASE IF EXISTS `zeus_upms`;
+
+CREATE DATABASE  `zeus_upms` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
 USE zeus_upms;
 
-SET NAMES utf8mb4;
+SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------

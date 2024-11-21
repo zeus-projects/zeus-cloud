@@ -14,6 +14,8 @@ import tech.alexchen.zeus.test.kafka.producer.entity.KafkaMessage;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.BiConsumer;
 
 /**
  * @author alexchen
@@ -25,26 +27,22 @@ public class KafkaProducerController {
     @Resource
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    private final ListenableFutureCallback<SendResult<String, String>> futureCallback = new ListenableFutureCallback<SendResult<String, String>>() {
-        @Override
-        public void onSuccess(SendResult<String, String> result) {
-            assert result != null;
-            ProducerRecord<String, String> record = result.getProducerRecord();
-            System.out.println(StrUtil.format("Send message-> topic: {}, partition: {}, key: {}, value: {}", record.topic(), record.partition(), record.key(), record.value()));
+    private static void accept(SendResult<String, String> result, Throwable throwable) {
+        if (throwable != null) {
+            throw new RuntimeException(throwable);
         }
-
-        @Override
-        public void onFailure(Throwable e) {
-            System.out.println(StrUtil.format("kafka Send message failed: {}", e.getMessage()));
-        }
-    };
+        assert result != null;
+        ProducerRecord<String, String> producerRecord = result.getProducerRecord();
+        System.out.println(StrUtil.format("Send message-> topic: {}, partition: {}, key: {}, value: {}", producerRecord.topic(), producerRecord.partition(), producerRecord.key(), producerRecord.value()));
+    }
 
     /**
      * 推送单条
      */
     @PostMapping("/send")
     public R<Boolean> sendMessage(@RequestBody KafkaMessage record) {
-        kafkaTemplate.send(record.getTopic(), record.getPartition(), record.getKey(), record.getValue()).addCallback(futureCallback);
+        CompletableFuture<SendResult<String, String>> future = kafkaTemplate.send(record.getTopic(), record.getPartition(), record.getKey(), record.getValue());
+        future.whenComplete(KafkaProducerController::accept);
         return R.ok(true);
     }
 
@@ -53,7 +51,8 @@ public class KafkaProducerController {
      */
     @PostMapping("/send/batch")
     public R<Boolean> sendMessageBatch(@RequestBody List<KafkaMessage> records) {
-        records.forEach(record -> kafkaTemplate.send(record.getTopic(), record.getPartition(), record.getKey(), record.getValue()).addCallback(futureCallback));
+        records.forEach(record -> kafkaTemplate.send(record.getTopic(), record.getPartition(), record.getKey(), record.getValue())
+                .whenComplete(KafkaProducerController::accept));
         return R.ok(true);
     }
 

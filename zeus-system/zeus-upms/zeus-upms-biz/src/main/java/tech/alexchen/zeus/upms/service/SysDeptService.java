@@ -1,6 +1,8 @@
 package tech.alexchen.zeus.upms.service;
 
 import cn.hutool.core.lang.tree.Tree;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
 import tech.alexchen.zeus.upms.api.dto.SysDeptQueryDTO;
@@ -8,8 +10,6 @@ import tech.alexchen.zeus.upms.api.dto.SysDeptSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysDeptUpdateDTO;
 import tech.alexchen.zeus.upms.entity.SysDept;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**

@@ -17,7 +17,7 @@ import tech.alexchen.zeus.upms.mapper.SysUserMapper;
 import tech.alexchen.zeus.upms.service.SysRoleService;
 import tech.alexchen.zeus.upms.service.SysUserService;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.Set;
 
 /**

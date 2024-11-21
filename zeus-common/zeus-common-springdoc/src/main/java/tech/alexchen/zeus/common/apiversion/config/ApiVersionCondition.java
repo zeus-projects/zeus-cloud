@@ -1,11 +1,11 @@
 package tech.alexchen.zeus.common.apiversion.config;
 
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,6 +34,7 @@ public final class ApiVersionCondition implements RequestCondition<ApiVersionCon
     public ApiVersionCondition combine(ApiVersionCondition other) {
         return new ApiVersionCondition(other.apiVersion);
     }
+
 
     @Override
     public ApiVersionCondition getMatchingCondition(HttpServletRequest request) {

@@ -1,7 +1,9 @@
 package tech.alexchen.zeus.common.data.mybatis.typehandler;
 
 import com.baomidou.mybatisplus.extension.handlers.AbstractJsonTypeHandler;
+import org.apache.ibatis.type.BaseTypeHandler;
 
+import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -12,13 +14,21 @@ public class JsonLocalDateTimeTypeHandler extends AbstractJsonTypeHandler<LocalD
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
+    public JsonLocalDateTimeTypeHandler(Class<?> type) {
+        super(type);
+    }
+
+    public JsonLocalDateTimeTypeHandler(Class<?> type, Field field) {
+        super(type, field);
+    }
+
     @Override
-    protected LocalDateTime parse(String str) {
+    public LocalDateTime parse(String str) {
         return LocalDateTime.parse(str, FORMATTER);
     }
 
     @Override
-    protected String toJson(LocalDateTime localDateTime) {
+    public String toJson(LocalDateTime localDateTime) {
         return localDateTime.format(FORMATTER);
     }
 }

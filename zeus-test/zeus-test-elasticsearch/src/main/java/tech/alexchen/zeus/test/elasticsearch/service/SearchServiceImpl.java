@@ -1,11 +1,11 @@
 package tech.alexchen.zeus.test.elasticsearch.service;
 
 import cn.hutool.core.util.StrUtil;
-import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+import jakarta.annotation.Resource;
+import org.springframework.data.elasticsearch.client.elc.ElasticsearchTemplate;
 import org.springframework.stereotype.Service;
 import tech.alexchen.zeus.test.elasticsearch.entity.SearchResult;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
 public class SearchServiceImpl implements SearchService {
 
     @Resource
-    private ElasticsearchRestTemplate elasticsearchTemplate;
+    private ElasticsearchTemplate elasticsearchTemplate;
 
     public List<SearchResult> prompt(String words) {
         List<SearchResult> results = new ArrayList<>();

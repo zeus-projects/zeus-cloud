@@ -1,5 +1,6 @@
 package tech.alexchen.zeus.test.redis.lock;
 
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tech.alexchen.zeus.common.core.response.R;
 
-import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 /**

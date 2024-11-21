@@ -1,11 +1,11 @@
 package tech.alexchen.zeus.test.redis.rank;
 
+import jakarta.annotation.Resource;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.web.bind.annotation.*;
 import tech.alexchen.zeus.common.core.response.R;
 
-import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.Set;
 

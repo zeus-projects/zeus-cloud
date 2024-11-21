@@ -2,6 +2,8 @@ package tech.alexchen.zeus.upms.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tech.alexchen.zeus.common.core.response.R;
@@ -12,8 +14,6 @@ import tech.alexchen.zeus.upms.convert.SysMenuConverter;
 import tech.alexchen.zeus.upms.entity.SysMenu;
 import tech.alexchen.zeus.upms.service.SysMenuService;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**

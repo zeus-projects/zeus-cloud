@@ -1,12 +1,11 @@
 package tech.alexchen.zeus.test.common.web.controller;
 
-import cn.hutool.json.JSONUtil;
-import org.springframework.web.bind.annotation.*;
+import jakarta.annotation.Resource;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import tech.alexchen.zeus.common.log.annotation.TimerLog;
-import tech.alexchen.zeus.test.common.web.pojo.UserDTO;
 import tech.alexchen.zeus.test.common.web.service.HelloService;
 
-import javax.annotation.Resource;
 
 /**
  * @author alexchen

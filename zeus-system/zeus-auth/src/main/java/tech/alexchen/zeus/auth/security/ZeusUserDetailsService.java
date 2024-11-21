@@ -1,6 +1,7 @@
 package tech.alexchen.zeus.auth.security;
 
 import cn.hutool.core.util.StrUtil;
+import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -12,7 +13,6 @@ import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.upms.api.dto.SysUserAuthDTO;
 import tech.alexchen.zeus.upms.api.interfaces.RemoteSysUserService;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @Primary

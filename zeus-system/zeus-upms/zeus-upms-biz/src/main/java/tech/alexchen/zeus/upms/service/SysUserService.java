@@ -1,5 +1,6 @@
 package tech.alexchen.zeus.upms.service;
 
+import jakarta.validation.Valid;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
 import tech.alexchen.zeus.upms.api.dto.SysUserAuthDTO;
@@ -7,7 +8,6 @@ import tech.alexchen.zeus.upms.api.dto.SysUserSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysUserUpdateDTO;
 import tech.alexchen.zeus.upms.entity.SysUser;
 
-import javax.validation.Valid;
 
 /**
  * @author alexchen

@@ -2,12 +2,12 @@ package tech.alexchen.zeus.upms.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
-import tech.alexchen.zeus.common.security.resource.annotation.Inner;
 import tech.alexchen.zeus.upms.api.dto.SysUserAuthDTO;
 import tech.alexchen.zeus.upms.api.dto.SysUserSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysUserUpdateDTO;
@@ -16,7 +16,6 @@ import tech.alexchen.zeus.upms.convert.SysUserConverter;
 import tech.alexchen.zeus.upms.entity.SysUser;
 import tech.alexchen.zeus.upms.service.SysUserService;
 
-import javax.validation.Valid;
 
 /**
  * 用户管理
@@ -84,7 +83,6 @@ public class SysUserController {
     /**
      * 根据用户名查询用户授权信息
      */
-    @Inner
     @GetMapping("/auth/{username}")
     @Operation(summary = "查询用户授权信息")
     public R<SysUserAuthDTO> getUserAuthInfo(@PathVariable String username) {

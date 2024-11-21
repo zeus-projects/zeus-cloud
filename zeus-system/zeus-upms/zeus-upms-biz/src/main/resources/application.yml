@@ -12,8 +12,8 @@ spring:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
   config:
     import:
+      - optional:nacos:zeus-common.yml
       - optional:nacos:${spring.application.name}.yml
-      - optional:nacos:common-springdoc.yml
   security:
     oauth2:
       resourceserver:

@@ -2,6 +2,8 @@ package tech.alexchen.zeus.test.elasticsearch.controller;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
+import jakarta.annotation.Resource;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,8 +11,6 @@ import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.test.elasticsearch.entity.SearchResult;
 import tech.alexchen.zeus.test.elasticsearch.service.SearchService;
 
-import javax.annotation.Resource;
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 /**
