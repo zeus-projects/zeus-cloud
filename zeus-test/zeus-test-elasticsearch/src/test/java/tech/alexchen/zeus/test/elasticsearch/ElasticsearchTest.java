@@ -7,7 +7,7 @@ import cn.hutool.core.util.StrUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+import org.springframework.data.elasticsearch.client.elc.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.IndexOperations;
 import org.springframework.data.elasticsearch.core.document.Document;
 import tech.alexchen.zeus.test.elasticsearch.entity.Ecs;
@@ -22,7 +22,7 @@ import java.util.List;
 public class ElasticsearchTest {
 
     @Autowired
-    private ElasticsearchRestTemplate template;
+    private ElasticsearchTemplate template;
 
     @Test
     void createIndex() {

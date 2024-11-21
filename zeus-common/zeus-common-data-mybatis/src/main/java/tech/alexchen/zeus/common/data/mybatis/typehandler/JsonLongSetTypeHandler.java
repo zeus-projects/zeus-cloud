@@ -4,6 +4,7 @@ import cn.hutool.core.lang.TypeReference;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.handlers.AbstractJsonTypeHandler;
 
+import java.lang.reflect.Field;
 import java.util.Set;
 
 /**
@@ -17,13 +18,21 @@ public class JsonLongSetTypeHandler extends AbstractJsonTypeHandler<Set<Long>> {
     private static final TypeReference<Set<Long>> TYPE_REFERENCE = new TypeReference<Set<Long>>() {
     };
 
+    public JsonLongSetTypeHandler(Class<?> type) {
+        super(type);
+    }
+
+    public JsonLongSetTypeHandler(Class<?> type, Field field) {
+        super(type, field);
+    }
+
     @Override
-    protected Set<Long> parse(String json) {
+    public Set<Long> parse(String json) {
         return JSONUtil.toBean(json, TYPE_REFERENCE, false);
     }
 
     @Override
-    protected String toJson(Set<Long> obj) {
+    public String toJson(Set<Long> obj) {
         return JSONUtil.toJsonStr(obj);
     }
 }

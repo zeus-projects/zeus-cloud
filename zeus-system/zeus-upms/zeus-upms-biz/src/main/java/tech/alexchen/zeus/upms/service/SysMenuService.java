@@ -1,10 +1,10 @@
 package tech.alexchen.zeus.upms.service;
 
+import jakarta.validation.Valid;
 import tech.alexchen.zeus.upms.api.dto.SysMenuSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysMenuUpdateDTO;
 import tech.alexchen.zeus.upms.entity.SysMenu;
 
-import javax.validation.Valid;
 import java.util.List;
 
 /**

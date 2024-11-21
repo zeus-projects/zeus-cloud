@@ -2,6 +2,7 @@ package tech.alexchen.zeus.upms.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tech.alexchen.zeus.common.core.response.R;
@@ -14,7 +15,6 @@ import tech.alexchen.zeus.upms.convert.SysRoleConverter;
 import tech.alexchen.zeus.upms.entity.SysRole;
 import tech.alexchen.zeus.upms.service.SysRoleService;
 
-import javax.validation.Valid;
 import java.util.Set;
 
 /**

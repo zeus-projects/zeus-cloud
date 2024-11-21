@@ -1,3 +1,12 @@
+DROP DATABASE IF EXISTS `seata_server`;
+
+create database `seata_server` default character set utf8mb4 collate utf8mb4_0900_ai_ci;
+
+USE seata_server;
+
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
+
 -- -------------------------------- The script used when storeMode is 'db' --------------------------------
 -- the table to store GlobalSession data
 CREATE TABLE IF NOT EXISTS `global_table`
