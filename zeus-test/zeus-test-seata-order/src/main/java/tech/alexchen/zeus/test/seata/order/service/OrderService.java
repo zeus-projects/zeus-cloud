@@ -1,13 +1,13 @@
 package tech.alexchen.zeus.test.seata.order.service;
 
 import io.seata.spring.annotation.GlobalTransactional;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tech.alexchen.zeus.test.seata.order.entity.Order;
 import tech.alexchen.zeus.test.seata.order.feign.StockFeignClient;
 import tech.alexchen.zeus.test.seata.order.mapper.OrderMapper;
 
-import javax.annotation.Resource;
 import java.math.BigDecimal;
 
 /**

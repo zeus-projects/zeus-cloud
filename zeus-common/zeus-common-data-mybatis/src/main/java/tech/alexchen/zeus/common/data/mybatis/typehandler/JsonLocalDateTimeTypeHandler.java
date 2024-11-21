@@ -1,7 +1,6 @@
 package tech.alexchen.zeus.common.data.mybatis.typehandler;
 
 import com.baomidou.mybatisplus.extension.handlers.AbstractJsonTypeHandler;
-import org.apache.ibatis.type.BaseTypeHandler;
 
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;

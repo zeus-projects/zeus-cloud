@@ -1,10 +1,10 @@
 package tech.alexchen.zeus.test.kafka.producer.controller;
 
 import cn.hutool.core.util.StrUtil;
+import jakarta.annotation.Resource;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.test.kafka.producer.entity.KafkaMessage;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.BiConsumer;
 
 /**
  * @author alexchen

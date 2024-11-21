@@ -3,6 +3,7 @@ package tech.alexchen.zeus.upms.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.lang.Assert;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,6 @@ import tech.alexchen.zeus.upms.mapper.SysUserMapper;
 import tech.alexchen.zeus.upms.service.SysRoleService;
 import tech.alexchen.zeus.upms.service.SysUserService;
 
-import jakarta.validation.Valid;
 import java.util.Set;
 
 /**

@@ -3,11 +3,8 @@ package tech.alexchen.zeus.common.security.resource.component;
 import cn.hutool.core.util.ArrayUtil;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.stereotype.Component;
 import org.springframework.util.PatternMatchUtils;
 import org.springframework.util.StringUtils;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
 import tech.alexchen.zeus.common.security.core.SecurityUtil;
 
 import java.util.Collection;

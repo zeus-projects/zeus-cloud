@@ -8,11 +8,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.ServletRequestUtils;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-import tech.alexchen.zeus.common.security.core.SecurityConstants;
 import tech.alexchen.zeus.common.security.core.SecurityUtil;
 import tech.alexchen.zeus.common.security.resource.annotation.Inner;
 

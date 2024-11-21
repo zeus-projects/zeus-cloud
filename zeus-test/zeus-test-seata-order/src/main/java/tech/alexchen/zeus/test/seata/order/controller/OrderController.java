@@ -1,11 +1,10 @@
 package tech.alexchen.zeus.test.seata.order.controller;
 
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.test.seata.order.service.OrderService;
-
-import javax.annotation.Resource;
 
 /**
  * @author alexchen

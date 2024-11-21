@@ -1,12 +1,11 @@
 package tech.alexchen.zeus.test.seata.stock.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tech.alexchen.zeus.test.seata.stock.entity.Stock;
 import tech.alexchen.zeus.test.seata.stock.mapper.StockMapper;
-
-import javax.annotation.Resource;
 
 /**
  * @author alexchen

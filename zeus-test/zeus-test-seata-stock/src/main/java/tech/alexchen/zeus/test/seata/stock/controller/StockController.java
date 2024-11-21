@@ -1,12 +1,11 @@
 package tech.alexchen.zeus.test.seata.stock.controller;
 
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.test.seata.stock.service.StockService;
-
-import javax.annotation.Resource;
 
 /**
  * @author alexchen
