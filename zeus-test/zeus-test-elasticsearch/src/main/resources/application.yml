@@ -11,9 +11,10 @@ spring:
       config:
         enabled: false
 #        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+#        file-extension: yaml
 #  config:
 #    import:
-#      - optional:nacos:${spring.application.name}.yml
+#      - optional:nacos:${spring.application.name}-${spring.profiles.active}.${file-extension}
   elasticsearch:
     uris: http://zeus-es:9200
 

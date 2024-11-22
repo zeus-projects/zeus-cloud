@@ -14,8 +14,9 @@ spring:
         server-addr: ${NACOS_HOST:zeus-nacos}:${NACOS_PORT:8848}
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: yaml
   config:
     import:
-      - optional:nacos:zeus-common.yml
-      - optional:nacos:${spring.application.name}.yml
+      - optional:nacos:application-${spring.profiles.active}.${file-extension}
+      - optional:nacos:${spring.application.name}-${spring.profiles.active}.${file-extension}
 

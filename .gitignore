@@ -39,3 +39,4 @@ build/
 /plugins/nacos/bin/derby.log
 /plugins/nacos/data/
 /plugins/nacos/logs/
+/derby.log
