@@ -20,7 +20,6 @@
 
     <modules>
         <module>zeus-auth</module>
-        <module>zeus-nacos</module>
         <module>zeus-upms</module>
         <module>zeus-gateway</module>
     </modules>

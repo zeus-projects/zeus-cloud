@@ -1,22 +1,21 @@
 server:
   port: 8000
 
-
-
 spring:
   application:
     name: @artifactId@
   cloud:
     nacos:
+      username: nacos
+      password: nacos
       discovery:
         server-addr: ${NACOS_HOST:zeus-nacos}:${NACOS_PORT:8848}
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
-        file-extension: yaml
   config:
     import:
-      - optional:nacos:application-${spring.profiles.active}.${file-extension}
-      - optional:nacos:${spring.application.name}-${spring.profiles.active}.${file-extension}
+      - optional:nacos:application.yaml
+#      - optional:nacos:${spring.application.name}.yaml
   security:
     oauth2:
       resourceserver:
@@ -24,3 +23,10 @@ spring:
           introspection-uri: http://zeus-gateway:9000/oauth2/introspect
           client-id: zeus
           client-secret: zeus
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: zeus
+      password: 1qaz@wsx?S
+      url: jdbc:mysql://47.106.253.235:3306/zeus_upms

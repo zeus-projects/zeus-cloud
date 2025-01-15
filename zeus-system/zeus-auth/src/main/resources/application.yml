@@ -10,13 +10,13 @@ spring:
     name: @artifactId@
   cloud:
     nacos:
+      username: nacos
+      password: nacos
       discovery:
         server-addr: ${NACOS_HOST:zeus-nacos}:${NACOS_PORT:8848}
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
-        file-extension: yaml
   config:
     import:
-      - optional:nacos:application-${spring.profiles.active}.${file-extension}
-      - optional:nacos:${spring.application.name}-${spring.profiles.active}.${file-extension}
-
+      - optional:nacos:application.yaml
+      - optional:nacos:${spring.application.name}.yaml
