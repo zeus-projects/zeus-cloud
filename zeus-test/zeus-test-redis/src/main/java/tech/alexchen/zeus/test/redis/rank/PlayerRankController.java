@@ -29,15 +29,16 @@ public class PlayerRankController {
         operations.add(KEY, player.getUsername(), player.getScore());
         return R.ok(true);
     }
+
     @GetMapping
-    public R<Long> rank(String username) {
+    public R<Long> rank(@RequestParam(value = "username") String username) {
         ZSetOperations<String, String> operations = template.opsForZSet();
         Long rank = operations.reverseRank(KEY, username);
         return R.ok(rank);
     }
 
     @GetMapping("/top")
-    public R<Collection<String>> topN(Long n) {
+    public R<Collection<String>> topN(@RequestParam(value = "n") Long n) {
         ZSetOperations<String, String> operations = template.opsForZSet();
         // 获取前 5 名
         Set<String> range = operations.reverseRange(KEY, 0, n);

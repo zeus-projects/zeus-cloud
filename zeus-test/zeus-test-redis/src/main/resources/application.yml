@@ -6,15 +6,13 @@ spring:
     name: @artifactId@
   cloud:
     nacos:
+      username: nacos
+      password: nacos
       discovery:
         server-addr: ${NACOS_HOST:zeus-nacos}:${NACOS_PORT:8848}
-#      config:
-#        server-addr: ${spring.cloud.nacos.discovery.server-addr}
-#        file-extension: yaml
-#  config:
-#    import:
-#      - optional:nacos:${spring.application.name}-${spring.profiles.active}.${file-extension}
-  redis:
-    host: zeus-redis
-    port: 16379
-    password: 1qaz@wsx?S
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+  config:
+    import:
+      - optional:nacos:application.yaml
+      - optional:nacos:${spring.application.name}.yaml

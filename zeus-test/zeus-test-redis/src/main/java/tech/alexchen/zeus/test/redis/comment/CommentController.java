@@ -42,7 +42,7 @@ public class CommentController {
     }
 
     @GetMapping
-    public R<List<Comment>> latestComments(@RequestParam String videoId) {
+    public R<List<Comment>> latestComments(@RequestParam(value = "videoId") String videoId) {
         ListOperations<String, String> listOperations = template.opsForList();
         List<String> list = listOperations.range(videoId, 0, RANGE - 1);
         if (CollUtil.isEmpty(list)) {
