@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * client 管理
+ *
  * @author alexchen
  */
 @Component

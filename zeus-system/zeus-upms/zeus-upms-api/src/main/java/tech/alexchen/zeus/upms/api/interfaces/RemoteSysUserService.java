@@ -5,13 +5,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import tech.alexchen.zeus.common.core.response.R;
+import tech.alexchen.zeus.common.feign.constants.FeignClientConstant;
 import tech.alexchen.zeus.upms.api.dto.SysUserAuthDTO;
 
 /**
  * @author alexchen
  */
 @Component
-@FeignClient(contextId = "remoteSysUserService", value = "zeus-upms-biz")
+@FeignClient(contextId = "remoteSysUserService", value = FeignClientConstant.UPMS)
 public interface RemoteSysUserService {
 
     /**

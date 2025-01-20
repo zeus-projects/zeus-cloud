@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.test.redis.lock;
+package tech.alexchen.zeus.test.data.redis.lock;
 
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;

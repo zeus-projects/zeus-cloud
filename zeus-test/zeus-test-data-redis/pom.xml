@@ -5,12 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>tech.alexchen</groupId>
-        <artifactId>zeus-system</artifactId>
+        <artifactId>zeus-test</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>zeus-auth</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>zeus-test-data-redis</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -27,30 +26,9 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <!-- 授权服务器 -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-oauth2-authorization-server</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-json</artifactId>
-        </dependency>
         <dependency>
             <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-common-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-common-security</artifactId>
+            <artifactId>zeus-common-web</artifactId>
         </dependency>
         <dependency>
             <groupId>tech.alexchen</groupId>
@@ -58,15 +36,7 @@
         </dependency>
         <dependency>
             <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-common-feign</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>tech.alexchen</groupId>
             <artifactId>zeus-common-log</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>tech.alexchen</groupId>
-            <artifactId>zeus-upms-api</artifactId>
         </dependency>
     </dependencies>
 </project>

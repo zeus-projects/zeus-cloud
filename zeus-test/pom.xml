@@ -18,9 +18,10 @@
         <module>zeus-test-elasticsearch</module>
         <module>zeus-test-seata-order</module>
         <module>zeus-test-seata-stock</module>
-        <module>zeus-test-redis</module>
+        <module>zeus-test-data-redis</module>
         <module>zeus-test-common-web</module>
         <module>zeus-test-security-client</module>
+        <module>zeus-test-data-mybatis</module>
     </modules>
 
     <properties>

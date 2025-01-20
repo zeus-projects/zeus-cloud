@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.test.redis.rank;
+package tech.alexchen.zeus.test.data.redis.rank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

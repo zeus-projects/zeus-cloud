@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.test.redis.comment;
+package tech.alexchen.zeus.test.data.redis.comment;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.IdUtil;
@@ -6,7 +6,12 @@ import cn.hutool.json.JSONUtil;
 import jakarta.annotation.Resource;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import tech.alexchen.zeus.common.core.response.R;
 
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package tech.alexchen.zeus.test.redis.comment;
+package tech.alexchen.zeus.test.data.redis.comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

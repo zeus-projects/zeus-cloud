@@ -14,8 +14,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import tech.alexchen.zeus.common.security.resource.component.InnerAspect;
 import tech.alexchen.zeus.common.security.resource.component.PermissionService;
 
-import java.util.stream.Collectors;
-
 /**
  * @author alexchen
  */
@@ -36,7 +34,7 @@ public class ResourceServerAutoConfiguration {
         AntPathRequestMatcher[] requestMatchers = properties.getPermitUrls()
                 .stream()
                 .map(AntPathRequestMatcher::new)
-                .collect(Collectors.toList())
+                .toList()
                 .toArray(new AntPathRequestMatcher[]{});
 
         http.authorizeHttpRequests(authorize -> authorize
