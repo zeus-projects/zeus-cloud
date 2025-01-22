@@ -80,7 +80,7 @@ public class SysDeptServiceImpl implements SysDeptService {
             tree.setId(dept.getId());
             tree.setName(dept.getName());
             tree.setParentId(dept.getParentId());
-            tree.setWeight(dept.getWeight());
+            tree.setWeight(dept.getSort());
             tree.putExtra(CREATE_TIME, dept.getCreateTime().format(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN)));
         });
     }

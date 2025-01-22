@@ -20,6 +20,6 @@ spring:
     oauth2:
       resourceserver:
         opaque-token:
-          introspection-uri: http://zeus-gateway:9000/oauth2/introspect
+          introspection-uri: http://zeus-auth:9000/oauth2/introspect
           client-id: zeus
           client-secret: zeus

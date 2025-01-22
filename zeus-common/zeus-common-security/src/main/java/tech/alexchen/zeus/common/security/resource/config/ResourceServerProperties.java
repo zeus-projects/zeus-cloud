@@ -13,7 +13,12 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import tech.alexchen.zeus.common.security.resource.annotation.Inner;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 /**
@@ -25,10 +30,13 @@ import java.util.regex.Pattern;
 public class ResourceServerProperties implements InitializingBean, Ordered {
 
     public final static String PREFIX = "spring.security.oauth2.resourceserver";
-    private static final String[] DEFAULT_IGNORE_URLS = new String[] { "/actuator/**", "/error", "/v3/api-docs" };
+
+    private static final String[] DEFAULT_IGNORE_URLS = new String[] { "/actuator/**", "/error", "/v3/api-docs/**", "/swagger-ui/**" };
+
     private static final Pattern PATTERN = Pattern.compile("\\{(.*?)\\}");
 
     private TokenProperties opaqueToken = new TokenProperties();
+
     private Set<String> permitUrls = new HashSet<>();
 
     @Override

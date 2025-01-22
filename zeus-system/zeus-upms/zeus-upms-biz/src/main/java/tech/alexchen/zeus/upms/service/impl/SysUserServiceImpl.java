@@ -65,6 +65,9 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public SysUserAuthDTO getUserAuthInfo(String username) {
         SysUser user = getUserByName(username);
+        if (user == null) {
+            return null;
+        }
 
         Set<Long> roles = user.getRoles();
         Set<String> permissions = roleService.getRolePermissions(roles);

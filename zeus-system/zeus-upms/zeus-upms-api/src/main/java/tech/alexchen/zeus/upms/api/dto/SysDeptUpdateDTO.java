@@ -44,5 +44,5 @@ public class SysDeptUpdateDTO {
      */
     @Schema(description = "排序", example = "1")
     @NotNull(message = "排序不能为空")
-    private Integer weight;
+    private Integer sort;
 }

@@ -16,9 +16,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <logback.version>1.4.14</logback.version>
         <servlet.api.version>2.5</servlet.api.version>
-        <springdoc.version>1.7.0</springdoc.version>
-        <swagger.core.version>2.2.8</swagger.core.version>
-        <knife4j.version>4.1.0</knife4j.version>
+        <springdoc.version>2.6.0</springdoc.version>
+        <swagger.core.version>2.2.22</swagger.core.version>
+        <knife4j.version>4.4.0</knife4j.version>
         <mysql.connector.version>8.0.30</mysql.connector.version>
         <mybatis-plus.version>3.5.9</mybatis-plus.version>
         <druid.version>1.2.9</druid.version>
@@ -60,54 +60,35 @@
                 <artifactId>servlet-api</artifactId>
                 <version>${servlet.api.version}</version>
             </dependency>
-            <!-- 接口文档-->
+            <!-- springdoc 接口文档：https://springdoc.org/#getting-started -->
             <dependency>
                 <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-ui</artifactId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${springdoc.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-webmvc-core</artifactId>
+                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
                 <version>${springdoc.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-webflux-ui</artifactId>
-                <version>${springdoc.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-webflux-core</artifactId>
-                <version>${springdoc.version}</version>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/com.github.xiaoymin/knife4j-openapi3-spring-boot-starter -->
+            <!-- https://doc.xiaominfo.com/docs/quick-start -->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.swagger.core.v3</groupId>
-                <artifactId>swagger-annotations</artifactId>
+                <artifactId>swagger-annotations-jakarta</artifactId>
                 <version>${swagger.core.version}</version>
             </dependency>
-            <!-- 开发组件依赖 -->
+            <!-- Mysql 驱动 -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.connector.version}</version>
             </dependency>
-            <!-- <dependency> -->
-            <!--     <groupId>com.baomidou</groupId> -->
-            <!--     <artifactId>mybatis-plus-spring-boot3-starter</artifactId> -->
-            <!--     <version>${mybatis-plus.version}</version> -->
-            <!-- </dependency> -->
-            <!-- <dependency> -->
-            <!--     <groupId>com.baomidou</groupId> -->
-            <!--     <artifactId>mybatis-plus-jsqlparser</artifactId> -->
-            <!--     <version>${mybatis-plus.version}</version> -->
-            <!-- </dependency> -->
+            <!-- mybatis-plus: https://baomidou.com/introduce/ -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-bom</artifactId>
@@ -121,7 +102,7 @@
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
-            <!-- mapstruct -->
+            <!-- mapstruct: https://mapstruct.org/ -->
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId> <!-- use mapstruct-jdk8 for Java 8 or higher -->

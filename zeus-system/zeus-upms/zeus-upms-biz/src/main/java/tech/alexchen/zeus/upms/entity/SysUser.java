@@ -1,11 +1,15 @@
 package tech.alexchen.zeus.upms.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.apache.ibatis.type.JdbcType;
+import tech.alexchen.zeus.common.data.mybatis.pojo.BaseEntity;
 import tech.alexchen.zeus.common.data.mybatis.typehandler.JsonLongSetTypeHandler;
 
 import java.io.Serializable;
@@ -17,11 +21,12 @@ import java.util.Set;
  * @author alexchen
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Schema
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName(value = "sys_user", autoResultMap = true)
-public class SysUser implements Serializable {
+public class SysUser extends BaseEntity implements Serializable {
 
     /**
      * 用户ID
@@ -38,11 +43,6 @@ public class SysUser implements Serializable {
      * 密码
      */
     private String password;
-
-    /**
-     * 盐值
-     */
-    private String salt;
 
     /**
      * 真实姓名
@@ -105,33 +105,4 @@ public class SysUser implements Serializable {
      */
     private LocalDateTime loginDate;
 
-    /**
-     * 创建人
-     */
-    @TableField(fill = FieldFill.INSERT, jdbcType = JdbcType.VARCHAR)
-    private String createBy;
-
-    /**
-     * 创建时间
-     */
-    @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createTime;
-
-    /**
-     * 更新人
-     */
-    @TableField(fill = FieldFill.INSERT_UPDATE, jdbcType = JdbcType.VARCHAR)
-    private String updateBy;
-
-    /**
-     * 最后更新时间
-     */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime updateTime;
-
-    /**
-     * 逻辑删除
-     */
-    @TableLogic
-    private Integer deleted;
 }

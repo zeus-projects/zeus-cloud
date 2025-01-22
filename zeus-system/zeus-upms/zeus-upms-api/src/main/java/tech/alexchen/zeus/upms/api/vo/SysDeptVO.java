@@ -38,7 +38,7 @@ public class SysDeptVO {
      * 排序
      */
     @Schema(description = "排序")
-    private Integer weight;
+    private Integer sort;
 
     /**
      * 创建时间
