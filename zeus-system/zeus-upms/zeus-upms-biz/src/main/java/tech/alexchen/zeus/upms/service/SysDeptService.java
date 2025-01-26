@@ -3,9 +3,6 @@ package tech.alexchen.zeus.upms.service;
 import cn.hutool.core.lang.tree.Tree;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
-import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
-import tech.alexchen.zeus.upms.api.dto.SysDeptQueryDTO;
 import tech.alexchen.zeus.upms.api.dto.SysDeptSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysDeptUpdateDTO;
 import tech.alexchen.zeus.upms.entity.SysDept;
@@ -46,15 +43,6 @@ public interface SysDeptService {
      * @return SysDept
      */
     SysDept getDeptById(@NotNull Long id);
-
-    /**
-     * 分页查询部门
-     *
-     * @param page 分页信息
-     * @param dto  查询条件
-     * @return 分页数据
-     */
-    PageResult<SysDept> getDeptPage(PageParam page, SysDeptQueryDTO dto);
 
     /**
      * 返回部门列表

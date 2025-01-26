@@ -108,4 +108,13 @@ public class SysUserController {
         PageResult<SysUserVO> pageVO = converter.toPageVO(userPage);
         return R.ok(pageVO);
     }
+
+    /**
+     * 查询当前登录用户的信息
+     */
+    @GetMapping("/currentUser")
+    @Operation(summary = "查询当前登录用户的信息")
+    public R<SysUserAuthDTO> getCurrentUserInfo() {
+        return R.ok(sysUserService.getCurrentUserInfo());
+    }
 }

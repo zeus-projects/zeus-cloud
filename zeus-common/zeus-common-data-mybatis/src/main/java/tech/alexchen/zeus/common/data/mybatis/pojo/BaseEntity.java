@@ -3,6 +3,7 @@ package tech.alexchen.zeus.common.data.mybatis.pojo;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.apache.ibatis.type.JdbcType;
@@ -44,6 +45,7 @@ public class BaseEntity {
     /**
      * 逻辑删除
      */
+    @JsonIgnore
     @TableLogic
     private Integer deleted;
 

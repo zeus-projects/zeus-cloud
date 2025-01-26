@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tech.alexchen.zeus.upms.mapper.SysDeptMapper">
+
+    <select id="selectDeptListByParentId" resultType="tech.alexchen.zeus.upms.entity.SysDept">
+        WITH RECURSIVE dept_cte AS (
+            SELECT id, name, parent_id, sort
+            FROM sys_dept
+            WHERE parent_id = #{parentId}
+
+            UNION ALL
+
+            SELECT d.id, d.name, d.parent_id, d.sort
+            FROM sys_dept d
+                     INNER JOIN dept_cte cte ON d.parent_id = cte.id
+            WHERE d.deleted = 0
+        )
+        SELECT * FROM dept_cte;
+    </select>
+</mapper>

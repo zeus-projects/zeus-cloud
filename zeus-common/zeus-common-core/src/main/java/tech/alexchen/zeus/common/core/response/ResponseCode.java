@@ -24,4 +24,8 @@ public class ResponseCode {
      */
     private String message;
 
+    public static ResponseCode of(String code, String message) {
+        return new ResponseCode(code, message);
+    }
+
 }

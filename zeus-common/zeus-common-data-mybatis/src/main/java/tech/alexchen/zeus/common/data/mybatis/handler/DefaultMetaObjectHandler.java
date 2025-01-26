@@ -2,8 +2,12 @@ package tech.alexchen.zeus.common.data.mybatis.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * 默认字段自动填充设置
@@ -12,22 +16,36 @@ import java.time.LocalDateTime;
  */
 public class DefaultMetaObjectHandler implements MetaObjectHandler {
 
-    private static final String CREATE_BY = "admin";
-    private static final String UPDATE_BY = "admin";
+    private static final String SYSTEM_DEFAULT_USER = "system";
 
     @Override
     public void insertFill(MetaObject metaObject) {
         LocalDateTime current = LocalDateTime.now();
-        // 先写死，之后需要从 token 中获取当前操作用户
-        this.strictInsertFill(metaObject, "createBy", String.class, CREATE_BY);
+        this.strictInsertFill(metaObject, "createBy", String.class, getUserName());
         this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, current);
-        this.strictInsertFill(metaObject, "updateBy", String.class, UPDATE_BY);
+        this.strictInsertFill(metaObject, "updateBy", String.class, getUserName());
         this.strictInsertFill(metaObject, "updateTime", LocalDateTime.class, current);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        this.strictUpdateFill(metaObject, "updateBy", String.class, UPDATE_BY);
+        this.strictUpdateFill(metaObject, "updateBy", String.class, getUserName());
         this.strictUpdateFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
+    }
+
+    /**
+     * 获取 spring security 当前的用户名
+     * @return 当前用户名
+     */
+    private String getUserName() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 匿名接口直接返回
+        if (authentication instanceof AnonymousAuthenticationToken) {
+            return null;
+        }
+        if (Optional.ofNullable(authentication).isPresent()) {
+            return authentication.getName();
+        }
+        return null;
     }
 }

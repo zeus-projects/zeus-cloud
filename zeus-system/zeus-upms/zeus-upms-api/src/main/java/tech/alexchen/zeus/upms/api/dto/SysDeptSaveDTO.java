@@ -29,7 +29,7 @@ public class SysDeptSaveDTO implements Serializable {
     /**
      * 上级部门 ID
      */
-    @Schema(description = "上级部门 ID", example = "1")
+    @Schema(description = "上级部门 ID", example = "0")
     @NotNull(message = "上级部门 id 不能为空")
     @Min(value = 0, message = "上级部门 id 不能小于 0")
     private Long parentId;

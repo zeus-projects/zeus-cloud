@@ -10,10 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import tech.alexchen.zeus.common.core.exception.ServerException;
-import tech.alexchen.zeus.common.core.exception.ServiceException;
-import tech.alexchen.zeus.common.core.exception.ThirdPartyServiceException;
-import tech.alexchen.zeus.common.core.exception.ZeusRuntimeException;
+import tech.alexchen.zeus.common.core.exception.ResponsiveRuntimeException;
 import tech.alexchen.zeus.common.core.response.R;
 
 import java.util.List;
@@ -89,11 +86,11 @@ public class WebMvcExceptionHandler {
      * @param e 异常
      * @return R
      */
-    @ExceptionHandler({ServiceException.class, ServerException.class, ThirdPartyServiceException.class})
+    @ExceptionHandler({ResponsiveRuntimeException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public <T extends ZeusRuntimeException> R<String> handleServiceException(T e) {
+    public <T extends ResponsiveRuntimeException> R<String> handleServiceException(T e) {
         log.error("业务异常, Exception: {}", e.getMessage());
-        return R.build(e.getCode(), e.getMessage(), null);
+        return R.build(e.getErrorCode(), e.getMessage(), null);
     }
 
 }

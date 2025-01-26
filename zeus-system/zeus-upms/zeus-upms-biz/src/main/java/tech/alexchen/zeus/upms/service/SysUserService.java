@@ -53,4 +53,10 @@ public interface SysUserService {
      * 分页查询用户信息
      */
     PageResult<SysUser> getUserPage(PageParam param);
+
+    /**
+     * 查询当前登录用户的信息
+     */
+    SysUserAuthDTO getCurrentUserInfo();
+
 }

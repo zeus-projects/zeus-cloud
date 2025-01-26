@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
+import tech.alexchen.zeus.common.security.core.AuthUser;
+import tech.alexchen.zeus.common.security.core.SecurityUtil;
 import tech.alexchen.zeus.upms.api.dto.SysUserAuthDTO;
 import tech.alexchen.zeus.upms.api.dto.SysUserSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysUserUpdateDTO;
@@ -81,6 +83,12 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public PageResult<SysUser> getUserPage(PageParam param) {
         return mapper.selectPage(param, null);
+    }
+
+    @Override
+    public SysUserAuthDTO getCurrentUserInfo() {
+        AuthUser user = SecurityUtil.getUser();
+        return BeanUtil.copyProperties(user, SysUserAuthDTO.class);
     }
 
     private void checkDuplicateUserInfo(String username, String phone) {

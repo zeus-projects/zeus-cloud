@@ -7,8 +7,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.upms.api.dto.SysDeptSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysDeptUpdateDTO;
@@ -37,7 +43,6 @@ public class SysDeptController {
     /**
      * 创建部门
      */
-    @PreAuthorize("pms.hasPermission('sys_dept.write')")
     @PostMapping
     @Operation(summary = "创建部门", description = "创建部门接口，创建成功后返回部门 id")
     public R<Long> save(@Valid @RequestBody SysDeptSaveDTO dto) {
@@ -47,7 +52,6 @@ public class SysDeptController {
     /**
      * 更新部门
      */
-    @PreAuthorize("pms.hasPermission('sys_dept.write')")
     @PutMapping
     @Operation(summary = "更新部门", description = "更新部门信息")
     public R<Boolean> update(@Valid @RequestBody SysDeptUpdateDTO dto) {
@@ -58,12 +62,11 @@ public class SysDeptController {
     /**
      * 删除部门
      */
-    @PreAuthorize("pms.hasPermission('sys_dept.write')")
-    @DeleteMapping("/{id}")
-    @Operation(summary = "删除部门", parameters = {
+    @DeleteMapping
+    @Operation(summary = "删除部门", description = "根据部门 id 删除部门", parameters = {
             @Parameter(description = "部门 ID", example = "1")
     })
-    public R<Boolean> removeById(@PathVariable @NotNull(message = "部门 id 不能为空") Long id) {
+    public R<Boolean> removeById(@RequestParam("id") @NotNull(message = "部门 id 不能为空") Long id) {
         sysDeptService.removeDept(id);
         return R.ok(true);
     }
@@ -71,11 +74,11 @@ public class SysDeptController {
     /**
      * 查询部门详情
      */
-    @GetMapping("/{id}")
-    @Operation(summary = "查询部门详情", parameters = {
+    @GetMapping
+    @Operation(summary = "查询部门详情", description = "根据部门 id 查询部门详情", parameters = {
             @Parameter(description = "部门 ID", example = "1")
     })
-    public R<SysDeptVO> getById(@PathVariable @NotNull(message = "部门 id 不能为空") Long id) {
+    public R<SysDeptVO> getById(@RequestParam("id") @NotNull(message = "部门 id 不能为空") Long id) {
         SysDept dept = sysDeptService.getDeptById(id);
         return R.ok(converter.toVO(dept));
     }
@@ -84,10 +87,10 @@ public class SysDeptController {
      * 查询部门列表
      */
     @GetMapping("/list")
-    @Operation(summary = "查询部门列表", parameters = {
+    @Operation(summary = "查询部门列表", description = "查询指定部门及其各级子部门列表", parameters = {
             @Parameter(description = "父级部门 id", example = "0")
     })
-    public R<List<SysDeptVO>> list(Long parentId) {
+    public R<List<SysDeptVO>> list(@RequestParam("parentId") Long parentId) {
         List<SysDeptVO> voList = converter.toVOList(sysDeptService.getDeptListByParentId(parentId));
         return R.ok(voList);
     }
@@ -96,10 +99,10 @@ public class SysDeptController {
      * 查询部门列表树
      */
     @GetMapping("/tree")
-    @Operation(summary = "查询部门列表树", parameters = {
+    @Operation(summary = "查询部门列表树", description = "查询部门指定父节点开始的部门树", parameters = {
             @Parameter(description = "父级部门 id", example = "0")
     })
-    public R<List<Tree<Long>>> tree(Long parentId) {
+    public R<List<Tree<Long>>> tree(@RequestParam("parentId") Long parentId) {
         List<Tree<Long>> tree = sysDeptService.getDeptTreeByParentId(parentId);
         return R.ok(tree);
     }

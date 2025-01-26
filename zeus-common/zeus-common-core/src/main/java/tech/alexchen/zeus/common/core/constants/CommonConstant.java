@@ -21,7 +21,8 @@ public interface CommonConstant {
     String CREATE_TIME = "createTime";
 
     /**
-     * 时间格式
+     * 排序
      */
-    String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    String SORT = "sort";
+
 }
