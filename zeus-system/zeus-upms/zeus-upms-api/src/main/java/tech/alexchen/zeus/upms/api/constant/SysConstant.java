@@ -10,4 +10,8 @@ public interface SysConstant {
      */
     Long ROOT_DEPT_ID = 0L;
 
+    /**
+     * 根菜单 id
+     */
+    Long ROOT_MENU_ID = 0L;
 }

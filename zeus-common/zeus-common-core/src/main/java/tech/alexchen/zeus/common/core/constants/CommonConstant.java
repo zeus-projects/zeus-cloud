@@ -15,14 +15,4 @@ public interface CommonConstant {
      */
     Integer DISABLE = 1;
 
-    /**
-     * 创建时间
-     */
-    String CREATE_TIME = "createTime";
-
-    /**
-     * 排序
-     */
-    String SORT = "sort";
-
 }

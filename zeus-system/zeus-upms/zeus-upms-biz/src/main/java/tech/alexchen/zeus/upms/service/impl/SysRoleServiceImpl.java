@@ -54,7 +54,6 @@ public class SysRoleServiceImpl implements SysRoleService {
     @Override
     public void updateRoleMenus(Long roleId, Set<Long> menus) {
         SysRole role = mapper.selectById(roleId);
-        role.setMenus(menus);
         mapper.updateById(role);
     }
 

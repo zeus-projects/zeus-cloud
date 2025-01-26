@@ -1,7 +1,6 @@
 package tech.alexchen.zeus.upms.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -10,12 +9,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import tech.alexchen.zeus.common.data.mybatis.pojo.BaseEntity;
-import tech.alexchen.zeus.common.data.mybatis.typehandler.JsonLongSetTypeHandler;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 /**
  * @author alexchen
@@ -80,17 +77,6 @@ public class SysUser extends BaseEntity implements Serializable {
     private String avatar;
 
     /**
-     * 部门ID
-     */
-    private Long deptId;
-
-    /**
-     * 角色列表
-     */
-    @TableField(typeHandler = JsonLongSetTypeHandler.class)
-    private Set<Long> roles;
-
-    /**
      * 状态（0：正常 1：冻结）
      */
     private Integer status;
@@ -98,11 +84,11 @@ public class SysUser extends BaseEntity implements Serializable {
     /**
      * 最后登录IP
      */
-    private String loginIp;
+    private String lastLoginIp;
 
     /**
      * 最后登录时间
      */
-    private LocalDateTime loginDate;
+    private LocalDateTime lastLoginDatetime;
 
 }

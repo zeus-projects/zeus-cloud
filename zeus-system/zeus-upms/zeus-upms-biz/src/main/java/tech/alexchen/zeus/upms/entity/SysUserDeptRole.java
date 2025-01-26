@@ -13,51 +13,37 @@ import tech.alexchen.zeus.common.data.mybatis.pojo.BaseEntity;
 import java.io.Serializable;
 
 /**
- * 角色
+ * 用户部门角色关联记录
  *
  * @author alexchen
+ * @since 2025-01-26 16:23
  */
 @Data
 @Schema
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@TableName(value = "sys_role", autoResultMap = true)
-public class SysRole extends BaseEntity implements Serializable {
+@TableName(value = "sys_user_dept_role", autoResultMap = true)
+public class SysUserDeptRole extends BaseEntity implements Serializable {
 
     /**
-     * 角色 id
+     * 记录自增ID
      */
     @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
-     * 角色名称
+     * 用户ID
      */
-    private String name;
+    private Long userId;
 
     /**
-     * 角色描述
+     * 部门ID
      */
-    private String description;
+    private Long deptId;
 
     /**
-     * 角色权限编码
+     * 角色ID
      */
-    private String permission;
-
-    /**
-     * 数据权限（0:全部数据权限;1:本部门及子部门数据权限;2:本部门数据权限;3:本人数据权限）
-     */
-    private Integer dataScope;
-
-    /**
-     * 状态（0：正常 1：停用）
-     */
-    private Integer status;
-
-    /**
-     * 排序
-     */
-    private Integer sort;
+    private Long roleId;
 }

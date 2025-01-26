@@ -5,7 +5,6 @@ import cn.hutool.core.lang.tree.TreeUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tech.alexchen.zeus.common.core.constants.CommonConstant;
 import tech.alexchen.zeus.common.core.exception.ResponsiveRuntimeException;
 import tech.alexchen.zeus.upms.api.constant.SysConstant;
 import tech.alexchen.zeus.upms.api.constant.UpmsResponseCode;
@@ -79,7 +78,7 @@ public class SysDeptServiceImpl implements SysDeptService {
             tree.setName(dept.getName());
             tree.setParentId(dept.getParentId());
             tree.setWeight(dept.getSort());
-            tree.putExtra(CommonConstant.SORT, dept.getSort());
+            tree.putExtra("sort", dept.getSort());
         });
     }
 

@@ -1,11 +1,18 @@
 package tech.alexchen.zeus.upms.controller;
 
+import cn.hutool.core.lang.tree.Tree;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.upms.api.dto.SysMenuSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysMenuUpdateDTO;
@@ -50,9 +57,9 @@ public class SysMenuController {
     /**
      * 删除菜单
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping
     @Operation(summary = "删除菜单")
-    public R<Boolean> remove(@PathVariable @Valid @NotNull Long id) {
+    public R<Boolean> remove(@RequestParam("id") Long id) {
         menuService.removeMenuById(id);
         return R.ok(true);
     }
@@ -60,20 +67,19 @@ public class SysMenuController {
     /**
      * 查询菜单详情
      */
-    @GetMapping("/{id}")
+    @GetMapping
     @Operation(summary = "查询菜单详情")
-    public R<SysMenuVO> getMenuById(@PathVariable @Valid @NotNull Long id) {
+    public R<SysMenuVO> getMenuById(@RequestParam("id") Long id) {
         SysMenu menu = menuService.getMenuById(id);
         return R.ok(converter.toVO(menu));
     }
 
     /**
-     * 查询菜单列表
+     * 查询菜单树
      */
-    @GetMapping("/list")
-    @Operation(summary = "查询菜单列表")
-    public R<List<SysMenuVO>> list() {
-        List<SysMenu> menus = menuService.getMenuList();
-        return R.ok(converter.toSysMenuVOList(menus));
+    @GetMapping("/tree")
+    @Operation(summary = "查询菜单树")
+    public R<List<Tree<Long>>> getMenuTree(@RequestParam("parentId") Long parentId) {
+        return R.ok(menuService.getMenuTree(parentId));
     }
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tech.alexchen.zeus.upms.mapper.SysMenuMapper">
+
+    <select id="selectMenuListByParentId" resultType="tech.alexchen.zeus.upms.entity.SysMenu">
+
+    </select>
+    <select id="selectMenusByParentId" resultType="tech.alexchen.zeus.upms.entity.SysMenu">
+        WITH RECURSIVE menu_cte AS (
+            SELECT id, name, parent_id, sort, type, permission, path, icon, component
+            FROM sys_menu
+            WHERE parent_id = #{parentId}
+            UNION ALL
+            SELECT d.id, d.name, d.parent_id, d.sort, d.type, d.permission, d.path, d.icon, d.component
+            FROM sys_menu d
+                     INNER JOIN menu_cte cte ON d.parent_id = cte.id
+            WHERE d.deleted = 0
+        )
+        SELECT * FROM menu_cte;
+    </select>
+</mapper>

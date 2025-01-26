@@ -23,7 +23,7 @@ public class SysRoleSaveDTO {
      * 角色名称
      */
     @NotBlank(message = "角色名称不能为空")
-    @Length(max = 64, message = "长度不能超过64")
+    @Length(max = 255, message = "长度不能超过255")
     @Schema(description = "角色名称")
     private String name;
 

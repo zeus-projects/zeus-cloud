@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
 
@@ -24,6 +25,7 @@ public class SysDeptSaveDTO implements Serializable {
      */
     @Schema(description = "部门名称", example = "平台部")
     @NotBlank(message = "部门名称不能为空")
+    @Length(max = 255, message = "长度不能超过255")
     private String name;
 
     /**

@@ -1,5 +1,6 @@
 package tech.alexchen.zeus.upms.service;
 
+import cn.hutool.core.lang.tree.Tree;
 import jakarta.validation.Valid;
 import tech.alexchen.zeus.upms.api.dto.SysMenuSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysMenuUpdateDTO;
@@ -41,9 +42,9 @@ public interface SysMenuService {
     SysMenu getMenuById(Long id);
 
     /**
-     * 获取菜单列表
+     * 获取菜单树
      */
-    List<SysMenu> getMenuList();
+    List<Tree<Long>> getMenuTree(Long parentId);
 
 
 }
