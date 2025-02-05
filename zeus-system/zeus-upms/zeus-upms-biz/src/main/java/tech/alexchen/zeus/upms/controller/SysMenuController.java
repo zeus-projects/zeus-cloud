@@ -71,7 +71,10 @@ public class SysMenuController {
     @Operation(summary = "查询菜单详情")
     public R<SysMenuVO> getMenuById(@RequestParam("id") Long id) {
         SysMenu menu = menuService.getMenuById(id);
-        return R.ok(converter.toVO(menu));
+        if (menu != null) {
+            return R.ok(converter.toVO(menu));
+        }
+        return R.fail("菜单未找到", null);
     }
 
     /**

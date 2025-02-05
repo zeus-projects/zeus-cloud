@@ -3,12 +3,18 @@ package tech.alexchen.zeus.common.web.config;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -69,9 +75,9 @@ public class DateTimeConfiguration {
             // JSR 310日期时间处理
             JavaTimeModule module = new JavaTimeModule();
             // LocalDateTime
-//            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DateTimeFormatPattern);
-//            module.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(dateTimeFormatter));
-//            module.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(dateTimeFormatter));
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DateTimeFormatPattern);
+            module.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(dateTimeFormatter));
+            module.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(dateTimeFormatter));
 
             // LocalDate
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(DateFormatPattern);
@@ -89,9 +95,9 @@ public class DateTimeConfiguration {
             builder.serializerByType(Long.class, ToStringSerializer.instance);
 
             // 设置 LocalDateTime 在序列化时，转换为时间戳
-            builder.serializerByType(LocalDateTime.class, new TimestampLocalDateTimeSerializer());
+//            builder.serializerByType(LocalDateTime.class, new TimestampLocalDateTimeSerializer());
             // 设置 LocalDateTime 在反序列化时，从时间戳转为 LocalDateTime
-            builder.deserializerByType(LocalDateTime.class, new TimestampLocalDateTimeDeserializer());
+//            builder.deserializerByType(LocalDateTime.class, new TimestampLocalDateTimeDeserializer());
         };
     }
 

@@ -45,5 +45,10 @@
             <artifactId>swagger-annotations-jakarta</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!-- jackson 注解 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
     </dependencies>
 </project>

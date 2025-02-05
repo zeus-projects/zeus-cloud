@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
 /**
  * @author alexchen
  */
@@ -35,33 +33,27 @@ public class SysRoleVO {
     private String description;
 
     /**
-     * 角色类型
-     */
-    @Schema(description = "角色类型", defaultValue = "1", example = "1")
-    private Integer type;
-
-    /**
      * 角色权限编码
      */
     @Schema(description = "角色权限编码")
     private String permission;
 
     /**
-     * 数据权限类型（0:全部数据权限；1:自定数据权限；2:本部门数据权限；3:本部门及子部门权限；4:本人）
+     * 数据权限（0:全部数据权限;1:本部门及子部门数据权限;2:本部门数据权限;3:本人数据权限）
      */
-    @Schema(description = "数据权限类型（0:全部数据权限；1:自定数据权限；2:本部门数据权限；3:本部门及子部门权限；4:本人）", defaultValue = "0", example = "0")
-    private Integer dataScopeType;
+    @Schema(description = "数据权限（0:全部数据权限;1:本部门及子部门数据权限;2:本部门数据权限;3:本人数据权限）")
+    private Integer dataScope;
 
     /**
-     * 数据范围(指定部门数组)
+     * 状态（0：正常 1：停用）
      */
-    @Schema(description = "数据范围(指定部门数组)")
-    private Set<Long> dataScope;
-
+    @Schema(description = "状态（0：正常 1：停用）")
+    private Integer status;
 
     /**
-     * 菜单权限
+     * 排序
      */
-    @Schema(description = "菜单权限")
-    private Set<Long> menus;
+    @Schema(description = "排序")
+    private Integer sort;
+
 }

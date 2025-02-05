@@ -40,7 +40,6 @@ create table `sys_menu`
     `path`        varchar(255) NULL     default '' comment '路由地址',
     `icon`        varchar(255) NULL     default '#' comment '菜单图标',
     `component`   varchar(255) NULL     default NULL comment '组件路径',
-    `status`      tinyint      not null comment '状态（0：正常 1：停用）',
     `hide`        bit(1)       not null default b'1' comment '是否隐藏（0:显示；1:隐藏）',
     `sort`        int          not null default 0 comment '显示顺序',
     `create_by`   varchar(255) not null comment '创建人',

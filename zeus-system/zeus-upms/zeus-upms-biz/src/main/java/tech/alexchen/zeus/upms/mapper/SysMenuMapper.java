@@ -25,7 +25,7 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
                 .eq(SysMenu::getParentId, parentId)
                 .ne(id != null, SysMenu::getId, id)
         );
-        return count == 0;
+        return count > 0;
     }
 
     default boolean canMenuDeleted(Long id) {

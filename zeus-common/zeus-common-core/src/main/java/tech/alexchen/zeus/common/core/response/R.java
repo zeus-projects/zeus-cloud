@@ -1,11 +1,15 @@
 package tech.alexchen.zeus.common.core.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.time.Instant;
 
 /**
  * 统一返回包装
@@ -20,11 +24,6 @@ import java.time.Instant;
 @AllArgsConstructor
 @Accessors(chain = true)
 public class R<T> implements Serializable {
-
-    /**
-     * 13 时间戳
-     */
-    private Long timestamp;
 
     /**
      * 状态码
@@ -43,7 +42,6 @@ public class R<T> implements Serializable {
 
     public static <T> R<T> build(String code, String message, T data) {
         return R.<T>builder()
-                .timestamp(Instant.now().toEpochMilli())
                 .code(code)
                 .message(message)
                 .data(data)
@@ -52,7 +50,6 @@ public class R<T> implements Serializable {
 
     public static <T> R<T> build(ResponseCode responseCode, T data) {
         return R.<T>builder()
-                .timestamp(Instant.now().toEpochMilli())
                 .code(responseCode.getCode())
                 .message(responseCode.getMessage())
                 .data(data)

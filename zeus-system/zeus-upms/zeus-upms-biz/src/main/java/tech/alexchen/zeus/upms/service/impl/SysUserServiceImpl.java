@@ -20,8 +20,6 @@ import tech.alexchen.zeus.upms.mapper.SysUserMapper;
 import tech.alexchen.zeus.upms.service.SysRoleService;
 import tech.alexchen.zeus.upms.service.SysUserService;
 
-import java.util.Set;
-
 /**
  * @author alexchen
  */
@@ -70,13 +68,8 @@ public class SysUserServiceImpl implements SysUserService {
         if (user == null) {
             return null;
         }
-
-        Set<Long> roles = user.getRoles();
-        Set<String> permissions = roleService.getRolePermissions(roles);
-
         SysUserAuthDTO dto = new SysUserAuthDTO();
         BeanUtil.copyProperties(user, dto);
-        dto.setPermissions(permissions);
         return dto;
     }
 

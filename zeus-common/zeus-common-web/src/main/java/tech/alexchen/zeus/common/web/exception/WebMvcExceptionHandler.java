@@ -89,8 +89,8 @@ public class WebMvcExceptionHandler {
     @ExceptionHandler({ResponsiveRuntimeException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public <T extends ResponsiveRuntimeException> R<String> handleServiceException(T e) {
-        log.error("业务异常, Exception: {}", e.getMessage());
-        return R.build(e.getErrorCode(), e.getMessage(), null);
+        log.error("业务异常, Exception: {}", e.getErrorMessage());
+        return R.build(e.getErrorCode(), e.getErrorMessage(), null);
     }
 
 }

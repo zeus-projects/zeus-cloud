@@ -20,11 +20,8 @@ public class SysMenuVO implements Serializable {
     @Schema(description = "父菜单ID")
     private Long parentId;
 
-    @Schema(description = "菜单类型")
+    @Schema(description = "菜单类型（0:目录；1:菜单；2:按钮；3:外链）")
     private Integer type;
-
-    @Schema(description = "显示顺序")
-    private Integer weight;
 
     @Schema(description = "权限标识")
     private String permission;
@@ -35,9 +32,12 @@ public class SysMenuVO implements Serializable {
     @Schema(description = "菜单图标")
     private String icon;
 
+    @Schema(description = "组件路径")
+    private String component;
+
     @Schema(description = "是否隐藏（0:显示；1:隐藏）")
     private Integer hide;
 
-    @Schema(description = "是否需要登陆才可访问（0:不需要；1:需要）")
-    private Integer requiresAuth;
+    @Schema(description = "排序")
+    private Integer sort;
 }
