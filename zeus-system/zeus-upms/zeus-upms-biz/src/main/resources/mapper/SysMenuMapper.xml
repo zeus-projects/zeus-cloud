@@ -9,7 +9,7 @@
         WITH RECURSIVE menu_cte AS (
             SELECT id, name, parent_id, sort, type, permission, path, icon, component
             FROM sys_menu
-            WHERE parent_id = #{parentId}
+            WHERE parent_id = #{parentId} AND deleted = 0
             UNION ALL
             SELECT d.id, d.name, d.parent_id, d.sort, d.type, d.permission, d.path, d.icon, d.component
             FROM sys_menu d

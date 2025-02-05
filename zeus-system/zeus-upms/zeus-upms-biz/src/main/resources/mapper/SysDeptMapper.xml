@@ -6,10 +6,8 @@
         WITH RECURSIVE dept_cte AS (
             SELECT id, name, parent_id, sort
             FROM sys_dept
-            WHERE parent_id = #{parentId}
-
+            WHERE parent_id = #{parentId} AND deleted = 0
             UNION ALL
-
             SELECT d.id, d.name, d.parent_id, d.sort
             FROM sys_dept d
                      INNER JOIN dept_cte cte ON d.parent_id = cte.id
