@@ -35,6 +35,13 @@ public interface SysRoleService {
     void removeRoleById(Long id);
 
     /**
+     * 查询角色
+     * @param id 角色 id
+     * @return 角色信息
+     */
+    SysRole getById(Long id);
+
+    /**
      * 分页查询
      */
     PageResult<SysRole> getRolePage(PageParam page);
@@ -51,5 +58,13 @@ public interface SysRoleService {
      * 获取角色菜单权限列表
      */
     Set<String> getRolePermissions(Set<Long> roleIdSet);
+
+    /**
+     * 获取角色的菜单列表
+     * @param roleId 角色ID
+     * @return 菜单 ID 集合
+     */
+    Set<Long> getRoleMenus(Long roleId);
+
 }
 

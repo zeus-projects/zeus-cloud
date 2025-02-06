@@ -14,4 +14,6 @@ public interface UpmsResponseCode {
     ResponseCode SYS_MENU_PARENT_NOT_EXISTS = ResponseCode.of("10201", "父级菜单不存在");
     ResponseCode SYS_MENU_NAME_DUPLICATE = ResponseCode.of("10202", "菜单名称重复");
     ResponseCode SYS_MENU_HAS_SUBMENU = ResponseCode.of("10203", "菜单无法删除，请先删除子菜单");
+
+    ResponseCode SYS_ROLE_NAME_DUPLICATE = ResponseCode.of("10301", "角色名称重复");
 }

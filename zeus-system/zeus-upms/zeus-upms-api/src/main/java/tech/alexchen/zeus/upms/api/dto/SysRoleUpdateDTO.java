@@ -54,6 +54,12 @@ public class SysRoleUpdateDTO {
     private Integer dataScope;
 
     /**
+     * 状态（0：正常 1：停用）
+     */
+    @Schema(description = "状态（0：正常 1：停用）")
+    private Integer status;
+
+    /**
      * 排序
      */
     @Schema(description = "排序")

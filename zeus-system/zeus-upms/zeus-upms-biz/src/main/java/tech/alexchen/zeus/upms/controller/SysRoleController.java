@@ -4,7 +4,14 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
@@ -51,11 +58,21 @@ public class SysRoleController {
     /**
      * 删除角色
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping
     @Operation(summary = "删除角色")
-    public R<Boolean> removeById(@PathVariable Long id) {
+    public R<Boolean> removeById(@RequestParam(value = "id") Long id) {
         service.removeRoleById(id);
         return R.ok(true);
+    }
+
+    /**
+     * 查询角色
+     */
+    @GetMapping
+    @Operation(summary = "查询角色")
+    public R<SysRoleVO> getById(@RequestParam(value = "id") Long id) {
+        SysRole role = service.getById(id);
+        return R.ok(converter.toVO(role));
     }
 
     /**
@@ -72,10 +89,20 @@ public class SysRoleController {
     /**
      * 更新角色的菜单权限
      */
-    @PutMapping("/menu")
-    @Operation(summary = "更新菜单权限")
-    public R<Boolean> updateRoleMenu(Long roleId, Set<Long> menus) {
-        service.updateRoleMenus(roleId, menus);
+    @GetMapping("/menus")
+    @Operation(summary = "获取角色的菜单ID列表")
+    public R<Set<Long>> getRoleMenus(@RequestParam(value = "id") Long id) {
+        return R.ok(service.getRoleMenus(id));
+    }
+
+    /**
+     * 更新角色的菜单权限
+     */
+    @PutMapping("/menus")
+    @Operation(summary = "更新角色的菜单权限")
+    public R<Boolean> updateRoleMenu(@RequestParam(value = "id") Long id,
+                                     @RequestParam(value = "menus") Set<Long> menus) {
+        service.updateRoleMenus(id, menus);
         return R.ok(true);
     }
 
