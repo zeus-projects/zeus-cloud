@@ -2,6 +2,7 @@ package tech.alexchen.zeus.upms.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import tech.alexchen.zeus.common.core.response.R;
+import tech.alexchen.zeus.common.core.utils.IpUtil;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
 import tech.alexchen.zeus.common.security.resource.annotation.Inner;
@@ -108,8 +110,21 @@ public class SysUserController {
     @Inner
     @GetMapping("/auth/username")
     @Operation(summary = "根据用户名查询授权信息-内部调用", hidden = true)
-    public R<SysUserAuthDTO> getUserAuthInfoInner(@RequestParam(value = "username") String username) {
+    public R<SysUserAuthDTO> getUserAuthInfoByUsername(@RequestParam(value = "username") String username) {
         return R.ok(sysUserService.getUserAuthInfo(username));
+    }
+
+    /**
+     * 更新最后登录信息-仅内部调用
+     */
+    @Inner
+    @PutMapping("/last-login")
+    @Operation(summary = "更新最后登录信息-内部调用", hidden = true)
+    public R<Boolean> updateLastLoginInfo(@RequestParam(value = "userId") Long userId,
+                                          HttpServletRequest request) {
+        String clientIp = IpUtil.getClientIp(request);
+        sysUserService.updateLastLoginInfo(userId, clientIp);
+        return R.ok(true);
     }
 
 }

@@ -15,7 +15,7 @@ import tech.alexchen.zeus.common.security.core.AuthUser;
 import tech.alexchen.zeus.upms.api.constant.SysConstant;
 import tech.alexchen.zeus.upms.api.constant.UpmsResponseCode;
 import tech.alexchen.zeus.upms.api.dto.SysUserAuthDTO;
-import tech.alexchen.zeus.upms.api.interfaces.RemoteSysUserService;
+import tech.alexchen.zeus.upms.api.feign.RemoteSysUserService;
 
 import java.util.List;
 
@@ -33,20 +33,19 @@ public class ZeusUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        R<SysUserAuthDTO> res = userService.getUserAuthInfo(username);
+        R<SysUserAuthDTO> res = userService.getUserAuthInfoByUsername(username);
         if (res.isFailed() || res.getData() == null) {
             throw new UsernameNotFoundException(StrUtil.format("Username '{}' not found", username));
         }
         SysUserAuthDTO user = res.getData();
-        if (SysConstant.USER_STATUS_LOCKED.equals(user.getStatus())) {
+        boolean hasLocked = SysConstant.USER_STATUS_LOCKED.equals(user.getStatus());
+        if (hasLocked) {
             throw new ResponsiveRuntimeException(UpmsResponseCode.SYS_USER_LOCKED);
         }
         String password = BCRYPT + user.getPassword();
         List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(user.getPermissions());
 
-        return new AuthUser(user.getId(), user.getUsername(), password, user.getPhone(),
-                true, true, true, true, authorities
-        );
+        return new AuthUser(user.getId(), user.getUsername(), password, user.getPhone(), authorities);
     }
 
 }

@@ -54,4 +54,10 @@ public interface SysUserService {
      */
     SysUserAuthDTO getCurrentUserInfo();
 
+    /**
+     * 更新用户的登录时间
+     * @param userId 用户ID
+     * @param clientIp 最后登录IP
+     */
+    void updateLastLoginInfo(Long userId, String clientIp);
 }

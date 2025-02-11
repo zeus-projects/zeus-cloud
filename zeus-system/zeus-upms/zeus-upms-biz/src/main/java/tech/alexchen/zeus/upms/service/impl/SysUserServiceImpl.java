@@ -23,6 +23,7 @@ import tech.alexchen.zeus.upms.mapper.SysUserMapper;
 import tech.alexchen.zeus.upms.service.SysRoleService;
 import tech.alexchen.zeus.upms.service.SysUserService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -117,6 +118,15 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public SysUserAuthDTO getCurrentUserInfo() {
         return this.getUserAuthInfo(SecurityUtil.getUsername());
+    }
+
+    @Override
+    public void updateLastLoginInfo(Long userId, String clientIp) {
+        SysUser user = new SysUser();
+        user.setId(userId);
+        user.setLastLoginIp(clientIp);
+        user.setLastLoginDatetime(LocalDateTime.now());
+        sysUserMapper.updateById(user);
     }
 
 }
