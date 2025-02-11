@@ -5,9 +5,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import tech.alexchen.zeus.upms.api.bo.SysDeptRoleBO;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @author alexchen
@@ -53,7 +55,7 @@ public class SysUserSaveDTO implements Serializable {
      * 生日
      */
     @Schema(description = "生日")
-    private Long birthday;
+    private LocalDate birthday;
 
     /**
      * 手机号码
@@ -75,23 +77,15 @@ public class SysUserSaveDTO implements Serializable {
     private String avatar;
 
     /**
-     * 部门ID
-     */
-    @NotNull(message = "部门ID不能为空")
-    @Schema(description = "部门ID")
-    private Long deptId;
-
-    /**
-     * 角色
-     */
-    @NotEmpty(message = "用户角色不能为空")
-    @Schema(description = "角色")
-    private Set<Long> roles;
-
-    /**
      * 状态（0：正常 1：冻结）
      */
     @Schema(description = "状态（0：正常 1：冻结）", defaultValue = "0")
     private Integer status;
 
+    /**
+     * 部门角色列表
+     */
+    @NotEmpty(message = "部门角色列表不能为空")
+    @Schema(description = "部门角色列表")
+    private List<SysDeptRoleBO> deptRoles;
 }

@@ -6,11 +6,11 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import tech.alexchen.zeus.common.core.response.R;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
@@ -61,9 +61,9 @@ public class SysUserController {
     /**
      * 删除用户
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping
     @Operation(summary = "删除用户")
-    public R<Boolean> removeUser(@PathVariable Long id) {
+    public R<Boolean> removeUser(@RequestParam(value = "id") Long id) {
         sysUserService.removeUserById(id);
         return R.ok(true);
     }
@@ -71,31 +71,11 @@ public class SysUserController {
     /**
      * 根据用户 id 查询用户信息
      */
-    @GetMapping("/{id}")
+    @GetMapping
     @Operation(summary = "根据用户ID查询")
-    public R<SysUserVO> getUserById(@PathVariable Long id) {
+    public R<SysUserVO> getUserById(@RequestParam(value = "id") Long id) {
         SysUser sysUser = sysUserService.getUserById(id);
         return R.ok(converter.toVO(sysUser));
-    }
-
-    /**
-     * 根据用户名查询用户信息
-     */
-    @GetMapping("/name/{username}")
-    @Operation(summary = "根据用户名查询")
-    public R<SysUserAuthDTO> getUserByName(@PathVariable String username) {
-        SysUser sysUser = sysUserService.getUserByName(username);
-        return R.ok(converter.toAuthDTO(sysUser));
-    }
-
-    /**
-     * 根据用户名查询用户授权信息
-     */
-    @Inner
-    @GetMapping("/auth/{username}")
-    @Operation(summary = "查询用户授权信息")
-    public R<SysUserAuthDTO> getUserAuthInfo(@PathVariable String username) {
-        return R.ok(sysUserService.getUserAuthInfo(username));
     }
 
     /**
@@ -112,9 +92,24 @@ public class SysUserController {
     /**
      * 查询当前登录用户的信息
      */
-    @GetMapping("/currentUser")
+    @GetMapping("/auth/current-user")
     @Operation(summary = "查询当前登录用户的信息")
     public R<SysUserAuthDTO> getCurrentUserInfo() {
-        return R.ok(sysUserService.getCurrentUserInfo());
+        SysUserAuthDTO currentUserInfo = sysUserService.getCurrentUserInfo();
+        currentUserInfo.setPassword(null);
+        return R.ok(currentUserInfo);
     }
+
+    // ----------- 内部调用接口 -----------
+
+    /**
+     * 根据用户名查询授权信息-仅内部调用
+     */
+    @Inner
+    @GetMapping("/auth/username")
+    @Operation(summary = "根据用户名查询授权信息-内部调用", hidden = true)
+    public R<SysUserAuthDTO> getUserAuthInfoInner(@RequestParam(value = "username") String username) {
+        return R.ok(sysUserService.getUserAuthInfo(username));
+    }
+
 }

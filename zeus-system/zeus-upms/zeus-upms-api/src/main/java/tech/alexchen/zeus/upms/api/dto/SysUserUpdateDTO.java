@@ -1,12 +1,11 @@
 package tech.alexchen.zeus.upms.api.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.time.LocalDate;
 
 /**
  * @author alexchen
@@ -45,40 +44,13 @@ public class SysUserUpdateDTO implements Serializable {
      * 生日
      */
     @Schema(description = "生日")
-    private Long birthday;
-
-    /**
-     * 手机号码
-     */
-    @NotNull(message = "手机号码不能为空")
-    @Schema(description = "手机号码")
-    private String phone;
-
-    /**
-     * 拓展字段:邮箱
-     */
-    @Schema(description = "邮箱")
-    private String email;
+    private LocalDate birthday;
 
     /**
      * 头像
      */
     @Schema(description = "头像")
     private String avatar;
-
-    /**
-     * 部门ID
-     */
-    @NotNull(message = "部门ID不能为空")
-    @Schema(description = "部门ID")
-    private Long deptId;
-
-    /**
-     * 角色列表
-     */
-    @NotEmpty(message = "角色列表不能为空")
-    @Schema(description = "角色列表")
-    private Set<Long> roles;
 
     /**
      * 状态（0：正常 1：冻结）

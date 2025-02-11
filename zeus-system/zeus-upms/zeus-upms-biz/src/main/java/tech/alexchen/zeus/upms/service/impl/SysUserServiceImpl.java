@@ -1,24 +1,31 @@
 package tech.alexchen.zeus.upms.service.impl;
 
 
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.lang.Assert;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import tech.alexchen.zeus.common.core.exception.ResponsiveRuntimeException;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageParam;
 import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
-import tech.alexchen.zeus.common.security.core.AuthUser;
 import tech.alexchen.zeus.common.security.core.SecurityUtil;
+import tech.alexchen.zeus.upms.api.bo.SysDeptRoleBO;
+import tech.alexchen.zeus.upms.api.constant.UpmsResponseCode;
 import tech.alexchen.zeus.upms.api.dto.SysUserAuthDTO;
 import tech.alexchen.zeus.upms.api.dto.SysUserSaveDTO;
 import tech.alexchen.zeus.upms.api.dto.SysUserUpdateDTO;
 import tech.alexchen.zeus.upms.convert.SysUserConverter;
 import tech.alexchen.zeus.upms.entity.SysUser;
+import tech.alexchen.zeus.upms.entity.SysUserDeptRole;
+import tech.alexchen.zeus.upms.mapper.SysUserDeptRoleMapper;
 import tech.alexchen.zeus.upms.mapper.SysUserMapper;
 import tech.alexchen.zeus.upms.service.SysRoleService;
 import tech.alexchen.zeus.upms.service.SysUserService;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author alexchen
@@ -27,69 +34,89 @@ import tech.alexchen.zeus.upms.service.SysUserService;
 @AllArgsConstructor
 public class SysUserServiceImpl implements SysUserService {
 
-    private final SysUserMapper mapper;
+    private final SysUserMapper sysUserMapper;
+    private final SysUserDeptRoleMapper sysUserDeptRoleMapper;
     private final SysUserConverter converter;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    private final SysRoleService roleService;
+    private final SysRoleService sysRoleService;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Long saveUser(@Valid SysUserSaveDTO dto) {
-        checkDuplicateUserInfo(dto.getUsername(), dto.getPhone());
+        if (sysUserMapper.isUsernameExists(dto.getUsername())) {
+            throw new ResponsiveRuntimeException(UpmsResponseCode.SYS_USERNAME_DUPLICATE);
+        }
+        if (sysUserMapper.isUserPhoneExists(dto.getPhone())) {
+            throw new ResponsiveRuntimeException(UpmsResponseCode.SYS_USER_PHONE_DUPLICATE);
+        }
+        // 保存用户信息
         SysUser entity = converter.toEntity(dto);
         entity.setPassword(passwordEncoder.encode(entity.getPassword()));
-        mapper.insert(entity);
+        sysUserMapper.insert(entity);
+
+        // 插入用户部门角色信息
+        List<SysUserDeptRole> userDeptRoleList = dto.getDeptRoles().stream().map(i -> {
+            SysUserDeptRole userDeptRole = new SysUserDeptRole();
+            userDeptRole.setUserId(entity.getId());
+            userDeptRole.setDeptId(i.getDeptId());
+            userDeptRole.setRoleId(i.getRoleId());
+            return userDeptRole;
+        }).collect(Collectors.toList());
+        sysUserDeptRoleMapper.insert(userDeptRoleList);
         return entity.getId();
     }
 
     @Override
     public void updateUser(SysUserUpdateDTO dto) {
         SysUser entity = converter.toEntity(dto);
-        mapper.updateById(entity);
+        sysUserMapper.updateById(entity);
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void removeUserById(Long id) {
-        mapper.deleteById(id);
+        sysUserMapper.deleteById(id);
+        sysUserDeptRoleMapper.deleteByUserId(id);
     }
 
     @Override
     public SysUser getUserById(Long id) {
-        return mapper.selectById(id);
-    }
-
-    @Override
-    public SysUser getUserByName(String username) {
-        return mapper.selectByUsername(username);
+        return sysUserMapper.selectById(id);
     }
 
     @Override
     public SysUserAuthDTO getUserAuthInfo(String username) {
-        SysUser user = getUserByName(username);
+        SysUser user = sysUserMapper.selectByUsername(username);
         if (user == null) {
             return null;
         }
-        SysUserAuthDTO dto = new SysUserAuthDTO();
-        BeanUtil.copyProperties(user, dto);
-        return dto;
+        SysUserAuthDTO authDTO = converter.toAuthDTO(user);
+
+        // 补充部门角色信息
+        List<SysUserDeptRole> sysUserDeptRoles = sysUserDeptRoleMapper.selectListByUserId(user.getId());
+        Set<SysDeptRoleBO> deptRoleBOS = sysUserDeptRoles.stream().map(i -> {
+            SysDeptRoleBO deptRoleBO = new SysDeptRoleBO();
+            deptRoleBO.setDeptId(i.getDeptId());
+            deptRoleBO.setRoleId(i.getRoleId());
+            return deptRoleBO;
+        }).collect(Collectors.toSet());
+        authDTO.setDeptRoles(deptRoleBOS);
+
+        // 补充权限信息
+        Set<Long> roleIds = sysUserDeptRoles.stream().map(SysUserDeptRole::getRoleId).collect(Collectors.toSet());
+        Set<String> permissions = sysRoleService.getRolePermissions(roleIds);
+        authDTO.setPermissions(permissions);
+        return authDTO;
     }
 
     @Override
     public PageResult<SysUser> getUserPage(PageParam param) {
-        return mapper.selectPage(param, null);
+        return sysUserMapper.selectPage(param, null);
     }
 
     @Override
     public SysUserAuthDTO getCurrentUserInfo() {
-        AuthUser user = SecurityUtil.getUser();
-        return BeanUtil.copyProperties(user, SysUserAuthDTO.class);
-    }
-
-    private void checkDuplicateUserInfo(String username, String phone) {
-        SysUser userWithUsername = mapper.selectOne(SysUser::getUsername, username);
-        Assert.isNull(userWithUsername, "User with username {} is exist", username);
-
-        SysUser userWithPhone = mapper.selectOne(SysUser::getPhone, phone);
-        Assert.isNull(userWithPhone, "User with phone {} is exist", phone);
+        return this.getUserAuthInfo(SecurityUtil.getUsername());
     }
 
 }

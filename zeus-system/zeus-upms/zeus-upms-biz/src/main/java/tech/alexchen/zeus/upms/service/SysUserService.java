@@ -40,11 +40,6 @@ public interface SysUserService {
     SysUser getUserById(Long id);
 
     /**
-     * 根据用户名查询
-     */
-    SysUser getUserByName(String username);
-
-    /**
      * 查询用户授权信息
      */
     SysUserAuthDTO getUserAuthInfo(String username);

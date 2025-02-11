@@ -3,7 +3,9 @@ package tech.alexchen.zeus.common.security.core;
 /**
  * @author alexchen
  */
-public class SecurityConstants {
+public interface SecurityConstants {
 
-    public static final String INNER = "inner";
+    String INNER = "inner";
+
+    String AUTH_USER_CLAIM = "authUser";
 }

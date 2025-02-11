@@ -14,4 +14,9 @@ public interface SysConstant {
      * 根菜单 id
      */
     Long ROOT_MENU_ID = 0L;
+
+    /**
+     * 用户已冻结状态码
+     */
+    Integer USER_STATUS_LOCKED = 1;
 }

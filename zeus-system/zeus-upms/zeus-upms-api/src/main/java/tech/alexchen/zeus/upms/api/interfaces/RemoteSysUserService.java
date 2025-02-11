@@ -3,8 +3,9 @@ package tech.alexchen.zeus.upms.api.interfaces;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import tech.alexchen.zeus.common.core.response.R;
+import tech.alexchen.zeus.common.feign.annotation.InnerHeader;
 import tech.alexchen.zeus.common.feign.constants.FeignClientConstant;
 import tech.alexchen.zeus.upms.api.dto.SysUserAuthDTO;
 
@@ -18,7 +19,8 @@ public interface RemoteSysUserService {
     /**
      * 根据用户名查询用户授权信息
      */
-    @GetMapping(value = "/user/auth/{username}", headers = {"inner=true"})
-    R<SysUserAuthDTO> getUserAuthInfo(@PathVariable(value = "username") String username);
+    @InnerHeader
+    @GetMapping(value = "/user/auth/username")
+    R<SysUserAuthDTO> getUserAuthInfo(@RequestParam(value = "username") String username);
 
 }

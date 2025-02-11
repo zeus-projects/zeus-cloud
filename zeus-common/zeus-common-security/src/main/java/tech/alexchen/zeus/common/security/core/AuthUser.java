@@ -12,46 +12,20 @@ import java.util.Collection;
 @Getter
 public class AuthUser extends User {
 
-    /**
-     * 用户ID
-     */
-    private Long id;
+    private final Long id;
 
-    /**
-     * 部门ID
-     */
-    private Long deptId;
+    private final String phone;
 
-    /**
-     * 手机号
-     */
-    private String phone;
-
-    /**
-     * 头像
-     */
-    private String avatar;
-
-    /**
-     * 租户ID
-     */
-    private Long tenantId;
-
-    /**
-     * 拓展字段:昵称
-     */
-    private String nickname;
-
-    /**
-     * 拓展字段:邮箱
-     */
-    private String email;
-
-    public AuthUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+    public AuthUser(Long id, String username, String password, String phone,  Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
+        this.id = id;
+        this.phone = phone;
     }
 
-    public AuthUser(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
+    public AuthUser(Long id, String username, String password, String phone, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+        this.id = id;
+        this.phone = phone;
     }
+
 }

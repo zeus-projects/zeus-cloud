@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenClaimsContext;
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenClaimsSet;
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenCustomizer;
+import tech.alexchen.zeus.common.security.core.AuthUser;
 
 /**
  * token 信息增强
@@ -18,11 +19,10 @@ public class ZeusOAuth2TokenCustomizer implements OAuth2TokenCustomizer<OAuth2To
         String clientId = context.getAuthorizationGrant().getName();
         claims.claim("clientId", clientId);
         claims.claim("active", Boolean.TRUE);
-
-//        if ("client_credentials".equals(context.getAuthorizationGrantType().getValue())) {
-//            return;
-//        }
-//        AuthUser authUser = (AuthUser) context.getPrincipal().getPrincipal();
-//        claims.claim("authUser", authUser);
+        if ("client_credentials".equals(context.getAuthorizationGrantType().getValue())) {
+            return;
+        }
+        AuthUser authUser = (AuthUser) context.getPrincipal().getPrincipal();
+        claims.claim("authUser", authUser);
     }
 }

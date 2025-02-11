@@ -77,7 +77,7 @@ create table `sys_role`
 DROP TABLE IF EXISTS `sys_role_menu`;
 create table `sys_role_menu`
 (
-    `id`          bigint       not null AUTO_INCREMENT comment '自增编号',
+    `id`          bigint       not null auto_increment comment '自增编号',
     `role_id`     bigint       not null comment '角色ID',
     `menu_id`     bigint       not null comment '菜单ID',
     `create_by`   varchar(255) not null comment '创建人',
@@ -95,7 +95,7 @@ create table `sys_role_menu`
 DROP TABLE IF EXISTS `sys_user`;
 create table sys_user
 (
-    id                  bigint                             not null comment '用户ID',
+    id                  bigint                             not null auto_increment comment '用户ID',
     username            varchar(255)                       not null comment '用户名称',
     fullname            varchar(255)                       null comment '真实姓名',
     nickname            varchar(255)                       null comment '昵称',
@@ -121,7 +121,7 @@ create table sys_user
 DROP TABLE IF EXISTS `sys_user_dept_role`;
 create table sys_user_dept_role
 (
-    id          bigint                             not null comment '自增记录ID',
+    id          bigint                             not null auto_increment comment '自增记录ID',
     user_id     bigint                             not null comment '用户ID',
     dept_id     bigint                             not null comment '部门ID',
     role_id     bigint                             not null comment '角色ID',
