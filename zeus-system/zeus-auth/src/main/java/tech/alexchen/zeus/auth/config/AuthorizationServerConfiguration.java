@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Role;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -37,13 +36,13 @@ import org.springframework.security.oauth2.server.authorization.web.authenticati
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationConverter;
-import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
-import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
 import tech.alexchen.zeus.auth.oauth2.password.OAuth2UsernamePasswordAuthenticationConverter;
 import tech.alexchen.zeus.auth.oauth2.password.OAuth2UsernamePasswordAuthenticationProvider;
 import tech.alexchen.zeus.auth.oauth2.token.UUIDOAuth2AccessTokenGenerator;
 import tech.alexchen.zeus.auth.oauth2.token.UUIDOAuth2RefreshTokenGenerator;
 import tech.alexchen.zeus.auth.oauth2.token.ZeusOAuth2TokenCustomizer;
+import tech.alexchen.zeus.auth.security.ZeusAuthenticationFailureHandler;
+import tech.alexchen.zeus.auth.security.ZeusAuthenticationSuccessHandler;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -74,15 +73,19 @@ public class AuthorizationServerConfiguration {
                         // 指明为 localhost，就不会自动配置为本机的内网 ip，防止 client 和 resource 因为端点不一致导致的错误
                         AuthorizationServerSettings.builder().issuer(authorizationProperties.getIssuerUrl()).build()
                 )
-                .tokenEndpoint((tokenEndpoint) -> tokenEndpoint.accessTokenRequestConverter(accessTokenRequestConverter()))
-        ;
-        http.exceptionHandling((exceptions) -> exceptions
-                .defaultAuthenticationEntryPointFor(
-                        new LoginUrlAuthenticationEntryPoint("/login"),
-                        // 不加支持 TEXT_HTML，访问 login 页面会 401
-                        new MediaTypeRequestMatcher(MediaType.TEXT_HTML)
+                .tokenEndpoint((tokenEndpoint) -> tokenEndpoint.accessTokenRequestConverter(accessTokenRequestConverter())
+                        .accessTokenResponseHandler(new ZeusAuthenticationSuccessHandler())
+                        .errorResponseHandler(new ZeusAuthenticationFailureHandler())
                 )
-        );
+        ;
+
+//        http.exceptionHandling((exceptions) -> exceptions
+//                .defaultAuthenticationEntryPointFor(
+//                        new LoginUrlAuthenticationEntryPoint("/login"),
+//                        // 不加支持 TEXT_HTML，访问 login 页面会 401
+//                        new MediaTypeRequestMatcher(MediaType.TEXT_HTML)
+//                )
+//        );
         http.csrf(AbstractHttpConfigurer::disable);
         // 先 build，后面才可以通过 http.getSharedObject 方法获取到 AuthenticationManager
         DefaultSecurityFilterChain securityFilterChain = http.build();
