@@ -1,7 +1,7 @@
 spring:
   redis:
     host: zeus-redis
-    port: 16379
+    port: 6379
     password: 1qaz@wsx?S
 
 # springdoc 配置，关闭 swagger-ui，仅提供接口，统一由网关提供界面
