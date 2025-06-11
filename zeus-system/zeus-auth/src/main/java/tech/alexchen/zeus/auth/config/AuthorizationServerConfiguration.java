@@ -42,7 +42,6 @@ import tech.alexchen.zeus.auth.oauth2.token.UUIDOAuth2AccessTokenGenerator;
 import tech.alexchen.zeus.auth.oauth2.token.UUIDOAuth2RefreshTokenGenerator;
 import tech.alexchen.zeus.auth.oauth2.token.ZeusOAuth2TokenCustomizer;
 import tech.alexchen.zeus.auth.security.ZeusAuthenticationFailureHandler;
-import tech.alexchen.zeus.auth.security.ZeusAuthenticationSuccessHandler;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -66,26 +65,19 @@ public class AuthorizationServerConfiguration {
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
+        // 里面指定了 securityMatcher
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
         http.getConfigurer(OAuth2AuthorizationServerConfigurer.class)
                 .oidc(Customizer.withDefaults())
                 .authorizationServerSettings(
-                        // 指明为 localhost，就不会自动配置为本机的内网 ip，防止 client 和 resource 因为端点不一致导致的错误
+                        // 指明为域名，就不会自动配置为本机的内网 ip，防止 client 和 resource 因为端点不一致导致的错误
                         AuthorizationServerSettings.builder().issuer(authorizationProperties.getIssuerUrl()).build()
                 )
                 .tokenEndpoint((tokenEndpoint) -> tokenEndpoint.accessTokenRequestConverter(accessTokenRequestConverter())
-                        .accessTokenResponseHandler(new ZeusAuthenticationSuccessHandler())
+//                        .accessTokenResponseHandler(new ZeusAuthenticationSuccessHandler())
                         .errorResponseHandler(new ZeusAuthenticationFailureHandler())
                 )
         ;
-
-//        http.exceptionHandling((exceptions) -> exceptions
-//                .defaultAuthenticationEntryPointFor(
-//                        new LoginUrlAuthenticationEntryPoint("/login"),
-//                        // 不加支持 TEXT_HTML，访问 login 页面会 401
-//                        new MediaTypeRequestMatcher(MediaType.TEXT_HTML)
-//                )
-//        );
         http.csrf(AbstractHttpConfigurer::disable);
         // 先 build，后面才可以通过 http.getSharedObject 方法获取到 AuthenticationManager
         DefaultSecurityFilterChain securityFilterChain = http.build();

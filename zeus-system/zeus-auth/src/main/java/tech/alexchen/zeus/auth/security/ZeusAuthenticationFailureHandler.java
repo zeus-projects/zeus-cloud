@@ -25,7 +25,6 @@ public class ZeusAuthenticationFailureHandler implements AuthenticationFailureHa
 
     private final MappingJackson2HttpMessageConverter errorHttpResponseConverter = new MappingJackson2HttpMessageConverter();
 
-
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         ServletServerHttpResponse httpResponse = new ServletServerHttpResponse(response);
