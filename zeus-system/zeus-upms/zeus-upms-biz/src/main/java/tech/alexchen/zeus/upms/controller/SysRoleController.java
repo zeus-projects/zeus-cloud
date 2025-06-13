@@ -37,10 +37,10 @@ public class SysRoleController {
     private final SysRoleConverter converter;
 
     /**
-     * 创建角色
+     * 新增角色
      */
     @PostMapping
-    @Operation(summary = "创建角色")
+    @Operation(summary = "新增角色")
     public R<Long> save(@Valid @RequestBody SysRoleSaveDTO dto) {
         return R.ok(service.saveRole(dto));
     }

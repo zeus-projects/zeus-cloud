@@ -24,54 +24,54 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SysMenuServiceImpl implements SysMenuService {
 
-    private final SysMenuMapper mapper;
-    private final SysMenuConverter converter;
+    private final SysMenuMapper sysMenuMapper;
+    private final SysMenuConverter sysMenuConverter;
 
     @Override
     public Long saveMenu(SysMenuSaveDTO dto) {
-        if (!SysConstant.ROOT_MENU_ID.equals(dto.getParentId()) && mapper.isParentMenuNotExists(dto.getParentId())) {
+        if (!SysConstant.ROOT_MENU_ID.equals(dto.getParentId()) && sysMenuMapper.isParentMenuNotExists(dto.getParentId())) {
             throw new ResponsiveRuntimeException(UpmsResponseCode.SYS_MENU_PARENT_NOT_EXISTS);
         }
         // 检查同级别下是否存在相同名称的菜单
-        if (mapper.isDeptNameExists(dto.getName(), dto.getParentId(), null)) {
+        if (sysMenuMapper.isDeptNameExists(dto.getName(), dto.getParentId(), null)) {
             throw new ResponsiveRuntimeException(UpmsResponseCode.SYS_MENU_NAME_DUPLICATE);
         }
-        SysMenu entity = converter.toEntity(dto);
-        mapper.insert(entity);
+        SysMenu entity = sysMenuConverter.toEntity(dto);
+        sysMenuMapper.insert(entity);
         return entity.getId();
     }
 
     @Override
     public void updateMenu(SysMenuUpdateDTO dto) {
-        if (!SysConstant.ROOT_MENU_ID.equals(dto.getParentId()) && mapper.isParentMenuNotExists(dto.getParentId())) {
+        if (!SysConstant.ROOT_MENU_ID.equals(dto.getParentId()) && sysMenuMapper.isParentMenuNotExists(dto.getParentId())) {
             throw new ResponsiveRuntimeException(UpmsResponseCode.SYS_MENU_PARENT_NOT_EXISTS);
         }
         // 检查同级别下是否存在相同名称的菜单
-        if (mapper.isDeptNameExists(dto.getName(), dto.getParentId(), dto.getId())) {
+        if (sysMenuMapper.isDeptNameExists(dto.getName(), dto.getParentId(), dto.getId())) {
             throw new ResponsiveRuntimeException(UpmsResponseCode.SYS_MENU_NAME_DUPLICATE);
         }
-        SysMenu entity = converter.toEntity(dto);
-        mapper.updateById(entity);
+        SysMenu entity = sysMenuConverter.toEntity(dto);
+        sysMenuMapper.updateById(entity);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void removeMenuById(Long id) {
-        if (!mapper.canMenuDeleted(id)) {
+        if (!sysMenuMapper.canMenuDeleted(id)) {
             throw new ResponsiveRuntimeException(UpmsResponseCode.SYS_MENU_HAS_SUBMENU);
         }
         // TODO 从角色和用户关联信息中，删除该菜单
-        mapper.deleteById(id);
+        sysMenuMapper.deleteById(id);
     }
 
     @Override
     public SysMenu getMenuById(Long id) {
-        return mapper.selectById(id);
+        return sysMenuMapper.selectById(id);
     }
 
     @Override
     public List<Tree<Long>> getMenuTree(Long parentId) {
-        List<SysMenu> sysMenus = mapper.selectMenusByParentId(parentId);
+        List<SysMenu> sysMenus = sysMenuMapper.selectMenusByParentId(parentId);
         // 构建树型结构
         return TreeUtil.build(sysMenus, parentId, (menu, tree) -> {
             tree.setId(menu.getId());

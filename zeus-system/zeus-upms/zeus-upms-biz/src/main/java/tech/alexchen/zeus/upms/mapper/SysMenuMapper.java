@@ -8,7 +8,6 @@ import tech.alexchen.zeus.upms.entity.SysMenu;
 
 import java.util.List;
 
-
 /**
  * @author alexchen
  */

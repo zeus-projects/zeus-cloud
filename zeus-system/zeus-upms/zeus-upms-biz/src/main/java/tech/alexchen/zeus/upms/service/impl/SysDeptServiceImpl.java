@@ -24,54 +24,63 @@ import java.util.List;
 @AllArgsConstructor
 public class SysDeptServiceImpl implements SysDeptService {
 
-    private final SysDeptMapper mapper;
-    private final SysDeptConverter converter;
+    private final SysDeptMapper sysDeptMapper;
+
+    private final SysDeptConverter sysDeptConverter;
 
     @Override
-    public Long saveDept(SysDeptSaveDTO dto) {
-        if (!SysConstant.ROOT_DEPT_ID.equals(dto.getParentId()) && mapper.isParentDeptNotExists(dto.getParentId())) {
+    public Long save(SysDeptSaveDTO dto) {
+        if (!SysConstant.ROOT_DEPT_ID.equals(dto.getParentId()) && sysDeptMapper.isParentDeptNotExists(dto.getParentId())) {
             throw new ResponsiveRuntimeException(UpmsResponseCode.SYS_DEPT_PARENT_NOT_EXISTS);
         }
-        if (mapper.isDeptNameExists(dto.getName(), null)) {
+        if (sysDeptMapper.isDeptNameExists(dto.getName(), null)) {
             throw new ResponsiveRuntimeException(UpmsResponseCode.SYS_DEPT_NAME_DUPLICATE);
         }
-        SysDept sysDept = converter.toEntity(dto);
-        mapper.insert(sysDept);
+        SysDept sysDept = sysDeptConverter.toEntity(dto);
+        sysDeptMapper.insert(sysDept);
         return sysDept.getId();
     }
 
     @Override
-    public void updateDept(SysDeptUpdateDTO dto) {
-        if (!SysConstant.ROOT_DEPT_ID.equals(dto.getParentId()) && mapper.isParentDeptNotExists(dto.getParentId())) {
+    public void updateById(SysDeptUpdateDTO dto) {
+        if (!SysConstant.ROOT_DEPT_ID.equals(dto.getParentId()) && sysDeptMapper.isParentDeptNotExists(dto.getParentId())) {
             throw new ResponsiveRuntimeException(UpmsResponseCode.SYS_DEPT_PARENT_NOT_EXISTS);
         }
-        if (mapper.isDeptNameExists(dto.getName(), dto.getId())) {
+        if (sysDeptMapper.isDeptNameExists(dto.getName(), dto.getId())) {
             throw new ResponsiveRuntimeException(UpmsResponseCode.SYS_DEPT_NAME_DUPLICATE);
         }
-        SysDept sysDept = converter.toEntity(dto);
-        mapper.updateById(sysDept);
+        SysDept sysDept = sysDeptConverter.toEntity(dto);
+        sysDeptMapper.updateById(sysDept);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void removeDept(Long id) {
+    public void removeById(Long id) {
         // TODO 删除关联的部门信息，或者在部门有关联数据时禁止删除
-        mapper.deleteById(id);
+        sysDeptMapper.deleteById(id);
     }
 
     @Override
-    public SysDept getDeptById(Long id) {
-        return mapper.selectById(id);
+    public SysDept getById(Long id) {
+        return sysDeptMapper.selectById(id);
     }
 
     @Override
-    public List<SysDept> getDeptListByParentId(Long parentId) {
-        return mapper.selectDeptListByParentId(parentId);
+    public List<SysDept> getListByParentId(Long parentId) {
+        // 默认为 0，查询全部
+        if (parentId == null) {
+            parentId = SysConstant.ROOT_DEPT_ID;
+        }
+        return sysDeptMapper.selectDeptListByParentId(parentId);
     }
 
     @Override
-    public List<Tree<Long>> getDeptTreeByParentId(Long parentId) {
-        List<SysDept> deptList = mapper.selectDeptListByParentId(parentId);
+    public List<Tree<Long>> getTreeByParentId(Long parentId) {
+        // 默认为 0，查询全部
+        if (parentId == null) {
+            parentId = SysConstant.ROOT_DEPT_ID;
+        }
+        List<SysDept> deptList = this.getListByParentId(parentId);
         // 构建树型结构
         return TreeUtil.build(deptList, parentId, (dept, tree) -> {
             tree.setId(dept.getId());
@@ -83,28 +92,3 @@ public class SysDeptServiceImpl implements SysDeptService {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

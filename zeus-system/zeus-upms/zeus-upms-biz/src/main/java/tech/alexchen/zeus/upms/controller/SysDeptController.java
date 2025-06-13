@@ -41,12 +41,12 @@ public class SysDeptController {
     private final SysDeptConverter converter;
 
     /**
-     * 创建部门
+     * 新增部门
      */
     @PostMapping
-    @Operation(summary = "创建部门", description = "创建部门接口，创建成功后返回部门 id")
+    @Operation(summary = "新增部门", description = "新增部门接口，新增成功后返回部门 id")
     public R<Long> save(@Valid @RequestBody SysDeptSaveDTO dto) {
-        return R.ok(sysDeptService.saveDept(dto));
+        return R.ok(sysDeptService.save(dto));
     }
 
     /**
@@ -55,7 +55,7 @@ public class SysDeptController {
     @PutMapping
     @Operation(summary = "更新部门", description = "更新部门信息")
     public R<Boolean> update(@Valid @RequestBody SysDeptUpdateDTO dto) {
-        sysDeptService.updateDept(dto);
+        sysDeptService.updateById(dto);
         return R.ok(true);
     }
 
@@ -67,7 +67,7 @@ public class SysDeptController {
             @Parameter(description = "部门 ID", example = "1")
     })
     public R<Boolean> removeById(@RequestParam("id") @NotNull(message = "部门 id 不能为空") Long id) {
-        sysDeptService.removeDept(id);
+        sysDeptService.removeById(id);
         return R.ok(true);
     }
 
@@ -79,7 +79,7 @@ public class SysDeptController {
             @Parameter(description = "部门 ID", example = "1")
     })
     public R<SysDeptVO> getById(@RequestParam("id") @NotNull(message = "部门 id 不能为空") Long id) {
-        SysDept dept = sysDeptService.getDeptById(id);
+        SysDept dept = sysDeptService.getById(id);
         return R.ok(converter.toVO(dept));
     }
 
@@ -90,8 +90,8 @@ public class SysDeptController {
     @Operation(summary = "查询部门列表", description = "查询指定部门及其各级子部门列表", parameters = {
             @Parameter(description = "父级部门 id", example = "0")
     })
-    public R<List<SysDeptVO>> list(@RequestParam("parentId") Long parentId) {
-        List<SysDeptVO> voList = converter.toVOList(sysDeptService.getDeptListByParentId(parentId));
+    public R<List<SysDeptVO>> list(@RequestParam(value = "parentId", defaultValue = "0") Long parentId) {
+        List<SysDeptVO> voList = converter.toVOList(sysDeptService.getListByParentId(parentId));
         return R.ok(voList);
     }
 
@@ -102,8 +102,8 @@ public class SysDeptController {
     @Operation(summary = "查询部门列表树", description = "查询部门指定父节点开始的部门树", parameters = {
             @Parameter(description = "父级部门 id", example = "0")
     })
-    public R<List<Tree<Long>>> tree(@RequestParam("parentId") Long parentId) {
-        List<Tree<Long>> tree = sysDeptService.getDeptTreeByParentId(parentId);
+    public R<List<Tree<Long>>> tree(@RequestParam(value = "parentId", defaultValue = "0") Long parentId) {
+        List<Tree<Long>> tree = sysDeptService.getTreeByParentId(parentId);
         return R.ok(tree);
     }
 

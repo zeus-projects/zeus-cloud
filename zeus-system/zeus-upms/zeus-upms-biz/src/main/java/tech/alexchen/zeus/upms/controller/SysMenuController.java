@@ -36,10 +36,10 @@ public class SysMenuController {
     private final SysMenuConverter converter;
 
     /**
-     * 创建菜单
+     * 新增菜单
      */
     @PostMapping
-    @Operation(summary = "创建菜单")
+    @Operation(summary = "新增菜单")
     public R<Long> save(@Valid @RequestBody SysMenuSaveDTO dto) {
         return R.ok(menuService.saveMenu(dto));
     }
@@ -82,7 +82,7 @@ public class SysMenuController {
      */
     @GetMapping("/tree")
     @Operation(summary = "查询菜单树")
-    public R<List<Tree<Long>>> getMenuTree(@RequestParam("parentId") Long parentId) {
+    public R<List<Tree<Long>>> getMenuTree(@RequestParam(value = "parentId", defaultValue = "0") Long parentId) {
         return R.ok(menuService.getMenuTree(parentId));
     }
 }
