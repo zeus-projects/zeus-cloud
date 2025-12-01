@@ -73,6 +73,9 @@ public class AuthorizationServerConfiguration {
                         // 指明为域名，就不会自动配置为本机的内网 ip，防止 client 和 resource 因为端点不一致导致的错误
                         AuthorizationServerSettings.builder().issuer(authorizationProperties.getIssuerUrl()).build()
                 )
+                .authorizationEndpoint(authorizationEndpoint -> authorizationEndpoint
+                                .errorResponseHandler(new ZeusAuthenticationFailureHandler())
+                )
                 .tokenEndpoint((tokenEndpoint) -> tokenEndpoint.accessTokenRequestConverter(accessTokenRequestConverter())
 //                        .accessTokenResponseHandler(new ZeusAuthenticationSuccessHandler())
                         .errorResponseHandler(new ZeusAuthenticationFailureHandler())

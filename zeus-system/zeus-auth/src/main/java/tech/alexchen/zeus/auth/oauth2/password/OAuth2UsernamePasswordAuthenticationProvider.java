@@ -6,7 +6,15 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.oauth2.core.*;
+import org.springframework.security.oauth2.core.AuthorizationGrantType;
+import org.springframework.security.oauth2.core.ClaimAccessor;
+import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
+import org.springframework.security.oauth2.core.OAuth2AccessToken;
+import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
+import org.springframework.security.oauth2.core.OAuth2Error;
+import org.springframework.security.oauth2.core.OAuth2ErrorCodes;
+import org.springframework.security.oauth2.core.OAuth2RefreshToken;
+import org.springframework.security.oauth2.core.OAuth2Token;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.security.oauth2.server.authorization.OAuth2Authorization;
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationService;
@@ -83,8 +91,13 @@ public class OAuth2UsernamePasswordAuthenticationProvider implements Authenticat
         log.debug("got usernamePasswordAuthenticationToken = {}", usernamePasswordAuthenticationToken);
 
         // spring security 的 authenticationManager 进行认证
-        Authentication usernamePasswordAuthentication = authenticationManager
-                .authenticate(usernamePasswordAuthenticationToken);
+        Authentication usernamePasswordAuthentication;
+        try {
+            usernamePasswordAuthentication = authenticationManager
+                    .authenticate(usernamePasswordAuthenticationToken);
+        } catch (AuthenticationException e) {
+            throw new OAuth2AuthenticationException(e.getMessage());
+        }
 
         // 构建 tokenContextBuilder，用于生成 tokenContext，然后用它获取 token
         DefaultOAuth2TokenContext.Builder tokenContextBuilder = DefaultOAuth2TokenContext.builder()
