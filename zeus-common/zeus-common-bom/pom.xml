@@ -60,7 +60,7 @@
             </dependency>
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-common-kafka</artifactId>
+                <artifactId>zeus-common-data-kafka</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

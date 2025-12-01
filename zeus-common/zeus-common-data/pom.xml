@@ -4,22 +4,26 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>tech.alexchen</groupId>
         <artifactId>zeus-common</artifactId>
+        <groupId>tech.alexchen</groupId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>zeus-common-data-elasticsearch</artifactId>
+    <artifactId>zeus-common-data</artifactId>
+    <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
-        </dependency>
-    </dependencies>
+    <modules>
+        <module>zeus-common-data-elasticsearch</module>
+        <module>zeus-common-data-influxdb</module>
+        <module>zeus-common-data-kafka</module>
+        <module>zeus-common-data-mongodb</module>
+        <module>zeus-common-data-mybatis</module>
+        <module>zeus-common-data-redis</module>
+    </modules>
 </project>

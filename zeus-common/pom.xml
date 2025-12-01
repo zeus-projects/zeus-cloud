@@ -14,14 +14,8 @@
     <modules>
         <module>zeus-common-bom</module>
         <module>zeus-common-core</module>
-        <module>zeus-common-data-elasticsearch</module>
-        <module>zeus-common-data-influxdb</module>
-        <module>zeus-common-data-mongodb</module>
-        <module>zeus-common-data-mybatis</module>
-        <module>zeus-common-data-redis</module>
         <module>zeus-common-feign</module>
         <module>zeus-common-gateway</module>
-        <module>zeus-common-kafka</module>
         <module>zeus-common-log</module>
         <module>zeus-common-seata</module>
         <module>zeus-common-security</module>

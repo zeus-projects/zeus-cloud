@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>tech.alexchen</groupId>
-        <artifactId>zeus-common</artifactId>
+        <artifactId>zeus-common-data</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>zeus-common-data-mongodb</artifactId>
+    <artifactId>zeus-common-data-influxdb</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
