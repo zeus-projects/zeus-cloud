@@ -17,8 +17,8 @@ spring:
           uri: lb://zeus-auth
           predicates:
             - Path=/auth/**
-        - id: zeus-upms
-          uri: lb://zeus-upms-biz
+        - id: zeus-system
+          uri: lb://zeus-system-server
           predicates:
             - Path=/admin/**
         - id: zeus-test-kafka-consumer
@@ -46,5 +46,5 @@ springdoc:
     path: /openapi
     # 接口分组，通常一个服务一组，url 为获取 openapi 数据的接口，path 第一部分为前缀，与路由保持一致；后面为子服务配置的 openapi 接口地址
     urls:
-      - name: zeus-upms-biz
+      - name: zeus-system-server
         url: /admin/springdoc

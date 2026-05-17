@@ -1,0 +1,33 @@
+package tech.alexchen.zeus.system.convert;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import tech.alexchen.zeus.common.data.mybatis.pojo.PageResult;
+import tech.alexchen.zeus.system.api.dto.SysUserAuthDTO;
+import tech.alexchen.zeus.system.api.dto.SysUserSaveDTO;
+import tech.alexchen.zeus.system.api.dto.SysUserUpdateDTO;
+import tech.alexchen.zeus.system.api.vo.SysUserVO;
+import tech.alexchen.zeus.system.entity.SysUser;
+
+/**
+ * @author alexchen
+ */
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, imports = {cn.hutool.core.date.LocalDateTimeUtil.class})
+public interface SysUserConverter {
+
+
+    @Mapping(target = "birthday", expression = "java(LocalDateTimeUtil.of(dto.getBirthday()).toLocalDate())")
+    SysUser toEntity(SysUserSaveDTO dto);
+
+    @Mapping(target = "birthday", expression = "java(LocalDateTimeUtil.of(dto.getBirthday()).toLocalDate())")
+    SysUser toEntity(SysUserUpdateDTO dto);
+
+    @Mapping(target = "birthday", expression = "java(LocalDateTimeUtil.toEpochMilli(entity.getBirthday()))")
+    SysUserVO toVO(SysUser entity);
+
+    SysUserAuthDTO toAuthDTO(SysUser entity);
+
+    PageResult<SysUserVO> toPageVO(PageResult<SysUser> pageResult);
+
+}

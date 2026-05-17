@@ -31,9 +31,10 @@
     <modules>
         <module>zeus-bom</module>
         <module>zeus-common</module>
+        <module>zeus-auth</module>
+        <module>zeus-gateway</module>
         <module>zeus-system</module>
         <module>zeus-test</module>
-        <module>zeus-common/zeus-common-data</module>
     </modules>
 
     <!-- 子模块按需继承的依赖 -->

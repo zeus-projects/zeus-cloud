@@ -6,5 +6,5 @@ package tech.alexchen.zeus.common.feign.constants;
  */
 public interface FeignClientConstant {
 
-    String UPMS = "zeus-upms-biz";
+    String SYSTEM = "zeus-system-server";
 }

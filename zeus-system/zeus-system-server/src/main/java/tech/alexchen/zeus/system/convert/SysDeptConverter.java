@@ -1,0 +1,25 @@
+package tech.alexchen.zeus.system.convert;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
+import tech.alexchen.zeus.system.api.dto.SysDeptSaveDTO;
+import tech.alexchen.zeus.system.api.dto.SysDeptUpdateDTO;
+import tech.alexchen.zeus.system.api.vo.SysDeptVO;
+import tech.alexchen.zeus.system.entity.SysDept;
+
+import java.util.List;
+
+/**
+ * @author alexchen
+ */
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+public interface SysDeptConverter {
+
+    SysDept toEntity(SysDeptSaveDTO dto);
+
+    SysDept toEntity(SysDeptUpdateDTO dto);
+
+    SysDeptVO toVO(SysDept entity);
+
+    List<SysDeptVO> toVOList(List<SysDept> deptList);
+}

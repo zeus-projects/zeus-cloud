@@ -41,10 +41,10 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- zeus-upms -->
+            <!-- zeus-system -->
             <dependency>
                 <groupId>tech.alexchen</groupId>
-                <artifactId>zeus-upms-api</artifactId>
+                <artifactId>zeus-system-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- servlet -->
