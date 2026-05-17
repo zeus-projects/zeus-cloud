@@ -1,0 +1,50 @@
+server:
+  port: ${SEATA_SERVICE_PORT:8091}
+
+spring:
+  application:
+    name: ${SEATA_APPLICATION:seata-server}
+  main:
+    web-application-type: none
+
+logging:
+  config: classpath:logback-spring.xml
+  file:
+    path: ${LOG_HOME:${user.home}/logs/seata}
+
+seata:
+  config:
+    type: file
+  registry:
+    type: nacos
+    nacos:
+      application: ${SEATA_APPLICATION:seata-server}
+      server-addr: ${NACOS_HOST:zeus-nacos}:${NACOS_PORT:8848}
+      group: ${SEATA_GROUP:SEATA_GROUP}
+      namespace: ${NACOS_NAMESPACE:}
+      cluster: ${SEATA_CLUSTER:default}
+      username: ${NACOS_USERNAME:}
+      password: ${NACOS_PASSWORD:}
+  server:
+    service-port: ${SEATA_SERVICE_PORT:8091}
+  store:
+    mode: db
+    session:
+      mode: db
+    lock:
+      mode: db
+    db:
+      datasource: druid
+      db-type: mysql
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://${MYSQL_HOST:zeus-mysql}:${MYSQL_PORT:3306}/${SEATA_SERVER_DB:seata_server}?useUnicode=true&rewriteBatchedStatements=true&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+      user: ${MYSQL_USER:zeus}
+      password: ${MYSQL_PWD:zeus}
+      min-conn: 5
+      max-conn: 30
+      global-table: global_table
+      branch-table: branch_table
+      lock-table: lock_table
+      distributed-lock-table: distributed_lock
+      query-limit: 1000
+      max-wait: 5000

@@ -1,0 +1,22 @@
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST:zeus-kafka}:${KAFKA_PORT:9092}
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP:zeus-test-consumer}
+      enable-auto-commit: false
+      auto-commit-interval: 2000
+      auto-offset-reset: latest
+      max-poll-records: 500
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        session:
+          timeout:
+            ms: 120000
+        request:
+          timeout:
+            ms: 18000
+    listener:
+      ack-mode: manual_immediate
+      type: batch
+      missing-topics-fatal: false

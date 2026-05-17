@@ -4,9 +4,9 @@ store:
     datasource: druid
     dbType: mysql
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://zeus-mysql:3306/seata_server?useUnicode=true
-    user: zeus
-    password: zeus
+    url: jdbc:mysql://${MYSQL_HOST:zeus-mysql}:${MYSQL_PORT:3306}/${SEATA_SERVER_DB:seata_server}?useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    user: ${MYSQL_USER:zeus}
+    password: ${MYSQL_PWD:zeus}
     minConn: 5
     maxConn: 30
     globalTable: global_table

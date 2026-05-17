@@ -1,0 +1,234 @@
+name: zeus-cloud
+
+services:
+  zeus-mysql:
+    image: mysql:8.4
+    container_name: zeus-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_USER: ${MYSQL_USER:-zeus}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-zeus}
+      TZ: Asia/Shanghai
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_0900_ai_ci
+      - --default-time-zone=+08:00
+    volumes:
+      - zeus-mysql-data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$${MYSQL_ROOT_PASSWORD} --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 40s
+    networks:
+      - zeus
+
+  zeus-redis:
+    image: redis:7.4
+    container_name: zeus-redis
+    restart: unless-stopped
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-1qaz@wsx?S}
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD:-1qaz@wsx?S}"]
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - zeus-redis-data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a \"$${REDIS_PASSWORD:-1qaz@wsx?S}\" ping | grep PONG"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    networks:
+      - zeus
+
+  zeus-nacos:
+    image: nacos/nacos-server:v2.5.1
+    container_name: zeus-nacos
+    restart: unless-stopped
+    depends_on:
+      zeus-mysql:
+        condition: service_healthy
+    environment:
+      MODE: standalone
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: zeus-mysql
+      MYSQL_SERVICE_PORT: ${MYSQL_SERVICE_PORT:-3306}
+      MYSQL_SERVICE_DB_NAME: zeus_nacos
+      MYSQL_SERVICE_USER: ${MYSQL_USER:-zeus}
+      MYSQL_SERVICE_PASSWORD: ${MYSQL_PASSWORD:-zeus}
+      MYSQL_SERVICE_DB_PARAM: characterEncoding=utf8&connectTimeout=10000&socketTimeout=30000&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+      NACOS_AUTH_ENABLE: "false"
+      JVM_XMS: 256m
+      JVM_XMX: 512m
+      JVM_XMN: 128m
+    ports:
+      - "${NACOS_PORT:-8848}:8848"
+      - "${NACOS_GRPC_PORT:-9848}:9848"
+      - "${NACOS_GRPC_RAFT_PORT:-9849}:9849"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:8848/nacos/actuator/health | grep UP"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+    networks:
+      - zeus
+
+  nacos-config-importer:
+    image: curlimages/curl:8.11.1
+    container_name: zeus-nacos-config-importer
+    depends_on:
+      zeus-nacos:
+        condition: service_healthy
+    environment:
+      NACOS_ADDR: http://${NACOS_HOST:-zeus-nacos}:${NACOS_SERVICE_PORT:-8848}
+      CONFIG_DIR: /nacos-configs
+    volumes:
+      - ./nacos:/nacos-configs:ro
+      - ./nacos-import-configs.sh:/nacos-import-configs.sh:ro
+    entrypoint: ["/bin/sh", "/nacos-import-configs.sh"]
+    networks:
+      - zeus
+
+  zeus-seata:
+    image: apache/seata-server:2.5.0.jdk17
+    container_name: zeus-seata
+    restart: unless-stopped
+    depends_on:
+      zeus-mysql:
+        condition: service_healthy
+      zeus-nacos:
+        condition: service_healthy
+      nacos-config-importer:
+        condition: service_completed_successfully
+    environment:
+      SEATA_IP: ${SEATA_HOST:-zeus-seata}
+      SEATA_PORT: ${SEATA_SERVICE_PORT:-8091}
+      MYSQL_HOST: ${MYSQL_HOST:-zeus-mysql}
+      MYSQL_PORT: ${MYSQL_SERVICE_PORT:-3306}
+      MYSQL_USER: ${MYSQL_USER:-zeus}
+      MYSQL_PWD: ${MYSQL_PASSWORD:-zeus}
+      NACOS_HOST: ${NACOS_HOST:-zeus-nacos}
+      NACOS_PORT: ${NACOS_SERVICE_PORT:-8848}
+      NACOS_NAMESPACE: ${NACOS_NAMESPACE:-}
+      SEATA_GROUP: ${SEATA_GROUP:-SEATA_GROUP}
+      LOADER_PATH: /seata-server/libs,/seata-server/libs/jdbc
+    ports:
+      - "${SEATA_PORT:-8091}:8091"
+      - "${SEATA_CONSOLE_PORT:-7091}:7091"
+    volumes:
+      - ./seata/application.yml:/seata-server/resources/application.yml:ro
+      - ./seata/libs/mysql-connector-j-9.5.0.jar:/seata-server/libs/mysql-connector-j-9.5.0.jar:ro
+      - ./seata/jdbc:/jdbc:ro
+    networks:
+      - zeus
+
+  zeus-auth:
+    profiles: ["apps"]
+    build:
+      context: ..
+      dockerfile: deploy/app.Dockerfile
+      args:
+        JAR_FILE: zeus-auth/target/*.jar
+    image: zeus-auth:latest
+    container_name: zeus-auth
+    restart: unless-stopped
+    depends_on:
+      zeus-redis:
+        condition: service_healthy
+      zeus-nacos:
+        condition: service_healthy
+      nacos-config-importer:
+        condition: service_completed_successfully
+    environment:
+      NACOS_HOST: ${NACOS_HOST:-zeus-nacos}
+      NACOS_PORT: ${NACOS_SERVICE_PORT:-8848}
+      REDIS_HOST: ${REDIS_HOST:-zeus-redis}
+      REDIS_PORT: ${REDIS_SERVICE_PORT:-6379}
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-1qaz@wsx?S}
+    ports:
+      - "${ZEUS_AUTH_PORT:-9000}:9000"
+    networks:
+      - zeus
+
+  zeus-system-server:
+    profiles: ["apps"]
+    build:
+      context: ..
+      dockerfile: deploy/app.Dockerfile
+      args:
+        JAR_FILE: zeus-system/zeus-system-server/target/*.jar
+    image: zeus-system-server:latest
+    container_name: zeus-system-server
+    restart: unless-stopped
+    depends_on:
+      zeus-mysql:
+        condition: service_healthy
+      zeus-redis:
+        condition: service_healthy
+      zeus-nacos:
+        condition: service_healthy
+      nacos-config-importer:
+        condition: service_completed_successfully
+      zeus-auth:
+        condition: service_started
+    environment:
+      NACOS_HOST: ${NACOS_HOST:-zeus-nacos}
+      NACOS_PORT: ${NACOS_SERVICE_PORT:-8848}
+      MYSQL_HOST: ${MYSQL_HOST:-zeus-mysql}
+      MYSQL_PORT: ${MYSQL_SERVICE_PORT:-3306}
+      MYSQL_USER: ${MYSQL_USER:-zeus}
+      MYSQL_PWD: ${MYSQL_PASSWORD:-zeus}
+      REDIS_HOST: ${REDIS_HOST:-zeus-redis}
+      REDIS_PORT: ${REDIS_SERVICE_PORT:-6379}
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-1qaz@wsx?S}
+    ports:
+      - "${ZEUS_SYSTEM_PORT:-8000}:8000"
+    networks:
+      - zeus
+
+  zeus-gateway:
+    profiles: ["apps"]
+    build:
+      context: ..
+      dockerfile: deploy/app.Dockerfile
+      args:
+        JAR_FILE: zeus-gateway/target/*.jar
+    image: zeus-gateway:latest
+    container_name: zeus-gateway
+    restart: unless-stopped
+    depends_on:
+      zeus-redis:
+        condition: service_healthy
+      zeus-nacos:
+        condition: service_healthy
+      nacos-config-importer:
+        condition: service_completed_successfully
+      zeus-auth:
+        condition: service_started
+      zeus-system-server:
+        condition: service_started
+    environment:
+      NACOS_HOST: ${NACOS_HOST:-zeus-nacos}
+      NACOS_PORT: ${NACOS_SERVICE_PORT:-8848}
+      REDIS_HOST: ${REDIS_HOST:-zeus-redis}
+      REDIS_PORT: ${REDIS_SERVICE_PORT:-6379}
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-1qaz@wsx?S}
+    ports:
+      - "${ZEUS_GATEWAY_PORT:-9999}:9999"
+    networks:
+      - zeus
+
+volumes:
+  zeus-mysql-data:
+  zeus-redis-data:
+
+networks:
+  zeus:
+    driver: bridge
