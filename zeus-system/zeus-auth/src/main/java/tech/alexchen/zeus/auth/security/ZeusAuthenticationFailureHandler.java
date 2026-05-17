@@ -11,6 +11,7 @@ import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.stereotype.Component;
 import tech.alexchen.zeus.common.core.response.R;
 
 import java.io.IOException;
@@ -21,6 +22,7 @@ import java.io.IOException;
  * @author alexchen
  * @since 2025-02-11 17:31
  */
+@Component
 public class ZeusAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
     private final MappingJackson2HttpMessageConverter errorHttpResponseConverter = new MappingJackson2HttpMessageConverter();
